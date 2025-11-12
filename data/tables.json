@@ -1,0 +1,19 @@
+{
+  "users": [
+    { "id": 1, "name": "Ana", "age": 30, "country": "Chile" },
+    { "id": 2, "name": "Luis", "age": 22, "country": "Uruguay" },
+    { "id": 3, "name": "Pedro", "age": 28, "country": "Argentina" },
+    { "id": 4, "name": "Lucía", "age": 35, "country": "Perú" }
+  ],
+  "products": [
+    { "id": 1, "name": "Laptop", "price": 1200 },
+    { "id": 2, "name": "Mouse", "price": 25 },
+    { "id": 3, "name": "Monitor", "price": 300 },
+    { "id": 4, "name": "Teclado", "price": 100 }
+  ],
+  "orders": [
+    { "id": 1, "user_id": 1, "product": "Laptop" },
+    { "id": 2, "user_id": 3, "product": "Monitor" },
+    { "id": 3, "user_id": 2, "product": "Mouse" }
+  ]
+}

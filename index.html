@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn SQL – SQL Mind Trainer</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="start-screen" class="screen active">
+    <h1>💾 SQL Mind Trainer</h1>
+    <p>Resuelve desafíos SQL, gana puntos y conviértete en un Data Master.</p>
+    <button id="start-btn">Comenzar desafío</button>
+  </div>
+
+  <div id="game-screen" class="screen">
+    <div class="game-header">
+      <h2 id="challenge-title">Desafío</h2>
+      <div id="timer">⏱️ 60s</div>
+      <div id="score">Puntos: 0</div>
+    </div>
+
+    <div id="challenge-description"></div>
+    
+    <div id="table-preview"></div>
+
+    <div id="sql-area">
+      <textarea id="sql-input" placeholder="Escribe tu consulta aquí..."></textarea>
+      <button id="run-query">Ejecutar</button>
+    </div>
+
+    <div id="result-area">
+      <h3>Resultado</h3>
+      <div id="result-table"></div>
+      <p id="feedback"></p>
+    </div>
+    <button id="next-level-btn" style="display:none;">➡️ Siguiente nivel</button>
+  </div>
+
+  <div id="end-screen" class="screen">
+    <h2>🏁 Desafío completado</h2>
+    <p id="final-score"></p>
+    <button id="retry-btn">Jugar otra vez</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

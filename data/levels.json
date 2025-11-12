@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "description": "Muestra todos los usuarios.",
+    "expected": "select * from users;",
+    "table": "users"
+  },
+  {
+    "id": 2,
+    "description": "Selecciona el nombre y edad de los usuarios mayores de 25 años.",
+    "expected": "select name, age from users where age > 25;",
+    "table": "users"
+  },
+  {
+    "id": 3,
+    "description": "Selecciona los productos cuyo precio sea mayor a 100.",
+    "expected": "select * from products where price > 100;",
+    "table": "products"
+  },
+  {
+    "id": 4,
+    "description": "Muestra todos los productos ordenados por precio de mayor a menor.",
+    "expected": "select * from products order by price desc;",
+    "table": "products"
+  },
+  {
+    "id": 5,
+    "description": "Muestra el nombre del producto más barato.",
+    "expected": "select name from products order by price asc limit 1;",
+    "table": "products"
+  },
+  {
+    "id": 6,
+    "description": "Muestra la cantidad total de usuarios.",
+    "expected": "select count(*) from users;",
+    "table": "users"
+  },
+  {
+    "id": 7,
+    "description": "Une las tablas 'orders' y 'users' mostrando el nombre del usuario y el producto comprado.",
+    "expected": "select users.name, orders.product from users join orders on users.id = orders.user_id;",
+    "table": "join_example"
+  },
+  {
+    "id": 8,
+    "description": "Selecciona los usuarios de Uruguay o Argentina.",
+    "expected": "select * from users where country = 'uruguay' or country = 'argentina';",
+    "table": "users"
+  },
+  {
+    "id": 9,
+    "description": "Muestra los 2 productos más caros.",
+    "expected": "select * from products order by price desc limit 2;",
+    "table": "products"
+  },
+  {
+    "id": 10,
+    "description": "Muestra el nombre de los usuarios cuyo nombre empieza con 'L'.",
+    "expected": "select name from users where name like 'l%';",
+    "table": "users"
+  }
+]
