@@ -4,16 +4,38 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Learn SQL – SQL Mind Trainer</title>
+
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
+
 <body>
-  <div id="start-screen" class="screen active">
-    <h1>💾 SQL Mind Trainer</h1>
-    <p>Resuelve desafíos SQL, gana puntos y conviértete en un Data Master.</p>
-    <button id="start-btn">Comenzar desafío</button>
+
+  <!-- 🔐 AUTH SCREEN -->
+  <div id="auth-screen" class="screen active">
+    <h1>🔐 Acceso SQL Mind Trainer</h1>
+
+    <input id="email" type="email" placeholder="Email" class="auth-input">
+    <input id="password" type="password" placeholder="Contraseña" class="auth-input">
+
+    <button id="login-btn">Iniciar sesión</button>
+    <button id="register-btn">Crear cuenta</button>
+
+    <p id="auth-message"></p>
   </div>
 
+  <!-- 🟢 START SCREEN -->
+  <div id="start-screen" class="screen">
+    <h1>💾 SQL Mind Trainer</h1>
+    <p>Resuelve desafíos SQL, gana puntos y conviértete en un Data Master.</p>
+
+    <button id="start-btn">Comenzar desafío</button>
+    <button id="logout-btn" style="margin-top:10px;">Cerrar sesión</button>
+  </div>
+
+  <!-- 🎮 GAME SCREEN -->
   <div id="game-screen" class="screen">
     <div class="game-header">
       <h2 id="challenge-title">Desafío</h2>
@@ -21,9 +43,19 @@
       <div id="score">Puntos: 0</div>
     </div>
 
+    <div id="level-meta">
+      <span id="level-group"></span>
+      <span id="level-topic"></span>
+      <span id="level-difficulty"></span>
+    </div>
+
     <div id="challenge-description"></div>
-    
     <div id="table-preview"></div>
+
+    <div id="hint-area">
+      <button id="hint-btn">💡 Ver pista</button>
+      <p id="hint-text" style="display:none;"></p>
+    </div>
 
     <div id="sql-area">
       <textarea id="sql-input" placeholder="Escribe tu consulta aquí..."></textarea>
@@ -35,9 +67,11 @@
       <div id="result-table"></div>
       <p id="feedback"></p>
     </div>
+
     <button id="next-level-btn" style="display:none;">➡️ Siguiente nivel</button>
   </div>
 
+  <!-- 🏁 END SCREEN -->
   <div id="end-screen" class="screen">
     <h2>🏁 Desafío completado</h2>
     <p id="final-score"></p>

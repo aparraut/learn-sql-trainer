@@ -1,19 +1,31 @@
 {
   "users": [
-    { "id": 1, "name": "Ana", "age": 30, "country": "Chile" },
-    { "id": 2, "name": "Luis", "age": 22, "country": "Uruguay" },
-    { "id": 3, "name": "Pedro", "age": 28, "country": "Argentina" },
-    { "id": 4, "name": "Lucía", "age": 35, "country": "Perú" }
+  { "id": 1,  "name": "Ana",      "age": 30, "country": "Chile",     "role": "admin" },
+  { "id": 2,  "name": "Luis",     "age": 22, "country": "Uruguay",   "role": "member" },
+  { "id": 3,  "name": "Pedro",    "age": 28, "country": "Argentina", "role": "member" },
+  { "id": 4,  "name": "Lucía",    "age": 35, "country": "Perú",      "role": "manager" },
+  { "id": 5,  "name": "Marcos",   "age": 40, "country": "Chile",     "role": "member" },
+  { "id": 6,  "name": "Sofía",    "age": 19, "country": "Uruguay",   "role": "guest" }
   ],
+
   "products": [
-    { "id": 1, "name": "Laptop", "price": 1200 },
-    { "id": 2, "name": "Mouse", "price": 25 },
-    { "id": 3, "name": "Monitor", "price": 300 },
-    { "id": 4, "name": "Teclado", "price": 100 }
+  { "id": 1, "name": "Laptop",     "price": 1200, "category": "tech",   "stock": 5 },
+  { "id": 2, "name": "Mouse",      "price": 25,   "category": "tech",   "stock": 30 },
+  { "id": 3, "name": "Monitor",    "price": 300,  "category": "tech",   "stock": 10 },
+  { "id": 4, "name": "Mochila",    "price": 45,   "category": "travel", "stock": 20 },
+  { "id": 5, "name": "Botella",    "price": 15,   "category": "travel", "stock": 50 }
   ],
+
   "orders": [
-    { "id": 1, "user_id": 1, "product": "Laptop" },
-    { "id": 2, "user_id": 3, "product": "Monitor" },
-    { "id": 3, "user_id": 2, "product": "Mouse" }
+  { "id": 1, "user_id": 1, "product_id": 1, "quantity": 1 },
+  { "id": 2, "user_id": 3, "product_id": 3, "quantity": 2 },
+  { "id": 3, "user_id": 2, "product_id": 2, "quantity": 1 },
+  { "id": 4, "user_id": 4, "product_id": 4, "quantity": 3 },
+  { "id": 5, "user_id": 6, "product_id": 5, "quantity": 4 }
+  ],
+  "categories": [
+  { "id": 1, "name": "tech" },
+  { "id": 2, "name": "travel" }
   ]
+
 }

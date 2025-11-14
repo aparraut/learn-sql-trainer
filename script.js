@@ -1,3 +1,106 @@
+/* =====================================================
+   🔌 SUPABASE INIT
+   ===================================================== */
+
+const SUPABASE_URL = "https://yuiwlbrfihyqoycsrhrc.supabase.co";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl1aXdsYnJmaWh5cW95Y3NyaHJjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMxMjkxODUsImV4cCI6MjA3ODcwNTE4NX0.3bb8_qc1VVTV8cZNP3irUOAUDsArWHV-QlObvPtI8cM";
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+let currentUser = null;
+
+/* =====================================================
+   🧩 AUTH: Registro & Login
+   ===================================================== */
+
+async function registerUser() {
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+
+  const { data, error } = await supabaseClient.auth.signUp({ email, password });
+
+  if (error) {
+    document.getElementById('auth-message').innerText = error.message;
+    return;
+  }
+
+  await supabaseClient.from('user_progress').insert({
+    user_id: data.user.id,
+    max_level: 1,
+    total_score: 0
+  });
+
+  document.getElementById('auth-message').innerText =
+    "Cuenta creada. Revisa tu correo para confirmar.";
+}
+
+async function loginUser() {
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+
+  const { data, error } = await supabaseClient.auth.signInWithPassword({
+    email,
+    password
+  });
+
+  if (error) {
+    document.getElementById('auth-message').innerText = error.message;
+    return;
+  }
+
+  loadUserProgress();
+}
+
+/* =====================================================
+   🔄 Cargar progreso del usuario
+   ===================================================== */
+
+async function loadUserProgress() {
+  const { data: { user } } = await supabaseClient.auth.getUser();
+  currentUser = user;
+
+  if (!user) return;
+
+  const { data: progress } = await supabaseClient
+    .from('user_progress')
+    .select('*')
+    .eq('user_id', user.id)
+    .single();
+
+  if (!progress) {
+    currentLevel = 0;
+    score = 0;
+  } else {
+    currentLevel = progress.max_level - 1;
+    score = progress.total_score;
+  }
+
+  document.getElementById('auth-screen').classList.remove('active');
+  document.getElementById('start-screen').classList.add('active');
+
+  document.getElementById('logout-btn').style.display = 'block';
+}
+
+/* =====================================================
+   💾 Guardar progreso
+   ===================================================== */
+
+async function saveUserProgress(levelReached, totalScore) {
+  if (!currentUser) return;
+
+  await supabaseClient
+    .from('user_progress')
+    .update({
+      max_level: levelReached,
+      total_score: totalScore,
+      updated_at: new Date()
+    })
+    .eq('user_id', currentUser.id);
+}
+
+/* =====================================================
+   🧮 Variables del juego
+   ===================================================== */
+
 let levels = [];
 let tables = {};
 let currentLevel = 0;
@@ -5,120 +108,131 @@ let score = 0;
 let timer = 60;
 let countdown;
 
+/* =====================================================
+   📦 Cargar datos
+   ===================================================== */
+
 async function loadData() {
-  const [levelsRes, tablesRes] = await Promise.all([
+  const [lvl, tbl] = await Promise.all([
     fetch('data/levels.json'),
     fetch('data/tables.json')
   ]);
-  levels = await levelsRes.json();
-  tables = await tablesRes.json();
+
+  levels = await lvl.json();
+  tables = await tbl.json();
 }
+loadData();
+
+/* =====================================================
+   🎮 INICIAR JUEGO
+   ===================================================== */
 
 function startGame() {
   document.getElementById('start-screen').classList.remove('active');
   document.getElementById('game-screen').classList.add('active');
-  score = 0;
-  currentLevel = 0;
   startLevel();
 }
 
+/* =====================================================
+   🎚 INICIAR NIVEL
+   ===================================================== */
+
 function startLevel() {
   const level = levels[currentLevel];
+
   document.getElementById('challenge-title').innerText = `Desafío ${level.id}`;
+  document.getElementById('level-group').innerText = `✔️ Grupo: ${level.groupName}`;
+  document.getElementById('level-topic').innerText = `✔️ Tema: ${level.topic}`;
+  document.getElementById('level-difficulty').innerText = `✔️ Dificultad: ${level.difficulty}/10`;
+
   document.getElementById('challenge-description').innerText = level.description;
+
   document.getElementById('sql-input').value = '';
   document.getElementById('feedback').innerText = '';
   document.getElementById('result-table').innerHTML = '';
   document.getElementById('score').innerText = `Puntos: ${score}`;
 
-  // ocultar botón siguiente nivel
+  const hintText = document.getElementById('hint-text');
+  hintText.style.display = 'none';
+  hintText.innerText = level.hint;
+
   document.getElementById('next-level-btn').style.display = 'none';
 
-  // Quitar colores previos
   document.body.classList.remove('success', 'error');
 
-  // Renderizar tabla previa
   const tablePreviewDiv = document.getElementById('table-preview');
   tablePreviewDiv.innerHTML = renderTablePreview(level.table);
 
-  const toggleBtn = document.getElementById('toggle-table-btn');
-  const tableContent = document.getElementById('table-content');
-  tableContent.style.display = 'none';
-  toggleBtn.innerText = '👁️ Mostrar tabla';
-  toggleBtn.onclick = () => {
-    if (tableContent.style.display === 'none') {
-      tableContent.style.display = 'block';
-      toggleBtn.innerText = '🙈 Ocultar tabla';
-    } else {
-      tableContent.style.display = 'none';
-      toggleBtn.innerText = '👁️ Mostrar tabla';
-    }
-  };
-
-  timer = 60;
+  timer = level.timeLimit || 60;
   clearInterval(countdown);
   countdown = setInterval(() => {
     document.getElementById('timer').innerText = `⏱️ ${timer--}s`;
-    if (timer < 0) checkAnswer();
+    if (timer < 0) checkAnswer(true);
   }, 1000);
 }
+
+/* =====================================================
+   🔍 Normalizar SQL
+   ===================================================== */
 
 function normalizeSQL(str) {
   return str.toLowerCase().replace(/\s+/g, ' ').replace(/;$/, '').trim();
 }
 
-function checkAnswer() {
-  clearInterval(countdown);
-  const userQuery = normalizeSQL(document.getElementById('sql-input').value);
-  const level = levels[currentLevel];
-  const expected = normalizeSQL(level.expected);
+/* =====================================================
+   🧠 Motor SQL mejorado (AND, >=, <=)
+   ===================================================== */
 
-  const feedback = document.getElementById('feedback');
-  const resultArea = document.getElementById('result-table');
+function applyWhere(data, whereClause) {
+  const orParts = whereClause.split(/\s+or\s+/i);
 
-  const simulatedResult = executeQuery(userQuery, tables);
-  const expectedResult = executeQuery(expected, tables);
+  return data.filter(row => {
+    return orParts.some(orCondition => {
+      const andParts = orCondition.split(/\s+and\s+/i);
 
-  const isCorrect =
-    userQuery === expected ||
-    JSON.stringify(simulatedResult) === JSON.stringify(expectedResult);
+      return andParts.every(condition => {
 
-  if (isCorrect) {
-    score += Math.max(10, timer);
-    feedback.innerText = '✅ ¡Correcto! Bien hecho.';
-    document.getElementById('score').innerText = `Puntos: ${score}`;
-    resultArea.innerHTML = renderTable(simulatedResult);
+        const likeMatch = condition.match(/(\w+)\s+like\s+'(.*)'/i);
+        if (likeMatch) {
+          const [, field, pattern] = likeMatch;
+          const regex = new RegExp('^' + pattern.replace(/%/g, '.*') + '$', 'i');
+          return regex.test(String(row[field]));
+        }
 
-    // ✅ Efecto verde
-    document.body.classList.add('success');
-    setTimeout(() => document.body.classList.remove('success'), 800);
+        const match = condition.match(/(\w+)\s*(>=|<=|<>|>|<|=)\s*'?([\w\s]+)'?/i);
+        if (!match) return false;
 
-    // Mostrar botón siguiente nivel
-    document.getElementById('next-level-btn').style.display = 'inline-block';
-  } else {
-    feedback.innerText = '❌ Incorrecto. Revisa tu consulta.';
-    resultArea.innerHTML = renderTable(simulatedResult);
+        const [, field, op, rawValue] = match;
 
-    // ❌ Efecto rojo
-    document.body.classList.add('error');
-    setTimeout(() => document.body.classList.remove('error'), 800);
-  }
+        const rowValue = row[field];
+        const value = isNaN(rawValue) ? rawValue.toLowerCase() : Number(rawValue);
+
+        switch (op) {
+          case '>':  return rowValue > value;
+          case '<':  return rowValue < value;
+          case '=':  return String(rowValue).toLowerCase() === String(value);
+          case '>=': return rowValue >= value;
+          case '<=': return rowValue <= value;
+          case '<>': return String(rowValue).toLowerCase() !== String(value);
+        }
+      });
+    });
+  });
 }
 
 /* =====================================================
-   🧮  Motor SQL
+   🧮 Motor SQL General
    ===================================================== */
+
 function executeQuery(query, tables) {
   try {
     query = query.replace(/\s+/g, ' ').trim();
 
-    // JOIN
-    if (query.includes('join')) {
-      const joinRegex =
-        /select\s+(.*?)\s+from\s+(\w+)\s+join\s+(\w+)\s+on\s+(\w+)\.(\w+)\s*=\s*(\w+)\.(\w+);?/i;
-      const m = query.match(joinRegex);
-      if (!m) return [];
-      const [, selectFields, t1, t2, , leftK, , rightK] = m;
+    const joinRegex = /select\s+(.*?)\s+from\s+(\w+)\s+join\s+(\w+)\s+on\s+(\w+)\.(\w+)\s*=\s*(\w+)\.(\w+);?/i;
+    const jm = query.match(joinRegex);
+
+    if (jm) {
+      const [, selectFields, t1, t2, , leftK, , rightK] = jm;
 
       const tableA = tables[t1];
       const tableB = tables[t2];
@@ -135,32 +249,32 @@ function executeQuery(query, tables) {
       return joined.map(row => {
         const newRow = {};
         fields.forEach(f => {
-          const parts = f.split('.');
-          const key = parts.length === 2 ? parts[1] : parts[0];
+          const key = f.includes('.') ? f.split('.')[1] : f;
           newRow[key] = row[key];
         });
         return newRow;
       });
     }
 
-    // SELECT general
     const selectRegex =
       /select\s+(.*?)\s+from\s+(\w+)(?:\s+where\s+(.*?))?(?:\s+order\s+by\s+(\w+)\s+(asc|desc))?(?:\s+limit\s+(\d+))?;?$/i;
+
     const m = query.match(selectRegex);
     if (!m) return [];
 
     const [, selectFields, tableName, whereClause, orderField, orderDir, limitValue] = m;
     let data = tables[tableName];
+
     if (!data) return [];
 
     if (whereClause) data = applyWhere(data, whereClause);
 
     if (orderField) {
       data.sort((a, b) => {
-        const valA = a[orderField];
-        const valB = b[orderField];
-        if (valA < valB) return orderDir === 'desc' ? 1 : -1;
-        if (valA > valB) return orderDir === 'desc' ? -1 : 1;
+        const A = a[orderField];
+        const B = b[orderField];
+        if (A < B) return orderDir === 'desc' ? 1 : -1;
+        if (A > B) return orderDir === 'desc' ? -1 : 1;
         return 0;
       });
     }
@@ -170,66 +284,92 @@ function executeQuery(query, tables) {
     if (selectFields.includes('count(*)')) return [{ count: data.length }];
 
     let fields =
-      selectFields.trim() === '*' ? Object.keys(data[0]) : selectFields.split(',').map(f => f.trim());
+      selectFields.trim() === '*'
+        ? Object.keys(data[0])
+        : selectFields.split(',').map(f => f.trim());
+
     return data.map(row => {
       const newRow = {};
       fields.forEach(f => (newRow[f] = row[f]));
       return newRow;
     });
+
   } catch {
     return [];
   }
 }
 
-function applyWhere(data, whereClause) {
-  const parts = whereClause.split(/\s+or\s+/i);
-  return data.filter(row => {
-    return parts.some(condition => {
-      const likeMatch = condition.match(/(\w+)\s+like\s+'(.*)'/i);
-      if (likeMatch) {
-        const [, field, pattern] = likeMatch;
-        const regex = new RegExp('^' + pattern.replace('%', '.*') + '$', 'i');
-        return regex.test(row[field]);
-      }
+/* =====================================================
+   🧪 VALIDAR RESPUESTA
+   ===================================================== */
 
-      const match = condition.match(/(\w+)\s*([><=]+)\s*'?([\w\s]+)'?/);
-      if (!match) return false;
-      const [, field, op, valueRaw] = match;
-      const value = isNaN(valueRaw) ? valueRaw.toLowerCase() : Number(valueRaw);
+function checkAnswer(isTimeout = false) {
+  clearInterval(countdown);
 
-      switch (op) {
-        case '>': return row[field] > value;
-        case '<': return row[field] < value;
-        case '=': return String(row[field]).toLowerCase() === String(value);
-        default: return false;
-      }
-    });
-  });
+  const userQuery = normalizeSQL(document.getElementById('sql-input').value);
+  const level = levels[currentLevel];
+  const expectedSql = normalizeSQL(level.solution);
+
+  const feedback = document.getElementById('feedback');
+
+  if (!userQuery && isTimeout) {
+    feedback.innerText = '⏰ Se acabó el tiempo.';
+    return;
+  }
+
+  const result = executeQuery(userQuery, tables);
+  const expected = executeQuery(expectedSql, tables);
+
+  const isCorrect =
+    JSON.stringify(result) === JSON.stringify(expected);
+
+  const resultArea = document.getElementById('result-table');
+  resultArea.innerHTML = renderTable(result);
+
+  if (isCorrect) {
+    const reward = level.reward || 10;
+    const timeBonus = Math.max(0, timer);
+    score += reward + timeBonus;
+
+    document.getElementById('score').innerText = `Puntos: ${score}`;
+    feedback.innerText = '✅ ¡Correcto!';
+
+    document.body.classList.add('success');
+
+    document.getElementById('next-level-btn').style.display = 'inline-block';
+
+    saveUserProgress(currentLevel + 1, score);
+
+  } else {
+    feedback.innerText = '❌ Incorrecto.';
+    document.body.classList.add('error');
+  }
 }
 
 /* =====================================================
-   👁️ Vista previa de tablas con toggle
+   ⏭ SIGUIENTE NIVEL
    ===================================================== */
-function renderTablePreview(tableField) {
-  let html = `
-    <div class="table-header">
-      <button id="toggle-table-btn">👁️ Mostrar tabla</button>
-    </div>
-    <div id="table-content">
-  `;
 
-  if (tableField === 'join_example') {
-    html += '<h4>users</h4>' + renderTable(tables.users);
-    html += '<h4>orders</h4>' + renderTable(tables.orders);
-  } else if (tables[tableField]) {
-    html += `<h4>${tableField}</h4>` + renderTable(tables[tableField]);
-  } else {
-    html += '<p>No se encontró tabla asociada.</p>';
-  }
-
-  html += '</div>';
-  return html;
+function nextLevel() {
+  currentLevel++;
+  if (currentLevel >= levels.length) endGame();
+  else startLevel();
 }
+
+/* =====================================================
+   🏁 FIN DEL JUEGO
+   ===================================================== */
+
+function endGame() {
+  document.getElementById('game-screen').classList.remove('active');
+  document.getElementById('end-screen').classList.add('active');
+  document.getElementById('final-score').innerText =
+    `Tu puntuación final: ${score} puntos`;
+}
+
+/* =====================================================
+   📊 RENDER TABLAS
+   ===================================================== */
 
 function renderTable(rows) {
   if (!rows || rows.length === 0) return '<p>Sin resultados.</p>';
@@ -246,53 +386,43 @@ function renderTable(rows) {
   return html;
 }
 
-/* =====================================================
-   🏆 Ranking
-   ===================================================== */
-function endGame() {
-  document.getElementById('game-screen').classList.remove('active');
-  document.getElementById('end-screen').classList.add('active');
-  document.getElementById('final-score').innerText = `Tu puntuación final: ${score} puntos`;
+function renderTablePreview(tableField) {
+  let html = `
+    <div class="table-header">
+      <button id="toggle-table-btn">👁️ Mostrar tabla</button>
+    </div>
+    <div id="table-content">
+  `;
 
-  saveScore(score);
+  if (tableField === 'join_example') {
+    html += '<h4>users</h4>' + renderTable(tables.users);
+    html += '<h4>orders</h4>' + renderTable(tables.orders);
+    html += '<h4>products</h4>' + renderTable(tables.products);
+  } else if (tables[tableField]) {
+    html += `<h4>${tableField}</h4>` + renderTable(tables[tableField]);
+  }
 
-  const rankingDiv = document.createElement('div');
-  rankingDiv.innerHTML = renderRanking();
-  document.getElementById('end-screen').appendChild(rankingDiv);
-}
-
-function saveScore(score) {
-  const records = JSON.parse(localStorage.getItem('sql_scores') || '[]');
-  const date = new Date().toLocaleDateString();
-  records.push({ score, date });
-  const top5 = records.sort((a, b) => b.score - a.score).slice(0, 5);
-  localStorage.setItem('sql_scores', JSON.stringify(top5));
-}
-
-function renderRanking() {
-  const records = JSON.parse(localStorage.getItem('sql_scores') || '[]');
-  if (records.length === 0) return '<p>No hay récords guardados aún.</p>';
-
-  let html = `<h3>🏆 Mejores puntuaciones</h3><table><thead><tr><th>Fecha</th><th>Puntos</th></tr></thead><tbody>`;
-  records.forEach(r => (html += `<tr><td>${r.date}</td><td>${r.score}</td></tr>`));
-  html += '</tbody></table>';
+  html += '</div>';
   return html;
 }
 
-function nextLevel() {
-  currentLevel++;
-  if (currentLevel >= levels.length) endGame();
-  else startLevel();
-}
+/* =====================================================
+   🎮 EVENTOS
+   ===================================================== */
 
-document.getElementById('start-btn').addEventListener('click', startGame);
-document.getElementById('run-query').addEventListener('click', checkAnswer);
-document.getElementById('next-level-btn').addEventListener('click', nextLevel);
-document.getElementById('retry-btn').addEventListener('click', () => {
-  document.getElementById('end-screen').classList.remove('active');
-  document.getElementById('start-screen').classList.add('active');
-  const oldRank = document.querySelector('#end-screen div');
-  if (oldRank) oldRank.remove();
-});
+document.getElementById('login-btn').onclick = loginUser;
+document.getElementById('register-btn').onclick = registerUser;
 
-loadData();
+document.getElementById('start-btn').onclick = startGame;
+document.getElementById('run-query').onclick = () => checkAnswer(false);
+document.getElementById('next-level-btn').onclick = nextLevel;
+
+document.getElementById('retry-btn').onclick = () => location.reload();
+
+document.getElementById('hint-btn').onclick = () =>
+  (document.getElementById('hint-text').style.display = 'block');
+
+document.getElementById('logout-btn').onclick = async () => {
+  await supabaseClient.auth.signOut();
+  location.reload();
+};

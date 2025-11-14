@@ -1,3 +1,7 @@
+/* ============================================= */
+/* 🌙 ESTILO GLOBAL */
+/* ============================================= */
+
 body {
   background-color: #121212;
   color: #00ff88;
@@ -5,7 +9,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   margin: 0;
 }
 
@@ -21,6 +25,21 @@ body {
 .screen.active {
   display: flex;
 }
+
+input {
+  width: 80%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 6px;
+  border: 1px solid #00ff88;
+  background: #1e1e1e;
+  color: #00ff88;
+  font-family: inherit;
+}
+
+/* ============================================= */
+/* BUTTONS */
+/* ============================================= */
 
 button {
   background-color: #00ff88;
@@ -38,6 +57,54 @@ button:hover {
   background-color: #00cc66;
 }
 
+.secondary-btn {
+  background: transparent;
+  border: 1px solid #00ff88;
+  color: #00ff88;
+}
+
+.secondary-btn:hover {
+  background: #00ff88;
+  color: #121212;
+}
+
+/* Botón volver */
+.back-btn {
+  background: transparent;
+  border: 1px solid #00ff88;
+  color: #00ff88;
+  padding: 6px 12px;
+  font-size: 13px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  background: #00ff88;
+  color: #121212;
+}
+
+/* ============================================= */
+/* GAME HEADER */
+/* ============================================= */
+
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+}
+
+/* ============================================= */
+/* SQL AREA */
+/* ============================================= */
+
+#sql-area {
+  width: 100%;
+  margin-top: 10px;
+}
+
 textarea {
   width: 100%;
   height: 100px;
@@ -51,6 +118,16 @@ textarea {
   resize: none;
 }
 
+/* ============================================= */
+/* RESULTADOS */
+/* ============================================= */
+
+#result-area {
+  width: 100%;
+  margin-top: 20px;
+  text-align: left;
+}
+
 #result-table table {
   width: 100%;
   border-collapse: collapse;
@@ -62,10 +139,17 @@ textarea {
   padding: 6px;
 }
 
+/* Feedback */
 #feedback {
   margin-top: 10px;
   font-weight: bold;
+  white-space: pre-line;
 }
+
+/* ============================================= */
+/* TABLAS */
+/* ============================================= */
+
 #table-preview {
   width: 100%;
   margin: 20px 0;
@@ -80,7 +164,6 @@ textarea {
   border-radius: 6px;
   padding: 6px 12px;
   cursor: pointer;
-  transition: 0.2s;
 }
 
 #toggle-table-btn:hover {
@@ -92,7 +175,33 @@ textarea {
   margin-top: 10px;
   transition: all 0.3s ease-in-out;
 }
-/* Feedback visual */
+
+/* ============================================= */
+/* PISTAS */
+/* ============================================= */
+
+#hint-area {
+  width: 100%;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+#hint-btn {
+  padding: 6px 12px;
+  font-size: 14px;
+  margin-top: 0;
+}
+
+#hint-text {
+  margin-top: 6px;
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+/* ============================================= */
+/* EFECTOS VISUALES */
+/* ============================================= */
+
 body.success {
   background-color: #042f1a;
   transition: background-color 0.6s ease;
