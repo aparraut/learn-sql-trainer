@@ -1,0 +1,378 @@
+/* =========================================================
+   🌙 GLOBAL – Cyberpunk Verde Neón
+   ========================================================= */
+:root {
+  --bg: #0e0e0e;
+  --bg-panel: #141414;
+  --neon: #00ff88;
+  --neon-soft: #00cc70;
+  --danger: #ff3366;
+  --text: #e6ffe6;
+  --border: rgba(0, 255, 136, 0.4);
+  --font: 'Fira Code', monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Neon glowing frame */
+.neon-border {
+  border: 1px solid var(--border);
+  box-shadow:
+    0 0 12px rgba(0, 255, 136, 0.2),
+    0 0 24px rgba(0, 255, 136, 0.1);
+  border-radius: 12px;
+}
+
+/* =========================================================
+   🖥 SCREENS
+   ========================================================= */
+.screen {
+  width: 100%;
+  max-width: 750px;
+  background: var(--bg-panel);
+  padding: 25px;
+  border-radius: 12px;
+  display: none;
+  flex-direction: column;
+  gap: 18px;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.screen.active {
+  display: flex;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* =========================================================
+   🖊 TITLES & TEXT
+   ========================================================= */
+
+.title {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--neon);
+  text-shadow: 0 0 8px rgba(0,255,136,0.8);
+}
+
+.title.small {
+  font-size: 20px;
+}
+
+.subtitle {
+  color: #d0ffd0;
+  margin-bottom: 10px;
+}
+
+/* =========================================================
+   🟩 INPUTS
+   ========================================================= */
+
+.input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--neon);
+  background: #0b0b0b;
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 15px;
+  transition: box-shadow 0.2s;
+}
+
+.input:focus {
+  outline: none;
+  box-shadow: 0 0 12px var(--neon);
+}
+
+/* =========================================================
+   🟨 BUTTONS
+   ========================================================= */
+.btn {
+  padding: 12px 20px;
+  background: var(--neon);
+  color: #000;
+  font-size: 15px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn:hover {
+  background: var(--neon-soft);
+  box-shadow: 0 0 10px var(--neon);
+}
+
+/* Secondary button */
+.btn.secondary {
+  background: transparent;
+  border: 1px solid var(--neon);
+  color: var(--neon);
+}
+
+.btn.secondary:hover {
+  background: var(--neon);
+  color: #000;
+}
+
+/* Button small */
+.btn.small {
+  padding: 6px 12px;
+  font-size: 13px;
+}
+
+/* Danger button */
+.btn.danger {
+  border: 1px solid var(--danger);
+  color: var(--danger);
+}
+
+.btn.danger:hover {
+  background: var(--danger);
+  color: #000;
+}
+
+/* Back button */
+.btn.back {
+  align-self: flex-start;
+  margin-bottom: 5px;
+}
+
+/* Tiny (for hints etc.) */
+.btn.tiny {
+  padding: 4px 10px;
+  font-size: 12px;
+}
+
+/* Hidden utility */
+.hidden { display: none !important; }
+
+/* =========================================================
+   🧩 GAME LAYOUT
+   ========================================================= */
+
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+}
+
+.meta {
+  color: var(--neon);
+  font-weight: bold;
+}
+
+.description {
+  background: #0d0d0d;
+  border-left: 3px solid var(--neon);
+  padding: 12px;
+  border-radius: 6px;
+}
+
+.info-card {
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #111;
+  color: #ccffdd;
+}
+
+/* =========================================================
+   🧮 SQL AREA
+   ========================================================= */
+
+.sql-area {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.textarea {
+  width: 100%;
+  height: 130px;
+  padding: 12px;
+  background: #0c0c0c;
+  color: var(--neon);
+  border: 1px solid var(--neon);
+  border-radius: 8px;
+  resize: none;
+  font-size: 14px;
+  font-family: var(--font);
+}
+
+.textarea:focus {
+  outline: none;
+  box-shadow: 0 0 10px var(--neon);
+}
+
+/* =========================================================
+   📊 RESULT BOX
+   ========================================================= */
+
+.result-box {
+  margin-top: 10px;
+  padding: 15px;
+  background: #121212;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+#result-table table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+}
+
+#result-table th,
+#result-table td {
+  border: 1px solid var(--border);
+  padding: 6px;
+  text-align: left;
+  font-size: 13px;
+}
+
+/* Feedback text */
+.feedback {
+  margin-top: 8px;
+  font-weight: bold;
+  color: var(--neon);
+}
+
+/* =========================================================
+   📘 HINT AREA
+   ========================================================= */
+
+.hint-box {
+  text-align: left;
+}
+
+.hint-text {
+  margin-top: 6px;
+  color: #99ffcc;
+  font-size: 14px;
+}
+
+/* =========================================================
+   🗺 LEVEL MAP
+   ========================================================= */
+
+.levels-container {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.level-row-title {
+  color: var(--neon);
+  margin-bottom: 6px;
+  font-size: 18px;
+}
+
+.level-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Round level buttons */
+.level-btn {
+  width: 50px;
+  height: 50px;
+  background: #111;
+  border-radius: 50%;
+  border: 2px solid var(--neon);
+  color: var(--neon);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.level-btn:hover {
+  transform: scale(1.12);
+  background: var(--neon);
+  color: #000;
+}
+
+/* Completed */
+.level-btn.completed {
+  background: #0088ff;
+  border-color: #0088ff;
+  color: white;
+}
+
+/* Locked */
+.level-btn.locked {
+  border-color: #444;
+  color: #444;
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   🎖 ACHIEVEMENTS
+   ========================================================= */
+
+.achievement {
+  padding: 12px;
+  background: #101010;
+  border: 1px solid var(--neon-soft);
+  border-radius: 8px;
+  margin-bottom: 12px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.achievement-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.achievement-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--neon);
+}
+
+.achievement-desc {
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+/* =========================================================
+   🟩 SUCCESS / ERROR EFFECTS
+   ========================================================= */
+
+body.success {
+  background: #032615;
+  transition: background 0.6s ease;
+}
+
+body.error {
+  background: #260404;
+  transition: background 0.6s ease;
+}

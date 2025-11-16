@@ -1,98 +1,107 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Learn SQL – SQL Mind Trainer</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SQL Mind Trainer 2.0</title>
 
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
 
+  <!-- Supabase CDN -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- App entrypoint -->
+  <script type="module" src="main.js" defer></script>
 </head>
 
 <body>
 
+  <!-- =============================== -->
   <!-- 🔐 AUTH SCREEN -->
-  <div id="auth-screen" class="screen active">
-    <h1>🔐 Acceso SQL Mind Trainer</h1>
+  <!-- =============================== -->
+  <div id="screen-auth" class="screen active neon-border">
+    <h1 class="title">🔐 Acceso</h1>
 
-    <input id="email" type="email" placeholder="Email" class="auth-input">
-    <input id="password" type="password" placeholder="Contraseña" class="auth-input">
+    <input id="email" type="email" class="input" placeholder="Email" />
+    <input id="password" type="password" class="input" placeholder="Contraseña" />
 
-    <button id="login-btn">Iniciar sesión</button>
-    <button id="register-btn">Crear cuenta</button>
+    <button id="btn-login" class="btn">Iniciar sesión</button>
+    <button id="btn-register" class="btn secondary">Crear cuenta</button>
 
-    <p id="auth-message"></p>
+    <p id="auth-message" class="message"></p>
   </div>
 
-  <!-- 🟢 START SCREEN -->
-  <div id="start-screen" class="screen">
-    <h1>💾 SQL Mind Trainer</h1>
-    <p>Resuelve desafíos SQL, gana puntos y conviértete en un Data Master.</p>
+  <!-- =============================== -->
+  <!-- 🏁 START SCREEN -->
+  <!-- =============================== -->
+  <div id="screen-start" class="screen neon-border">
+    <h1 class="title">💾 SQL Mind Trainer 2.0</h1>
+    <p class="subtitle">Conviértete en un maestro del SQL.</p>
 
-    <button id="start-btn">Comenzar desafío</button>
-    <button id="logout-btn" style="margin-top:10px;">Cerrar sesión</button>
-    <button id="levels-btn">Ver mapa de niveles</button>
-
+    <button id="btn-start" class="btn">Comenzar desafío</button>
+    <button id="btn-levels" class="btn secondary">Mapa de niveles</button>
+    <button id="btn-logout" class="btn small danger">Cerrar sesión</button>
   </div>
 
+  <!-- =============================== -->
   <!-- 🎮 GAME SCREEN -->
-  <div id="game-screen" class="screen">
-    <button class="back-btn" id="back-from-game">⬅ Volver al mapa</button>
+  <!-- =============================== -->
+  <div id="screen-game" class="screen neon-border">
+    <button id="btn-back-game" class="btn small back">⬅ Volver</button>
+
     <div class="game-header">
-      <h2 id="challenge-title">Desafío</h2>
-      <div id="timer">⏱️ 60s</div>
-      <div id="score">Puntos: 0</div>
+      <div id="timer" class="meta">⏱ 60s</div>
+      <h2 id="challenge-title" class="title small">Desafío</h2>
+      <div id="score" class="meta">Puntos: 0</div>
     </div>
 
-    <div id="level-meta">
-      <span id="level-group"></span>
-      <span id="level-topic"></span>
-      <span id="level-difficulty"></span>
+    <div id="level-info" class="info-card"></div>
+
+    <div id="challenge-description" class="description"></div>
+
+    <div id="table-preview" class="table-preview"></div>
+
+    <div id="hint-area" class="hint-box">
+      <button id="btn-hint" class="btn tiny">💡 Pista</button>
+      <p id="hint-text" class="hint-text hidden"></p>
     </div>
 
-    <div id="challenge-description"></div>
-    <div id="table-preview"></div>
-
-    <div id="hint-area">
-      <button id="hint-btn">💡 Ver pista</button>
-      <p id="hint-text" style="display:none;"></p>
+    <div id="sql-area" class="sql-area">
+      <textarea id="sql-input" placeholder="Escribe tu consulta SQL aquí..." class="textarea"></textarea>
+      <button id="btn-run" class="btn">Ejecutar</button>
     </div>
 
-    <div id="sql-area">
-      <textarea id="sql-input" placeholder="Escribe tu consulta aquí..."></textarea>
-      <button id="run-query">Ejecutar</button>
-    </div>
-
-    <div id="result-area">
+    <div id="result-area" class="result-box">
       <h3>Resultado</h3>
       <div id="result-table"></div>
-      <p id="feedback"></p>
+      <div id="feedback" class="feedback"></div>
     </div>
 
-    <button id="next-level-btn" style="display:none;">➡️ Siguiente nivel</button>
+    <button id="btn-next-level" class="btn hidden">➡ Siguiente nivel</button>
   </div>
 
-  <!-- 🏁 END SCREEN -->
-  <div id="end-screen" class="screen">
-    <h2>🏁 Desafío completado</h2>
-    <p id="final-score"></p>
-    <button id="retry-btn">Jugar otra vez</button>
+  <!-- =============================== -->
+  <!-- 🗺 MAPA DE NIVELES -->
+  <!-- =============================== -->
+  <div id="screen-levels" class="screen neon-border">
+    <h1 class="title">🗺 Mapa de Niveles</h1>
+    <p class="subtitle">Selecciona un desafío.</p>
+
+    <div id="levels-container" class="levels-container"></div>
+
+    <button id="btn-back-levels" class="btn small back">Volver</button>
   </div>
 
-  <!-- 🗺️ MAPA DE NIVELES -->
-  <div id="levels-screen" class="screen">
-    <h1>🗺️ Mapa de Niveles</h1>
-    <p>Selecciona cualquier nivel desbloqueado para jugar.</p>
-    <div id="levels-container"></div>
+  <!-- =============================== -->
+  <!-- 🏆 ACHIEVEMENTS -->
+  <!-- =============================== -->
+  <div id="screen-achievements" class="screen neon-border">
+    <h1 class="title">🏆 Logros</h1>
+    <div id="achievements-container"></div>
 
-    <button class="back-btn" id="back-to-start">Volver</button>
+    <button id="btn-back-achievements" class="btn small back">Volver</button>
   </div>
 
-
-  <script src="script.js"></script>
 </body>
-
 </html>
