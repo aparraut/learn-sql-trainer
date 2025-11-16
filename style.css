@@ -211,3 +211,59 @@ body.error {
   background-color: #2f0404;
   transition: background-color 0.6s ease;
 }
+#levels-container {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.level-group {
+  margin-bottom: 30px;
+}
+
+.level-group h3 {
+  text-align: left;
+  color: #00ff88;
+  margin-bottom: 10px;
+}
+
+.level-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.level-btn {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 2px solid #00ff88;
+  background: #1e1e1e;
+  color: #00ff88;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.level-btn.locked {
+  border-color: #555;
+  color: #555;
+  cursor: not-allowed;
+}
+
+.level-btn.available {
+  background: #00ff88;
+  color: #121212;
+}
+
+.level-btn.completed {
+  background: #0077ff;
+  border-color: #0077ff;
+  color: white;
+}
+
+.level-btn:hover:not(.locked) {
+  transform: scale(1.1);
+}

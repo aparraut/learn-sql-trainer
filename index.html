@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,10 +34,13 @@
 
     <button id="start-btn">Comenzar desafío</button>
     <button id="logout-btn" style="margin-top:10px;">Cerrar sesión</button>
+    <button id="levels-btn">Ver mapa de niveles</button>
+
   </div>
 
   <!-- 🎮 GAME SCREEN -->
   <div id="game-screen" class="screen">
+    <button class="back-btn" id="back-from-game">⬅ Volver al mapa</button>
     <div class="game-header">
       <h2 id="challenge-title">Desafío</h2>
       <div id="timer">⏱️ 60s</div>
@@ -78,6 +82,17 @@
     <button id="retry-btn">Jugar otra vez</button>
   </div>
 
+  <!-- 🗺️ MAPA DE NIVELES -->
+  <div id="levels-screen" class="screen">
+    <h1>🗺️ Mapa de Niveles</h1>
+    <p>Selecciona cualquier nivel desbloqueado para jugar.</p>
+    <div id="levels-container"></div>
+
+    <button class="back-btn" id="back-to-start">Volver</button>
+  </div>
+
+
   <script src="script.js"></script>
 </body>
+
 </html>

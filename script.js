@@ -123,6 +123,77 @@ async function loadData() {
 }
 loadData();
 
+function openLevelMap() {
+  document.getElementById('start-screen').classList.remove('active');
+  document.getElementById('levels-screen').classList.add('active');
+  renderLevelMap();
+}
+
+document.getElementById('levels-btn').onclick = openLevelMap;
+document.getElementById('back-to-start').onclick = () => {
+  document.getElementById('levels-screen').classList.remove('active');
+  document.getElementById('start-screen').classList.add('active');
+};
+
+function renderLevelMap() {
+  const container = document.getElementById('levels-container');
+  container.innerHTML = '';
+
+  const maxUnlocked = currentLevel + 1;
+
+  // Agrupar por groupId
+  const groups = {};
+  levels.forEach(lvl => {
+    if (!groups[lvl.groupId]) groups[lvl.groupId] = [];
+    groups[lvl.groupId].push(lvl);
+  });
+
+  for (const groupId in groups) {
+    const groupLevels = groups[groupId];
+
+    const groupDiv = document.createElement('div');
+    groupDiv.className = 'level-group';
+
+    const title = document.createElement('h3');
+    title.innerText = groupLevels[0].groupName;
+    groupDiv.appendChild(title);
+
+    const btnContainer = document.createElement('div');
+    btnContainer.className = 'level-buttons';
+
+    groupLevels.forEach(lvl => {
+      const btn = document.createElement('button');
+      btn.innerText = lvl.id;
+      btn.classList.add('level-btn');
+
+      if (lvl.id <= maxUnlocked) {
+        btn.classList.add('available');
+
+        if (lvl.id < maxUnlocked) {
+          btn.classList.add('completed');
+          btn.innerText = lvl.id + " ✓";
+        }
+
+        btn.onclick = () => {
+          currentLevel = lvl.id - 1;
+          document.getElementById('levels-screen').classList.remove('active');
+          document.getElementById('game-screen').classList.add('active');
+          startLevel();
+        };
+
+      } else {
+        btn.classList.add('locked');
+      }
+
+      btnContainer.appendChild(btn);
+    });
+
+    groupDiv.appendChild(btnContainer);
+    container.appendChild(groupDiv);
+  }
+}
+
+
 /* =====================================================
    🎮 INICIAR JUEGO
    ===================================================== */
@@ -208,9 +279,9 @@ function applyWhere(data, whereClause) {
         const value = isNaN(rawValue) ? rawValue.toLowerCase() : Number(rawValue);
 
         switch (op) {
-          case '>':  return rowValue > value;
-          case '<':  return rowValue < value;
-          case '=':  return String(rowValue).toLowerCase() === String(value);
+          case '>': return rowValue > value;
+          case '<': return rowValue < value;
+          case '=': return String(rowValue).toLowerCase() === String(value);
           case '>=': return rowValue >= value;
           case '<=': return rowValue <= value;
           case '<>': return String(rowValue).toLowerCase() !== String(value);
@@ -425,4 +496,21 @@ document.getElementById('hint-btn').onclick = () =>
 document.getElementById('logout-btn').onclick = async () => {
   await supabaseClient.auth.signOut();
   location.reload();
+};
+// ⬅ Volver desde el challenge al mapa de niveles
+document.getElementById('back-from-game').onclick = () => {
+  // Detener timer
+  clearInterval(countdown);
+
+  // Limpiar clases de estado visual
+  document.body.classList.remove('success', 'error');
+
+  // Ocultar pantalla de juego y mostrar mapa
+  document.getElementById('game-screen').classList.remove('active');
+  document.getElementById('levels-screen').classList.add('active');
+
+  // Volvemos a dibujar el mapa según el progreso actual
+  if (typeof renderLevelMap === 'function') {
+    renderLevelMap();
+  }
 };
