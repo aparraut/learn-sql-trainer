@@ -98,6 +98,14 @@ async function afterLogin() {
 
 document.getElementById("btn-run").onclick = () => checkAnswer(false);
 
+document.getElementById("btn-achievements").onclick = async () => {
+  await computeAchievements();
+  showScreen("screen-achievements");
+};
+
+document.getElementById("btn-back-achievements").onclick = () => {
+  showScreen("screen-start");
+};
 
 
 // Auto-login on refresh

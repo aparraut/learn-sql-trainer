@@ -6,7 +6,7 @@
   --bg-panel: #141414;
   --neon: #00ff88;
   --neon-soft: #00cc70;
-  --danger: #ff3366;
+  --danger: #4f1981;
   --text: #e6ffe6;
   --border: rgba(0, 255, 136, 0.4);
   --font: 'Fira Code', monospace;
@@ -58,8 +58,15 @@ body {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.97); }
-  to { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 /* =========================================================
@@ -70,7 +77,7 @@ body {
   font-size: 28px;
   font-weight: 600;
   color: var(--neon);
-  text-shadow: 0 0 8px rgba(0,255,136,0.8);
+  text-shadow: 0 0 8px rgba(0, 255, 136, 0.8);
 }
 
 .title.small {
@@ -81,6 +88,74 @@ body {
   color: #d0ffd0;
   margin-bottom: 10px;
 }
+
+/* =========================================================
+   🟩 START SCREEN — Minimal Cyberpunk Premium
+   ========================================================= */
+
+.start-header {
+  text-align: center;
+  margin-bottom: 30px;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.start-title {
+  font-size: 34px;
+  font-weight: 700;
+  color: var(--neon);
+  margin-bottom: 6px;
+  text-shadow: 0 0 12px rgba(0, 255, 136, 0.8);
+  letter-spacing: 1.4px;
+}
+
+.start-pulse {
+  width: 80%;
+  height: 2px;
+  margin: 0 auto 12px auto;
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(0, 255, 136, 0.8),
+      transparent);
+  filter: drop-shadow(0 0 6px rgba(0, 255, 136, 0.4));
+  animation: pulseGlow 2.5s infinite ease-in-out;
+}
+
+@keyframes pulseGlow {
+  0% {
+    opacity: 0.25;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.25;
+  }
+}
+
+.start-subtitle {
+  font-size: 15px;
+  color: #d8ffe9;
+  opacity: 0.9;
+  margin-top: 4px;
+  letter-spacing: 0.3px;
+}
+
+.start-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.start-btn {
+  width: 85%;
+  max-width: 360px;
+  font-size: 16px;
+}
+
 
 /* =========================================================
    🟩 INPUTS
@@ -166,7 +241,9 @@ body {
 }
 
 /* Hidden utility */
-.hidden { display: none !important; }
+.hidden {
+  display: none !important;
+}
 
 /* =========================================================
    🧩 GAME LAYOUT
@@ -239,18 +316,58 @@ body {
   border: 1px solid var(--border);
 }
 
+/* =========================================================
+   📊 TABLAS (preview + resultado)
+   ========================================================= */
+.table-preview {
+  margin-top: 12px;
+  padding: 12px;
+  background: #121212;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 255, 136, 0.25);
+  box-shadow: 0 0 8px rgba(0, 255, 136, 0.08);
+}
+
+
+.table-preview table,
 #result-table table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 12px;
+  margin-top: 10px;
+  font-size: 13px;
 }
 
-#result-table th,
-#result-table td {
-  border: 1px solid var(--border);
-  padding: 6px;
+/* Encabezados */
+.table-preview thead th,
+#result-table thead th {
+  background: linear-gradient(90deg,
+      rgba(0, 255, 136, 0.18),
+      rgba(0, 255, 136, 0.04));
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
+  padding: 6px 8px;
   text-align: left;
-  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Celdas */
+.table-preview tbody td,
+#result-table tbody td {
+  padding: 6px 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Zebra */
+.table-preview tbody tr:nth-child(even),
+#result-table tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* Hover fila */
+.table-preview tbody tr:hover,
+#result-table tbody tr:hover {
+  background: rgba(0, 255, 136, 0.08);
+  transition: background 0.15s ease-out;
 }
 
 /* Feedback text */
@@ -275,62 +392,90 @@ body {
 }
 
 /* =========================================================
-   🗺 LEVEL MAP
+   🗺️ MAPA DE NIVELES — Cyberpunk PRO
    ========================================================= */
 
-.levels-container {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-}
-
+/* Contenedor del grupo */
 .level-row-title {
-  color: var(--neon);
+  font-size: 16px;
+  color: #00ff88;
   margin-bottom: 6px;
-  font-size: 18px;
+  text-shadow: 0 0 6px rgba(0, 255, 136, 0.4);
+  border-left: 3px solid rgba(0, 255, 136, 0.4);
+  padding-left: 6px;
 }
 
+/* Contenedor de los niveles */
 .level-row {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  margin-bottom: 18px;
 }
 
-/* Round level buttons */
+/* Botones base */
 .level-btn {
-  width: 50px;
-  height: 50px;
-  background: #111;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
-  border: 2px solid var(--neon);
-  color: var(--neon);
+  border: 2px solid rgba(0, 255, 136, 0.35);
+  background: #0f0f0f;
+  color: #00ff88;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-weight: bold;
+  font-weight: 600;
+  font-size: 15px;
   cursor: pointer;
-  transition: 0.2s ease;
+  transition: 0.15s ease;
+  box-shadow: 0 0 6px rgba(0, 255, 136, 0.15);
 }
 
 .level-btn:hover {
-  transform: scale(1.12);
-  background: var(--neon);
-  color: #000;
+  transform: scale(1.15);
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.35);
 }
 
-/* Completed */
+/* Nivel completado */
 .level-btn.completed {
-  background: #0088ff;
-  border-color: #0088ff;
-  color: white;
+  background: #0d3a68;
+  border-color: #1a7cff;
+  color: #d6e7ff;
+  box-shadow: 0 0 8px rgba(26, 124, 255, 0.4);
 }
 
-/* Locked */
+.level-btn.completed:hover {
+  transform: scale(1.12);
+  box-shadow: 0 0 12px rgba(26, 124, 255, 0.4);
+}
+
+/* Nivel disponible */
+.level-btn.available {
+  border-color: #00ff88;
+  background: #112b20;
+  color: #00ff88;
+  box-shadow: 0 0 8px rgba(0, 255, 136, 0.35);
+}
+
+.level-btn.available:hover {
+  transform: scale(1.18);
+  box-shadow: 0 0 12px rgba(0, 255, 136, 0.55);
+}
+
+/* Nivel bloqueado */
 .level-btn.locked {
-  border-color: #444;
+  border-color: #333;
+  background: #0a0a0a;
   color: #444;
   cursor: not-allowed;
+  box-shadow: none;
 }
+
+.level-btn.locked:hover {
+  transform: none;
+  box-shadow: none;
+}
+
 
 /* =========================================================
    🎖 ACHIEVEMENTS
@@ -375,4 +520,113 @@ body.success {
 body.error {
   background: #260404;
   transition: background 0.6s ease;
+}
+/* =========================================================
+   📝 TOOLTIP CYBERPUNK
+   ========================================================= */
+
+.level-btn {
+  position: relative;
+}
+
+.level-btn[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: -32px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #0b0b0b;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(0,255,136,0.4);
+  color: #c8ffe0;
+  font-size: 11px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0 0 8px rgba(0,255,136,0.2);
+  transition: opacity 0.18s ease-out, transform 0.18s ease-out;
+}
+
+.level-btn:hover[data-tooltip]::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(2px);
+}
+@keyframes unlockPulse {
+  0% { box-shadow: 0 0 6px rgba(0,255,136,0.2); }
+  50% { box-shadow: 0 0 14px rgba(0,255,136,0.55); }
+  100% { box-shadow: 0 0 6px rgba(0,255,136,0.2); }
+}
+
+.level-btn.available {
+  animation: unlockPulse 1.6s infinite ease-in-out;
+}
+/* =========================================================
+   🗺️ CONTENEDOR DEL MAPA (Pro, centrado, elegante)
+   ========================================================= */
+
+#levels-container {
+  max-width: 700px;          /* para evitar que se estire demasiado */
+  margin: 0 auto;            /* centrar */
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;                 /* separación más elegante entre grupos */
+}
+.level-row-title {
+  font-size: 18px;
+  color: #00ff88;
+  text-shadow: 0 0 6px rgba(0,255,136,0.6);
+  letter-spacing: .5px;
+  margin-bottom: 10px;
+
+  border-left: 4px solid rgba(0,255,136,0.45);
+  padding-left: 10px;
+}
+
+.level-row-title::after {
+  content: "";
+  display: block;
+  height: 1px;
+  background: linear-gradient(90deg, #00ff88 0%, transparent 80%);
+  margin-top: 6px;
+  opacity: 0.4;
+}
+.level-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;     /* ⭐ centrado profesional */
+  margin-top: 6px;
+}
+#screen-level-map {
+  padding-top: 10px;
+  padding-bottom: 25px;
+}
+#levels-container {
+  box-shadow: 0 0 22px rgba(0,255,136,0.12);
+  border: 1px solid rgba(0,255,136,0.15);
+  border-radius: 10px;
+  padding: 30px;
+  background: rgba(10,10,10,0.6);
+  backdrop-filter: blur(2px);
+}
+/* Loader neon minimal */
+.level-map-loader {
+  text-align: center;
+  color: #00ff88;
+  font-size: 16px;
+  padding: 20px 0;
+  opacity: 0.8;
+  text-shadow: 0 0 8px rgba(0,255,136,0.6);
+}
+
+.level-map-loader::after {
+  content: "•••";
+  animation: blink 1s infinite alternate;
+}
+
+@keyframes blink {
+  0% { opacity: 0.2; }
+  100% { opacity: 1; }
 }

@@ -1,66 +1,161 @@
-// ====================================================
-// 🔍 SQL PARSER — FIXED VERSION
-// ====================================================
+// ======================================================
+// 🔍 SQL PARSER PRO — Full JOIN/WHERE/ORDER Support
+// ======================================================
 
-export function sqlParse(query) {
-  if (!query.toLowerCase().startsWith("select"))
-    throw new Error("select_required");
+export function parseSQL(query) {
+  query = query.trim().replace(/\s+/g, " ");
 
-  query = query.replace(/\s+/g, " ").trim();
+  if (!/^select/i.test(query)) throw new Error("select_required");
 
-  // SELECT
+  // ------------------------------------------
+  // BASIC STRUCTURE
+  // ------------------------------------------
   const selectPart = query.match(/select (.*?) from/i);
   if (!selectPart) throw new Error("from_missing");
 
-  let selectFields = selectPart[1].split(",").map(f => f.trim());
+  const selectStr = selectPart[1].trim();
 
-  // Manejar SELECT *
-  if (selectFields.length === 1 && selectFields[0] === "*") {
-    selectFields = ["*"];
+  const rest = query.substring(selectPart[0].length).trim();
+
+  // ------------------------------------------
+  // FROM
+  // ------------------------------------------
+  const fromMatch = rest.match(/^(\w+)/);
+  if (!fromMatch) throw new Error("table_missing");
+
+  const from = fromMatch[1];
+  let pos = from.length;
+  let joins = [];
+
+  // ------------------------------------------
+  // JOINS
+  // ------------------------------------------
+  const joinRegex = /\bjoin\b/i;
+
+  while (joinRegex.test(rest.substring(pos))) {
+    const joinMatch = rest.substring(pos).match(/join (\w+) on (.*?) (join|where|order|limit|$)/i);
+
+    if (!joinMatch) break;
+
+    const table = joinMatch[1];
+    const onStr = joinMatch[2].trim();
+
+    joins.push({
+      table,
+      on: parseExpression(onStr)
+    });
+
+    pos += joinMatch.index + joinMatch[0].length - (joinMatch[3] ? joinMatch[3].length : 0);
   }
 
-  // FROM
-  const fromPart = query.match(/from (\w+)/i);
-  if (!fromPart) throw new Error("table_missing");
-
-  const table = fromPart[1];
-
+  // ------------------------------------------
   // WHERE
-  const wherePart = query.match(/where (.*?)( order by| limit|$)/i);
-
+  // ------------------------------------------
   let where = null;
+  const whereMatch = rest.match(/where (.*?)( order by| limit|$)/i);
+  if (whereMatch) {
+    where = parseExpression(whereMatch[1].trim());
+  }
 
-  if (wherePart) {
-    const clauses = wherePart[1].split(/ and /i).map(c => c.trim());
-
-    where = clauses.map(c => {
-      const match = c.match(/(\w+)\s*(=|<>|>=|<=|>|<|like)\s*'?(.+?)'?$/i);
-      if (!match) throw new Error("where_syntax");
-
-      return {
-        field: match[1],
-        op: match[2].toUpperCase(),
-        value: match[3]
-      };
+  // ------------------------------------------
+  // ORDER BY
+  // ------------------------------------------
+  const orderBy = [];
+  const orderMatch = rest.match(/order by (.*?)( limit|$)/i);
+  if (orderMatch) {
+    const parts = orderMatch[1].split(",");
+    parts.forEach(p => {
+      const m = p.trim().match(/(\w+)( asc| desc)?/i);
+      if (m) {
+        orderBy.push({
+          field: m[1],
+          direction: (m[2] || "ASC").trim().toUpperCase()
+        });
+      }
     });
   }
 
-  // ORDER BY
-  let orderBy = null;
-  const orderPart = query.match(/order by (\w+) (asc|desc)/i);
-  if (orderPart)
-    orderBy = { field: orderPart[1], direction: orderPart[2].toUpperCase() };
-
+  // ------------------------------------------
   // LIMIT
+  // ------------------------------------------
   let limit = null;
-  const limitPart = query.match(/limit (\d+)/i);
-  if (limitPart) limit = Number(limitPart[1]);
+  const limitMatch = rest.match(/limit (\d+)/i);
+  if (limitMatch) limit = Number(limitMatch[1]);
+
+  // ------------------------------------------
+  // SELECT FIELDS
+  // ------------------------------------------
+  let select = selectStr.split(",").map(s => s.trim().toLowerCase());
 
   return {
-    select: selectFields,
-    from: table,
+    select,
+    from,
+    joins,
     where,
     orderBy,
     limit
+  };
+}
+
+// ======================================================
+// EXPRESSION PARSER (WHERE / ON)
+// Supports:
+//  - a = b
+//  - a >= 10
+//  - name LIKE '%a%'
+//  - parentheses
+//  - AND / OR
+// ======================================================
+
+function parseExpression(str) {
+  str = str.trim();
+
+  // Handle parentheses recursively
+  if (str.startsWith("(") && str.endsWith(")")) {
+    return parseExpression(str.slice(1, -1));
+  }
+
+  let depth = 0;
+  let lastAnd = -1;
+  let lastOr = -1;
+
+  // Find main AND/OR outside parentheses
+  for (let i = 0; i < str.length; i++) {
+    const c = str[i];
+    if (c === "(") depth++;
+    if (c === ")") depth--;
+    if (depth === 0) {
+      if (str.substring(i, i + 3).toUpperCase() === "OR ") lastOr = i;
+      if (str.substring(i, i + 4).toUpperCase() === "AND ") lastAnd = i;
+    }
+  }
+
+  // OR has lower precedence
+  if (lastOr !== -1) {
+    return {
+      type: "or",
+      left: parseExpression(str.substring(0, lastOr).trim()),
+      right: parseExpression(str.substring(lastOr + 2).trim())
+    };
+  }
+
+  // AND
+  if (lastAnd !== -1) {
+    return {
+      type: "and",
+      left: parseExpression(str.substring(0, lastAnd).trim()),
+      right: parseExpression(str.substring(lastAnd + 3).trim())
+    };
+  }
+
+  // BASIC COMPARISON
+  const cmp = str.match(/(\w+)\s*(=|<>|>=|<=|>|<|like)\s*'?(.+?)'?$/i);
+  if (!cmp) throw new Error("where_syntax");
+
+  return {
+    type: "binary",
+    left: { type: "field", name: cmp[1] },
+    op: cmp[2].toUpperCase(),
+    right: { type: "value", value: cmp[3] }
   };
 }

@@ -19,7 +19,10 @@ export async function renderLevelMap() {
   await ensureLevelsLoaded();
 
   const container = document.getElementById("levels-container");
-  container.innerHTML = "";
+  container.innerHTML = `
+  <div class="level-map-loader">Cargando niveles</div>
+`;
+
 
   const progress = await getProgress();
   const maxUnlocked = progress?.max_level || 1;
@@ -32,6 +35,8 @@ export async function renderLevelMap() {
   });
 
   // Render
+  container.innerHTML = "";  // ← borra el loader al empezar a renderizar
+
   for (const groupName in groups) {
     const title = document.createElement("div");
     title.classList.add("level-row-title");
@@ -45,6 +50,13 @@ export async function renderLevelMap() {
       btn.classList.add("level-btn");
 
       btn.innerText = level.id;
+
+      const short = level.description.length > 35
+        ? level.description.slice(0, 35) + "…"
+        : level.description;
+
+      btn.setAttribute("data-tooltip", short);
+
 
       // Estado
       if (level.id < maxUnlocked) {

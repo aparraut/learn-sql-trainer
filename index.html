@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -35,14 +36,24 @@
   <!-- =============================== -->
   <!-- 🏁 START SCREEN -->
   <!-- =============================== -->
-  <div id="screen-start" class="screen neon-border">
-    <h1 class="title">💾 SQL Mind Trainer 2.0</h1>
-    <p class="subtitle">Conviértete en un maestro del SQL.</p>
+  <div id="screen-start" class="screen">
 
-    <button id="btn-start" class="btn">Comenzar desafío</button>
-    <button id="btn-levels" class="btn secondary">Mapa de niveles</button>
-    <button id="btn-logout" class="btn small danger">Cerrar sesión</button>
+    <div class="start-header">
+      <h1 class="start-title">SQL MIND TRAINER</h1>
+      <div class="start-pulse"></div>
+      <p class="start-subtitle">Entrena tu mente. Domina SQL.</p>
+    </div>
+
+    <div class="start-buttons">
+      <button id="btn-start" class="btn start-btn">▶ Comenzar</button>
+      <button id="btn-levels" class="btn secondary start-btn">🗺 Mapa de Niveles</button>
+      <button id="btn-achievements" class="btn secondary start-btn">Logros</button>
+      <button id="btn-logout" class="btn danger start-btn">Cerrar sesión</button>
+    </div>
+
   </div>
+
+
 
   <!-- =============================== -->
   <!-- 🎮 GAME SCREEN -->
@@ -93,15 +104,17 @@
     <button id="btn-back-levels" class="btn small back">Volver</button>
   </div>
 
-  <!-- =============================== -->
-  <!-- 🏆 ACHIEVEMENTS -->
-  <!-- =============================== -->
-  <div id="screen-achievements" class="screen neon-border">
-    <h1 class="title">🏆 Logros</h1>
-    <div id="achievements-container"></div>
+  <!-- 🏆 SCREEN: ACHIEVEMENTS -->
+  <div id="screen-achievements" class="screen">
+    <button class="btn secondary back" id="btn-back-achievements">← Volver</button>
 
-    <button id="btn-back-achievements" class="btn small back">Volver</button>
+    <h2 class="title small">🏆 Logros</h2>
+    <p class="subtitle">Mira los logros que has desbloqueado en tu entrenamiento SQL.</p>
+
+    <div id="achievements-container"></div>
   </div>
 
+
 </body>
+
 </html>

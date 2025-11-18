@@ -27,6 +27,30 @@ export async function startLevel(id) {
     document.getElementById("score").innerText = `Puntos: ${progress.total_score}`;
     const lvl = levels[id - 1];
 
+    // ===============================
+    // 🟩 Tarjeta de información del nivel (estilo cyberpunk)
+    // ===============================
+    const info = document.getElementById("level-info");
+    info.innerHTML = `
+  <div style="
+    font-size:13px;
+    color:#d4ffe4;          /* verde muy claro, sin brillar */
+    text-align:center;
+    letter-spacing:0.2px;
+    margin-bottom:4px;
+  ">
+    <span style="color:#00ff88; font-weight:600;">
+      ${lvl.groupName}
+    </span>
+    · 🎯 Dificultad: ${lvl.difficulty}/10
+    · ⏱ Tiempo: ${lvl.timeLimit}s
+    · ⭐ Recompensa: ${lvl.reward} pts
+  </div>
+`;
+
+
+
+
     document.getElementById('challenge-title').innerText = `Desafío ${lvl.id}`;
     document.getElementById('challenge-description').innerText = lvl.description;
     document.getElementById('hint-text').innerText = lvl.hint;
@@ -103,10 +127,22 @@ export async function checkAnswer(timeout = false) {
 // ===============================
 function renderTable(rows) {
     const container = document.getElementById("result-table");
+    // Si es un error del motor, mostrarlo
+    if (rows && rows[0] && rows[0].error) {
+        container.innerHTML = `
+        <p style="color:#ff3366; font-weight:bold;">
+            ${rows[0].error}
+        </p>
+    `;
+        return;
+    }
+
+    // Si está vacío realmente
     if (!rows || rows.length === 0) {
         container.innerHTML = "<p>Sin resultados.</p>";
         return;
     }
+
 
     const headers = Object.keys(rows[0]);
     let html = "<table><thead><tr>";
