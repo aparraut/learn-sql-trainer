@@ -11,7 +11,7 @@ let tables = {};
 // Load tables.json
 // ===============================
 (async function loadTables() {
-  const res = await fetch("/data/tables.json");
+  const res = await fetch("data/tables.json");
   tables = await res.json();
 })();
 
