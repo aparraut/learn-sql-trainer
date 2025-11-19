@@ -2,6 +2,7 @@
 // 🧠 SQL Mind Trainer 2.0 - MAIN
 // ==============================================
 
+import { loadTablesData } from "./sql/sql-engine.js";
 import { initSupabase, login, register, logout, getCurrentUser } from './supabase.js';
 import { showScreen } from './ui/screens.js';
 import { loadLevels, startLevel } from './game/levels.js';
@@ -9,8 +10,8 @@ import { renderLevelMap } from './game/level-map.js';
 import { loadProgress } from './game/progress.js';
 import { computeAchievements } from './game/achievements.js';
 import { checkAnswer } from './game/levels.js';
-
-
+import { renderRanking } from "./game/ranking.js";
+import { ensureProgressRow } from "./supabase.js";
 // Init Supabase Client
 initSupabase();
 
@@ -87,6 +88,10 @@ async function afterLogin() {
     return;
   }
 
+  // 🛠 Crear progreso si falta
+  await ensureProgressRow();
+  await loadTablesData();
+  // 🔥 AHORA sí cargamos todo
   await loadLevels();
   await loadProgress();
   await computeAchievements();
@@ -107,6 +112,17 @@ document.getElementById("btn-back-achievements").onclick = () => {
   showScreen("screen-start");
 };
 
+
+//ranking global
+
+document.getElementById("btn-ranking").onclick = async () => {
+  await renderRanking();
+  showScreen("screen-ranking");
+};
+
+document.getElementById("btn-back-ranking").onclick = () => {
+  showScreen("screen-start");
+};
 
 // Auto-login on refresh
 afterLogin();

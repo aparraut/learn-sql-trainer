@@ -10,10 +10,11 @@ let tables = {};
 // ===============================
 // Load tables.json
 // ===============================
-(async function loadTables() {
-  const res = await fetch("../data/tables.json");
+export async function loadTablesData() {
+  const res = await fetch("./data/tables.json");
   tables = await res.json();
-})();
+}
+
 
 export function getTables() {
   return tables;

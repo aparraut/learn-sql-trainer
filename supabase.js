@@ -16,8 +16,28 @@ export async function login(email, password) {
 }
 
 export async function register(email, password) {
-  return await supabaseClient.auth.signUp({ email, password });
+  const { data, error } = await supabaseClient.auth.signUp({ email, password });
+
+  if (error) return { error };
+
+  if (data.user) {
+    await createInitialProgress(data.user.id);  // 🔥 CREA PROGRESO AUTOMÁTICO
+  }
+
+  return { error: null };
 }
+
+
+export async function createInitialProgress(user_id) {
+  await supabaseClient
+    .from("user_progress")
+    .insert({
+      user_id,
+      max_level: 1,
+      total_score: 0
+    });
+}
+
 
 export async function logout() {
   return await supabaseClient.auth.signOut();
@@ -53,4 +73,56 @@ export async function saveProgress(maxLevel, totalScore) {
       updated_at: new Date()
     })
     .eq("user_id", user.id);
+}
+export async function upsertRanking(score) {
+  const user = await getCurrentUser();
+  if (!user) return;
+
+  return await supabaseClient
+    .from("ranking")
+    .upsert(
+      {
+        user_id: user.id,
+        username: user.email,
+        score,
+        updated_at: new Date()
+      },
+      { onConflict: "user_id" }      // ← ESTO ES CLAVE
+    );
+
+    
+}
+
+
+export async function getRanking() {
+  const { data } = await supabaseClient
+    .from("ranking")
+    .select("*")
+    .order("score", { ascending: false })
+    .limit(20);
+
+  return data;
+}
+
+export async function ensureProgressRow() {
+  const user = await getCurrentUser();
+  if (!user) return;
+
+  const { data } = await supabaseClient
+    .from("user_progress")
+    .select("*")
+    .eq("user_id", user.id)
+    .single();
+
+  // Si NO existe → crearla
+  if (!data) {
+    await supabaseClient
+      .from("user_progress")
+      .insert({
+        user_id: user.id,
+        max_level: 1,
+        total_score: 0,
+        updated_at: new Date()
+      });
+  }
 }

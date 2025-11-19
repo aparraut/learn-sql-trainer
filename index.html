@@ -16,6 +16,27 @@
   <script type="module" src="main.js" defer></script>
 </head>
 
+<!-- 🎉 MODAL: NIVEL COMPLETADO -->
+<div id="win-modal" class="win-modal hidden">
+  <div class="win-content neon-border">
+    <h2 class="win-title">🎉 NIVEL COMPLETADO</h2>
+
+    <p id="win-time" class="win-info"></p>
+    <p id="win-reward" class="win-info"></p>
+    <p id="win-total" class="win-info"></p>
+
+    <div id="win-result-table" class="win-result-table"></div>
+    
+    <button id="win-next" class="btn">➡ Siguiente nivel</button>
+    
+  </div>
+</div>
+
+<audio id="sfx-victory" src="./sounds/victory-1.mp3" preload="auto"></audio>
+<audio id="sfx-error" src="./sounds/error-1.mp3" preload="auto"></audio>
+
+<div id="hidden-result" style="display:none;"></div>
+
 <body>
 
   <!-- =============================== -->
@@ -48,7 +69,10 @@
       <button id="btn-start" class="btn start-btn">▶ Comenzar</button>
       <button id="btn-levels" class="btn secondary start-btn">🗺 Mapa de Niveles</button>
       <button id="btn-achievements" class="btn secondary start-btn">Logros</button>
+
+      <button id="btn-ranking" class="btn secondary start-btn">🌎 Ranking</button>
       <button id="btn-logout" class="btn danger start-btn">Cerrar sesión</button>
+
     </div>
 
   </div>
@@ -81,10 +105,11 @@
     <div id="sql-area" class="sql-area">
       <textarea id="sql-input" placeholder="Escribe tu consulta SQL aquí..." class="textarea"></textarea>
       <button id="btn-run" class="btn">Ejecutar</button>
+      
     </div>
 
     <div id="result-area" class="result-box">
-      <h3>Resultado</h3>
+      <h3 id="result-header">Resultado</h3>
       <div id="result-table"></div>
       <div id="feedback" class="feedback"></div>
     </div>
@@ -113,6 +138,15 @@
 
     <div id="achievements-container"></div>
   </div>
+
+  <!-- 🌎 GLOBAL RANKING -->
+  <div id="screen-ranking" class="screen neon-border">
+    <button id="btn-back-ranking" class="btn small back">← Volver</button>
+    <h2 class="title small">🌎 Ranking Mundial</h2>
+    <p class="subtitle">Los mejores entrenadores SQL del planeta</p>
+    <div id="ranking-container"></div>
+  </div>
+
 
 
 </body>
