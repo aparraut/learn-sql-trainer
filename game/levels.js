@@ -23,48 +23,52 @@ export async function loadLevels() {
 // ===============================
 export async function startLevel(id) {
     currentLevel = id;
+
     const progress = await getProgress();
-    document.getElementById("score").innerText = `Puntos: ${progress.total_score}`;
+    const score = progress?.total_score ?? 0;
+    document.getElementById("score").innerText = `Puntos: ${score}`;
+
     const lvl = levels[id - 1];
 
-    // Información del nivel
+    // Info de nivel
     const info = document.getElementById("level-info");
     info.innerHTML = `
-      <div style="
-        font-size:13px;
-        color:#d4ffe4;
-        text-align:center;
-        letter-spacing:0.2px;
-        margin-bottom:4px;
-      ">
-        <span style="color:#00ff88; font-weight:600;">
-          ${lvl.groupName}
-        </span>
-        · 🎯 Dificultad: ${lvl.difficulty}/10
-        · ⏱ Tiempo: ${lvl.timeLimit}s
-        · ⭐ Recompensa: ${lvl.reward} pts
-      </div>
-    `;
+    <div style="
+      font-size:13px;
+      color:#d4ffe4;
+      text-align:center;
+      letter-spacing:0.2px;
+      margin-bottom:4px;
+    ">
+      <span style="color:#00ff88; font-weight:600;">
+        ${lvl.groupName}
+      </span>
+      · 🎯 Dificultad: ${lvl.difficulty}/10
+      · ⏱ Tiempo: ${lvl.timeLimit}s
+      · ⭐ Recompensa: ${lvl.reward} pts
+    </div>
+  `;
 
-    document.getElementById('challenge-title').innerText = `Desafío ${lvl.id}`;
-    document.getElementById('challenge-description').innerText = lvl.description;
-    document.getElementById('hint-text').innerText = lvl.hint;
-    document.getElementById('hint-text').classList.add("hidden");
-    document.getElementById('feedback').innerText = "";
+    document.getElementById("challenge-title").innerText = `Desafío ${lvl.id}`;
+    document.getElementById("challenge-description").innerText = lvl.description;
+    document.getElementById("hint-text").innerText = lvl.hint;
+    document.getElementById("hint-text").classList.add("hidden");
+    document.getElementById("feedback").innerText = "";
 
-    // Insertar preview de tabla
-    document.getElementById('table-preview').innerHTML = renderTablePreview(lvl.table);
+    // Preview de tabla
+    document.getElementById("table-preview").innerHTML = renderTablePreview(lvl.table);
 
-    document.getElementById('sql-input').value = "";
-
-    // Reset tabla del resultado (OCULTA)
+    // Reset input y resultados
+    document.getElementById("sql-input").value = "";
     document.getElementById("result-table").innerHTML = "";
     document.getElementById("result-table").style.display = "none";
-    document.getElementById("result-header").style.display = "none";
+    const header = document.getElementById("result-header");
+    if (header) header.style.display = "none";
 
+    const hidden = document.getElementById("hidden-result");
+    if (hidden) hidden.innerHTML = "";
 
     startTimer(lvl.timeLimit || 60);
-
     showScreen("screen-game");
 }
 
@@ -76,7 +80,7 @@ function startTimer(seconds) {
     let t = seconds;
 
     timer = setInterval(() => {
-        document.getElementById('timer').innerText = `⏱ ${t}s`;
+        document.getElementById("timer").innerText = `⏱ ${t}s`;
         t--;
 
         if (t < 0) {
@@ -104,11 +108,18 @@ export async function checkAnswer(timeout = false) {
     const expected = executeSQL(lvl.solution);
     const correct = JSON.stringify(result) === JSON.stringify(expected);
 
-    // 🔥 SIEMPRE generamos la tabla (aunque quede oculta)
+    // Siempre generamos la tabla en el contenedor oculto
     renderTable(result);
 
     if (correct) {
+        // 🔊 SONIDO DE VICTORIA **ANTES** de cualquier await
+        const sfx = document.getElementById("sfx-victory");
+        if (sfx) {
+            sfx.currentTime = 0;
+            sfx.play().catch(() => { });
+        }
 
+        // Luego ya podemos hacer cosas async tranquilos
         const progress = await getProgress();
         const reward = lvl.reward ?? 10;
         const newMaxLevel = Math.max(progress.max_level, currentLevel + 1);
@@ -117,125 +128,129 @@ export async function checkAnswer(timeout = false) {
         await saveProgress(newMaxLevel, newScore);
         await upsertRanking(newScore);
 
-        // Sonido victoria
-        document.getElementById("sfx-victory").currentTime = 0;
-        document.getElementById("sfx-victory").play().catch(() => { });
-
-        // Asegurar que la tabla NO se vea afuera
+        // Ocultar resultado en la game screen
+        const header = document.getElementById("result-header");
+        if (header) header.style.display = "none";
         document.getElementById("result-table").style.display = "none";
 
-        document.getElementById("result-header").style.display = "none";
-
-
-        // Mostrar modal
+        // Mostrar modal con la tabla (copiada desde hidden-result)
         showWinModal(lvl, newScore);
 
     } else {
+        document.getElementById("feedback").innerText = "❌ Incorrecto";
 
-        // Feedback incorrecto
-        document.getElementById('feedback').innerText = "❌ Incorrecto";
-
-        // Sonido error
+        // 🔊 Sonido de error (aquí nunca tuvimos problema)
         const snd = document.getElementById("sfx-error");
-        snd.currentTime = 0;
-        snd.play().catch(() => { });
-
-        // Renderizar tabla SOLO si es incorrecto
-        renderTable(result);
-        document.getElementById("result-table").innerHTML =
-            document.getElementById("hidden-result").innerHTML;
-        document.getElementById("result-header").style.display = "block";
-
-        document.getElementById("result-table").style.display = "block";
-    }
-
-
-    // ===============================
-    // 📊 Render table
-    // ===============================
-    function renderTable(rows) {
-        const container = document.getElementById("hidden-result");
-
-        if (rows && rows[0] && rows[0].error) {
-            container.innerHTML = `<p style="color:#ff3366; font-weight:bold;">${rows[0].error}</p>`;
-            return;
+        if (snd) {
+            snd.currentTime = 0;
+            snd.play().catch(() => { });
         }
 
-        if (!rows || rows.length === 0) {
-            container.innerHTML = "<p>Sin resultados.</p>";
-            return;
-        }
+        // Copiar tabla desde el contenedor oculto al visible
+        const hidden = document.getElementById("hidden-result");
+        const visible = document.getElementById("result-table");
+        visible.innerHTML = hidden ? hidden.innerHTML : "";
+        visible.style.display = "block";
 
-        const headers = Object.keys(rows[0]);
-        let html = "<table><thead><tr>";
+        const header = document.getElementById("result-header");
+        if (header) header.style.display = "block";
+    }
+}
 
-        headers.forEach(h => html += `<th>${h}</th>`);
-        html += "</tr></thead><tbody>";
 
-        rows.forEach(r => {
-            html += "<tr>";
-            headers.forEach(h => html += `<td>${r[h]}</td>`);
-            html += "</tr>";
-        });
+// ===============================
+// 📊 Render table (en contenedor oculto)
+// ===============================
+function renderTable(rows) {
+    const container = document.getElementById("hidden-result");
+    if (!container) return;
 
-        html += "</tbody></table>";
-
-        container.innerHTML = html;
+    // Si es un error del motor, mostrarlo
+    if (rows && rows[0] && rows[0].error) {
+        container.innerHTML = `
+      <p style="color:#ff3366; font-weight:bold;">
+        ${rows[0].error}
+      </p>
+    `;
+        return;
     }
 
-    // ===============================
-    // 📊 Go to next level
-    // ===============================
-    function goToNextLevel() {
-        currentLevel++;
-
-        if (currentLevel > levels.length) {
-            alert("🎉 ¡Has completado todos los niveles!");
-            return;
-        }
-
-        // Limpiar
-        document.getElementById("result-table").innerHTML = "";
-        document.getElementById("result-table").style.display = "none";
-        document.getElementById("sql-input").value = "";
-
-        startLevel(currentLevel);
+    // Si está vacío realmente
+    if (!rows || rows.length === 0) {
+        container.innerHTML = "<p>Sin resultados.</p>";
+        return;
     }
 
-    // ===============================
-    // 🏆 Modal de victoria
-    // ===============================
-    function showWinModal(lvl, newScore) {
-        const win = document.getElementById("win-modal");
+    const headers = Object.keys(rows[0]);
+    let html = "<table><thead><tr>";
 
-        // Mostrar modal INMEDIATAMENTE
-        win.classList.remove("hidden");
+    headers.forEach(h => (html += `<th>${h}</th>`));
+    html += "</tr></thead><tbody>";
 
-        // Tiempo
-        const timeLeft = document.getElementById("timer").innerText.replace("⏱ ", "");
-        document.getElementById("win-time").innerText = "⏱ Tiempo restante: " + timeLeft;
+    rows.forEach(r => {
+        html += "<tr>";
+        headers.forEach(h => (html += `<td>${r[h]}</td>`));
+        html += "</tr>";
+    });
 
-        // Recompensa
-        document.getElementById("win-reward").innerText = `⭐ Puntos obtenidos: +${lvl.reward}`;
+    html += "</tbody></table>";
 
-        // Total acumulado correcto
-        document.getElementById("win-total").innerText =
-            `💚 Total acumulado: ${newScore} pts`;
+    container.innerHTML = html;
+}
 
-        // Copiar tabla al modal
-        const original = document.getElementById("hidden-result").innerHTML;
-        document.getElementById("win-result-table").innerHTML = original;
+// ===============================
+// 📊 Go to next level
+// ===============================
+function goToNextLevel() {
+    currentLevel++;
 
-        // Animación secuencial (más rápida)
-        const rows = document.querySelectorAll("#win-result-table tr");
-        rows.forEach((row, i) => {
-            row.style.animationDelay = `${i * 0.03}s`;
-        });
-
-        // Botón siguiente nivel
-        document.getElementById("win-next").onclick = () => {
-            win.classList.add("hidden");
-            goToNextLevel();
-        };
+    if (currentLevel > levels.length) {
+        alert("🎉 ¡Has completado todos los niveles!");
+        return;
     }
+
+    startLevel(currentLevel);
+}
+
+// ===============================
+// 🏆 Modal de victoria
+// ===============================
+function showWinModal(lvl, newScore) {
+    const win = document.getElementById("win-modal");
+    if (!win) return;
+
+    // Mostrar modal INMEDIATO
+    win.classList.remove("hidden");
+
+    // Tiempo restante
+    const timeLeft = document
+        .getElementById("timer")
+        .innerText.replace("⏱ ", "");
+    document.getElementById("win-time").innerText =
+        "⏱ Tiempo restante: " + timeLeft;
+
+    // Recompensa
+    document.getElementById("win-reward").innerText =
+        `⭐ Puntos obtenidos: +${lvl.reward}`;
+
+    // Total acumulado
+    document.getElementById("win-total").innerText =
+        `💚 Total acumulado: ${newScore} pts`;
+
+    // Copiar tabla desde el contenedor oculto al modal
+    const hidden = document.getElementById("hidden-result");
+    const winTable = document.getElementById("win-result-table");
+    winTable.innerHTML = hidden ? hidden.innerHTML : "";
+
+    // Animación secuencial de filas
+    const rows = document.querySelectorAll("#win-result-table tr");
+    rows.forEach((row, i) => {
+        row.style.animationDelay = `${i * 0.03}s`;
+    });
+
+    // Botón siguiente nivel
+    document.getElementById("win-next").onclick = () => {
+        win.classList.add("hidden");
+        goToNextLevel();
+    };
 }
