@@ -1,24 +1,37 @@
-// =====================================================
-// Mapa de niveles
-// =====================================================
-
 import { startLevel } from "./levels.js";
+import { startJsLevel, getJsLevels, getJsProgress, loadJsLevels } from "./js-levels.js";
 import { getProgress } from "../supabase.js";
+import { getMode, isSqlMode } from "./mode.js";
 
-let levels = [];
+let sqlLevels = [];
 
-async function ensureLevelsLoaded() {
-  if (levels.length > 0) return;
+async function ensureSqlLevelsLoaded() {
+  if (sqlLevels.length > 0) return;
+  const res = await fetch("./data/levels.json");
+  if (!res.ok) throw new Error(`No se pudieron cargar niveles SQL (HTTP ${res.status})`);
+  sqlLevels = await res.json();
+}
 
-  try {
-    const res = await fetch("./data/levels.json");
-    if (!res.ok) {
-      throw new Error(`HTTP ${res.status}`);
-    }
-    levels = await res.json();
-  } catch (error) {
-    throw new Error(`No se pudieron cargar los niveles: ${error.message || error}`);
+async function getMapContext() {
+  if (isSqlMode()) {
+    await ensureSqlLevelsLoaded();
+    const progress = await getProgress();
+    return {
+      levels: sqlLevels,
+      maxUnlocked: progress?.max_level || 1,
+      modeLabel: "SQL",
+      startFn: startLevel,
+    };
   }
+
+  await loadJsLevels();
+  const jsProgress = getJsProgress();
+  return {
+    levels: getJsLevels(),
+    maxUnlocked: jsProgress.max_level || 1,
+    modeLabel: "JavaScript",
+    startFn: startJsLevel,
+  };
 }
 
 export async function renderLevelMap() {
@@ -29,18 +42,20 @@ export async function renderLevelMap() {
   container.replaceChildren(loader);
 
   try {
-    await ensureLevelsLoaded();
-
-    const progress = await getProgress();
-    const maxUnlocked = progress?.max_level || 1;
-
+    const { levels, maxUnlocked, modeLabel, startFn } = await getMapContext();
     const groups = {};
+
     levels.forEach((level) => {
       if (!groups[level.groupName]) groups[level.groupName] = [];
       groups[level.groupName].push(level);
     });
 
     container.replaceChildren();
+
+    const subtitle = document.createElement("div");
+    subtitle.className = "subtitle";
+    subtitle.textContent = `Modo actual: ${modeLabel}`;
+    container.appendChild(subtitle);
 
     Object.keys(groups).forEach((groupName) => {
       const title = document.createElement("div");
@@ -60,16 +75,12 @@ export async function renderLevelMap() {
           : level.description;
         btn.setAttribute("data-tooltip", short);
 
-        if (level.id < maxUnlocked) {
-          btn.classList.add("completed");
-        } else if (level.id === maxUnlocked) {
-          btn.classList.add("available");
-        } else {
-          btn.classList.add("locked");
-        }
+        if (level.id < maxUnlocked) btn.classList.add("completed");
+        else if (level.id === maxUnlocked) btn.classList.add("available");
+        else btn.classList.add("locked");
 
         if (level.id <= maxUnlocked) {
-          btn.onclick = () => startLevel(level.id);
+          btn.onclick = () => startFn(level.id);
         }
 
         row.appendChild(btn);
@@ -80,7 +91,7 @@ export async function renderLevelMap() {
   } catch (error) {
     const message = document.createElement("p");
     message.className = "subtitle";
-    message.textContent = `No se pudo cargar el mapa: ${error.message || error}`;
+    message.textContent = `No se pudo cargar el mapa (${getMode()}): ${error.message || error}`;
     container.replaceChildren(message);
   }
 }
