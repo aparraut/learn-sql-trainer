@@ -6,6 +6,7 @@ import { showScreen } from "../ui/screens.js";
 import { executeSQL } from "../sql/sql-engine.js";
 import { parseSQL } from "../sql/sql-parser.js";
 import { getProgress, saveProgress, upsertRanking } from "../supabase.js";
+import { isSqlMode } from "./mode.js";
 
 let levels = [];
 let currentLevel = 1;
@@ -114,6 +115,7 @@ function bindLearningControls() {
   if (!runShortcutBound) {
     sqlInput.addEventListener("keydown", (event) => {
       if ((event.ctrlKey || event.metaKey) && event.key === "Enter") {
+        if (!isSqlMode()) return;
         event.preventDefault();
         checkAnswer(false);
       }

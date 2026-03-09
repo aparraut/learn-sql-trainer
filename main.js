@@ -15,14 +15,20 @@ import {
 } from "./supabase.js";
 import { showScreen } from "./ui/screens.js";
 import { loadLevels, startLevel, checkAnswer } from "./game/levels.js";
+import { loadJsLevels, startJsLevel, checkJsAnswer } from "./game/js-levels.js";
 import { renderLevelMap } from "./game/level-map.js";
 import { loadProgress } from "./game/progress.js";
 import { computeAchievements } from "./game/achievements.js";
 import { renderRanking } from "./game/ranking.js";
+import { getMode, isSqlMode, setMode } from "./game/mode.js";
 
 initSupabase();
 
 const authMessage = document.getElementById("auth-message");
+const startTitle = document.querySelector(".start-title");
+const startSubtitle = document.querySelector(".start-subtitle");
+const modeSqlBtn = document.getElementById("btn-mode-sql");
+const modeJsBtn = document.getElementById("btn-mode-js");
 
 document.getElementById("btn-login").onclick = async () => {
   try {
@@ -93,7 +99,8 @@ document.getElementById("btn-logout").onclick = async () => {
 };
 
 document.getElementById("btn-start").onclick = () => {
-  startLevel(1);
+  if (isSqlMode()) startLevel(1);
+  else startJsLevel(1);
 };
 
 document.getElementById("btn-levels").onclick = async () => {
@@ -121,8 +128,10 @@ async function afterLogin() {
     await ensureProgressRow();
     await loadTablesData();
     await loadLevels();
+    await loadJsLevels();
     await loadProgress();
     await computeAchievements();
+    updateModeUI();
 
     showScreen("screen-start");
   } catch (error) {
@@ -131,7 +140,10 @@ async function afterLogin() {
   }
 }
 
-document.getElementById("btn-run").onclick = () => checkAnswer(false);
+document.getElementById("btn-run").onclick = () => {
+  if (isSqlMode()) checkAnswer(false);
+  else checkJsAnswer(false);
+};
 
 document.getElementById("btn-achievements").onclick = async () => {
   await computeAchievements();
@@ -158,6 +170,18 @@ afterLogin().catch((error) => {
 handleRecoveryFlow().catch((error) => {
   authMessage.innerText = `Error en recuperacion: ${toMessage(error)}`;
 });
+
+modeSqlBtn.onclick = () => {
+  setMode("sql");
+  updateModeUI();
+};
+
+modeJsBtn.onclick = () => {
+  setMode("js");
+  updateModeUI();
+};
+
+updateModeUI();
 
 function toMessage(error) {
   if (!error) return "Error desconocido.";
@@ -204,4 +228,19 @@ async function handleRecoveryFlow() {
 
 function clearRecoveryUrl() {
   window.history.replaceState({}, document.title, window.location.pathname);
+}
+
+function updateModeUI() {
+  const mode = getMode();
+  if (mode === "sql") {
+    startTitle.textContent = "SQL MIND TRAINER";
+    startSubtitle.textContent = "Entrena tu mente. Domina SQL.";
+    modeSqlBtn.classList.remove("secondary");
+    modeJsBtn.classList.add("secondary");
+  } else {
+    startTitle.textContent = "JAVASCRIPT MIND TRAINER";
+    startSubtitle.textContent = "Aprende sintaxis, logica y funciones JavaScript.";
+    modeSqlBtn.classList.add("secondary");
+    modeJsBtn.classList.remove("secondary");
+  }
 }
