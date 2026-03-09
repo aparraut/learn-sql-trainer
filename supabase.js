@@ -63,6 +63,27 @@ export async function logout() {
   }
 }
 
+export async function requestPasswordReset(email) {
+  try {
+    ensureClient();
+    const redirectTo = `${window.location.origin}${window.location.pathname}`;
+    const { error } = await supabaseClient.auth.resetPasswordForEmail(email, { redirectTo });
+    return { error: error ?? null };
+  } catch (error) {
+    return { error: { message: `No se pudo enviar recuperacion: ${toMessage(error)}` } };
+  }
+}
+
+export async function updatePassword(newPassword) {
+  try {
+    ensureClient();
+    const { error } = await supabaseClient.auth.updateUser({ password: newPassword });
+    return { error: error ?? null };
+  } catch (error) {
+    return { error: { message: `No se pudo actualizar contrasena: ${toMessage(error)}` } };
+  }
+}
+
 export async function getCurrentUser() {
   ensureClient();
   const { data, error } = await supabaseClient.auth.getUser();
