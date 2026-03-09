@@ -180,7 +180,7 @@ function getRuntimeConfig() {
 
   if (!supabaseUrl || !supabaseAnonKey) {
     throw new Error(
-      "Falta configuracion de Supabase. Define SQL_MIND_TRAINER_CONFIG en config.js."
+      "Falta configuracion de Supabase. Define SQL_MIND_TRAINER_CONFIG en config.public.js."
     );
   }
 
