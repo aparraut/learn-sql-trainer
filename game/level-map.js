@@ -1,81 +1,86 @@
 // =====================================================
-// 🗺️ MAPA DE NIVELES 2.0
+// Mapa de niveles
 // =====================================================
 
-import { loadLevels, startLevel } from "./levels.js";
+import { startLevel } from "./levels.js";
 import { getProgress } from "../supabase.js";
 
 let levels = [];
 
-// Cargar levels.json una sola vez
 async function ensureLevelsLoaded() {
-  if (levels.length === 0) {
+  if (levels.length > 0) return;
+
+  try {
     const res = await fetch("./data/levels.json");
+    if (!res.ok) {
+      throw new Error(`HTTP ${res.status}`);
+    }
     levels = await res.json();
+  } catch (error) {
+    throw new Error(`No se pudieron cargar los niveles: ${error.message || error}`);
   }
 }
 
 export async function renderLevelMap() {
-  await ensureLevelsLoaded();
-
   const container = document.getElementById("levels-container");
-  container.innerHTML = `
-  <div class="level-map-loader">Cargando niveles</div>
-`;
+  const loader = document.createElement("div");
+  loader.className = "level-map-loader";
+  loader.textContent = "Cargando niveles";
+  container.replaceChildren(loader);
 
+  try {
+    await ensureLevelsLoaded();
 
-  const progress = await getProgress();
-  const maxUnlocked = progress?.max_level || 1;
+    const progress = await getProgress();
+    const maxUnlocked = progress?.max_level || 1;
 
-  // Agrupar por groupName
-  const groups = {};
-  levels.forEach(lvl => {
-    if (!groups[lvl.groupName]) groups[lvl.groupName] = [];
-    groups[lvl.groupName].push(lvl);
-  });
-
-  // Render
-  container.innerHTML = "";  // ← borra el loader al empezar a renderizar
-
-  for (const groupName in groups) {
-    const title = document.createElement("div");
-    title.classList.add("level-row-title");
-    title.innerText = groupName;
-
-    const row = document.createElement("div");
-    row.classList.add("level-row");
-
-    groups[groupName].forEach(level => {
-      const btn = document.createElement("div");
-      btn.classList.add("level-btn");
-
-      btn.innerText = level.id;
-
-      const short = level.description.length > 35
-        ? level.description.slice(0, 35) + "…"
-        : level.description;
-
-      btn.setAttribute("data-tooltip", short);
-
-
-      // Estado
-      if (level.id < maxUnlocked) {
-        btn.classList.add("completed");
-      } else if (level.id === maxUnlocked) {
-        btn.classList.add("available");
-      } else {
-        btn.classList.add("locked");
-      }
-
-      // Acción
-      if (level.id <= maxUnlocked) {
-        btn.onclick = () => startLevel(level.id);
-      }
-
-      row.appendChild(btn);
+    const groups = {};
+    levels.forEach((level) => {
+      if (!groups[level.groupName]) groups[level.groupName] = [];
+      groups[level.groupName].push(level);
     });
 
-    container.appendChild(title);
-    container.appendChild(row);
+    container.replaceChildren();
+
+    Object.keys(groups).forEach((groupName) => {
+      const title = document.createElement("div");
+      title.classList.add("level-row-title");
+      title.innerText = groupName;
+
+      const row = document.createElement("div");
+      row.classList.add("level-row");
+
+      groups[groupName].forEach((level) => {
+        const btn = document.createElement("div");
+        btn.classList.add("level-btn");
+        btn.innerText = String(level.id);
+
+        const short = level.description.length > 35
+          ? `${level.description.slice(0, 35)}...`
+          : level.description;
+        btn.setAttribute("data-tooltip", short);
+
+        if (level.id < maxUnlocked) {
+          btn.classList.add("completed");
+        } else if (level.id === maxUnlocked) {
+          btn.classList.add("available");
+        } else {
+          btn.classList.add("locked");
+        }
+
+        if (level.id <= maxUnlocked) {
+          btn.onclick = () => startLevel(level.id);
+        }
+
+        row.appendChild(btn);
+      });
+
+      container.append(title, row);
+    });
+  } catch (error) {
+    const message = document.createElement("p");
+    message.className = "subtitle";
+    message.textContent = `No se pudo cargar el mapa: ${error.message || error}`;
+    container.replaceChildren(message);
   }
 }

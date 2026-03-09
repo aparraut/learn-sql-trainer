@@ -1,100 +1,113 @@
 // ==============================================
-// 🧠 SQL Mind Trainer 2.0 - MAIN
+// SQL Mind Trainer 2.0 - MAIN
 // ==============================================
 
-import { initSupabase, login, register, logout, getCurrentUser } from './supabase.js';
-import { showScreen } from './ui/screens.js';
-import { loadLevels, startLevel } from './game/levels.js';
-import { renderLevelMap } from './game/level-map.js';
-import { loadProgress } from './game/progress.js';
-import { computeAchievements } from './game/achievements.js';
-import { checkAnswer } from './game/levels.js';
+import { loadTablesData } from "./sql/sql-engine.js";
+import {
+  initSupabase,
+  login,
+  register,
+  logout,
+  getCurrentUser,
+  ensureProgressRow,
+} from "./supabase.js";
+import { showScreen } from "./ui/screens.js";
+import { loadLevels, startLevel, checkAnswer } from "./game/levels.js";
+import { renderLevelMap } from "./game/level-map.js";
+import { loadProgress } from "./game/progress.js";
+import { computeAchievements } from "./game/achievements.js";
+import { renderRanking } from "./game/ranking.js";
 
-
-// Init Supabase Client
 initSupabase();
 
-// ================================
-// 🔐 AUTH EVENTOS
-// ================================
-document.getElementById('btn-login').onclick = async () => {
-  const email = document.getElementById('email').value.trim();
-  const password = document.getElementById('password').value.trim();
+const authMessage = document.getElementById("auth-message");
 
-  const { error } = await login(email, password);
-  const msg = document.getElementById('auth-message');
+document.getElementById("btn-login").onclick = async () => {
+  try {
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
 
-  if (error) {
-    msg.innerText = error.message;
-    return;
+    const { error } = await login(email, password);
+    if (error) {
+      authMessage.innerText = error.message;
+      return;
+    }
+
+    authMessage.innerText = "";
+    await afterLogin();
+  } catch (error) {
+    authMessage.innerText = `Error al iniciar sesion: ${toMessage(error)}`;
   }
-
-  await afterLogin();
 };
 
-document.getElementById('btn-register').onclick = async () => {
-  const email = document.getElementById('email').value.trim();
-  const password = document.getElementById('password').value.trim();
+document.getElementById("btn-register").onclick = async () => {
+  try {
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
 
-  const { error } = await register(email, password);
-  const msg = document.getElementById('auth-message');
+    const { error } = await register(email, password);
+    if (error) {
+      authMessage.innerText = error.message;
+      return;
+    }
 
-  if (error) {
-    msg.innerText = error.message;
-    return;
+    authMessage.innerText = "Cuenta creada. Revisa tu email.";
+  } catch (error) {
+    authMessage.innerText = `Error al registrar: ${toMessage(error)}`;
   }
-
-  msg.innerText = "Cuenta creada. Revisa tu email.";
 };
 
-// ================================
-// 🔌 Evento Logout
-// ================================
-document.getElementById('btn-logout').onclick = async () => {
-  await logout();
-  showScreen("screen-auth");
+document.getElementById("btn-logout").onclick = async () => {
+  try {
+    const { error } = await logout();
+    if (error) {
+      authMessage.innerText = error.message;
+      return;
+    }
+    showScreen("screen-auth");
+  } catch (error) {
+    authMessage.innerText = `Error al cerrar sesion: ${toMessage(error)}`;
+  }
 };
 
-// ================================
-// 🧭 Start / Map
-// ================================
-document.getElementById('btn-start').onclick = () => {
+document.getElementById("btn-start").onclick = () => {
   startLevel(1);
 };
 
-document.getElementById('btn-levels').onclick = () => {
-  renderLevelMap();
+document.getElementById("btn-levels").onclick = async () => {
+  await renderLevelMap();
   showScreen("screen-levels");
 };
 
-document.getElementById('btn-back-levels').onclick = () => {
+document.getElementById("btn-back-levels").onclick = () => {
   showScreen("screen-start");
 };
 
-document.getElementById('btn-back-game').onclick = () => {
-  renderLevelMap();
+document.getElementById("btn-back-game").onclick = async () => {
+  await renderLevelMap();
   showScreen("screen-levels");
 };
 
-// ================================
-// 🎮 Post-login flow
-// ================================
 async function afterLogin() {
-  const user = await getCurrentUser();
+  try {
+    const user = await getCurrentUser();
+    if (!user) {
+      showScreen("screen-auth");
+      return;
+    }
 
-  if (!user) {
+    await ensureProgressRow();
+    await loadTablesData();
+    await loadLevels();
+    await loadProgress();
+    await computeAchievements();
+
+    showScreen("screen-start");
+  } catch (error) {
+    authMessage.innerText = `Error al cargar datos: ${toMessage(error)}`;
     showScreen("screen-auth");
-    return;
   }
-
-  await loadLevels();
-  await loadProgress();
-  await computeAchievements();
-
-  showScreen("screen-start");
 }
-
-
 
 document.getElementById("btn-run").onclick = () => checkAnswer(false);
 
@@ -107,6 +120,22 @@ document.getElementById("btn-back-achievements").onclick = () => {
   showScreen("screen-start");
 };
 
+document.getElementById("btn-ranking").onclick = async () => {
+  await renderRanking();
+  showScreen("screen-ranking");
+};
 
-// Auto-login on refresh
-afterLogin();
+document.getElementById("btn-back-ranking").onclick = () => {
+  showScreen("screen-start");
+};
+
+afterLogin().catch((error) => {
+  authMessage.innerText = `Error al restaurar sesion: ${toMessage(error)}`;
+});
+
+function toMessage(error) {
+  if (!error) return "Error desconocido.";
+  if (typeof error === "string") return error;
+  if (error.message) return error.message;
+  return "Error desconocido.";
+}
