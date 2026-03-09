@@ -8,6 +8,8 @@ import {
   login,
   register,
   logout,
+  requestPasswordReset,
+  updatePassword,
   getCurrentUser,
   ensureProgressRow,
 } from "./supabase.js";
@@ -54,6 +56,26 @@ document.getElementById("btn-register").onclick = async () => {
     authMessage.innerText = "Cuenta creada. Revisa tu email.";
   } catch (error) {
     authMessage.innerText = `Error al registrar: ${toMessage(error)}`;
+  }
+};
+
+document.getElementById("btn-forgot-password").onclick = async () => {
+  try {
+    const email = document.getElementById("email").value.trim();
+    if (!email) {
+      authMessage.innerText = "Escribe tu email para recuperar la contrasena.";
+      return;
+    }
+
+    const { error } = await requestPasswordReset(email);
+    if (error) {
+      authMessage.innerText = error.message;
+      return;
+    }
+
+    authMessage.innerText = "Te enviamos un email para restablecer tu contrasena.";
+  } catch (error) {
+    authMessage.innerText = `Error al recuperar contrasena: ${toMessage(error)}`;
   }
 };
 
@@ -133,9 +155,53 @@ afterLogin().catch((error) => {
   authMessage.innerText = `Error al restaurar sesion: ${toMessage(error)}`;
 });
 
+handleRecoveryFlow().catch((error) => {
+  authMessage.innerText = `Error en recuperacion: ${toMessage(error)}`;
+});
+
 function toMessage(error) {
   if (!error) return "Error desconocido.";
   if (typeof error === "string") return error;
   if (error.message) return error.message;
   return "Error desconocido.";
+}
+
+async function handleRecoveryFlow() {
+  const url = new URL(window.location.href);
+  const hash = window.location.hash || "";
+  const isRecovery =
+    url.searchParams.get("type") === "recovery" ||
+    hash.includes("type=recovery");
+
+  if (!isRecovery) return;
+
+  showScreen("screen-auth");
+  authMessage.innerText = "Enlace de recuperacion detectado. Define una nueva contrasena.";
+
+  const newPassword = window.prompt("Nueva contrasena (minimo 6 caracteres):", "");
+  if (!newPassword) {
+    authMessage.innerText = "Recuperacion cancelada. Puedes volver a usar el enlace del email.";
+    clearRecoveryUrl();
+    return;
+  }
+
+  if (newPassword.length < 6) {
+    authMessage.innerText = "La nueva contrasena debe tener al menos 6 caracteres.";
+    clearRecoveryUrl();
+    return;
+  }
+
+  const { error } = await updatePassword(newPassword);
+  if (error) {
+    authMessage.innerText = error.message;
+    clearRecoveryUrl();
+    return;
+  }
+
+  authMessage.innerText = "Contrasena actualizada. Ahora inicia sesion.";
+  clearRecoveryUrl();
+}
+
+function clearRecoveryUrl() {
+  window.history.replaceState({}, document.title, window.location.pathname);
 }
