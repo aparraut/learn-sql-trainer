@@ -24,15 +24,21 @@ export async function loadDailyChallenge() {
 }
 
 async function startDaily() {
-  const today = new Date().toISOString().slice(0, 10);
-  localStorage.setItem("daily_date", today);
+  try {
+    const today = new Date().toISOString().slice(0, 10);
+    localStorage.setItem("daily_date", today);
 
-  // Nivel aleatorio
-  const level = Math.floor(Math.random() * 20) + 1;
+    // Nivel aleatorio
+    const level = Math.floor(Math.random() * 20) + 1;
 
-  // Bonus de puntos
-  const progress = await getProgress();
-  await saveProgress(progress.max_level, progress.total_score + 20);
+    // Bonus de puntos
+    const progress = await getProgress();
+    if (progress) {
+      await saveProgress(progress.max_level, progress.total_score + 20);
+    }
 
-  startLevel(level);
+    startLevel(level);
+  } catch (error) {
+    alert(`No se pudo iniciar el desafio diario: ${error.message || error}`);
+  }
 }

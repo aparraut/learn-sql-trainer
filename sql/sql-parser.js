@@ -3,7 +3,7 @@
 // ======================================================
 
 export function parseSQL(query) {
-  query = query.trim().replace(/\s+/g, " ");
+  query = query.trim().replace(/;+\s*$/, "").replace(/\s+/g, " ");
 
   if (!/^select/i.test(query)) throw new Error("select_required");
 
@@ -23,36 +23,33 @@ export function parseSQL(query) {
   const fromMatch = rest.match(/^(\w+)/);
   if (!fromMatch) throw new Error("table_missing");
 
-  const from = fromMatch[1];
+  const from = fromMatch[1].toLowerCase();
   let pos = from.length;
   let joins = [];
 
   // ------------------------------------------
   // JOINS
   // ------------------------------------------
-  const joinRegex = /\bjoin\b/i;
+  const joinPattern = /^\s*join\s+(\w+)\s+on\s+(.*?)(?=\s+join\b|\s+where\b|\s+order\s+by\b|\s+limit\b|$)/i;
 
-  while (joinRegex.test(rest.substring(pos))) {
-    const joinMatch = rest.substring(pos).match(/join (\w+) on (.*?) (join|where|order|limit|$)/i);
-
+  while (true) {
+    const chunk = rest.substring(pos);
+    const joinMatch = chunk.match(joinPattern);
     if (!joinMatch) break;
 
-    const table = joinMatch[1];
-    const onStr = joinMatch[2].trim();
-
     joins.push({
-      table,
-      on: parseExpression(onStr)
+      table: joinMatch[1].toLowerCase(),
+      on: parseExpression(joinMatch[2].trim())
     });
 
-    pos += joinMatch.index + joinMatch[0].length - (joinMatch[3] ? joinMatch[3].length : 0);
+    pos += joinMatch[0].length;
   }
 
   // ------------------------------------------
   // WHERE
   // ------------------------------------------
   let where = null;
-  const whereMatch = rest.match(/where (.*?)( order by| limit|$)/i);
+  const whereMatch = rest.match(/\bwhere\b (.*?)(\border by\b|\blimit\b|$)/i);
   if (whereMatch) {
     where = parseExpression(whereMatch[1].trim());
   }
@@ -61,14 +58,14 @@ export function parseSQL(query) {
   // ORDER BY
   // ------------------------------------------
   const orderBy = [];
-  const orderMatch = rest.match(/order by (.*?)( limit|$)/i);
+  const orderMatch = rest.match(/\border by\b (.*?)(\blimit\b|$)/i);
   if (orderMatch) {
     const parts = orderMatch[1].split(",");
     parts.forEach(p => {
-      const m = p.trim().match(/(\w+)( asc| desc)?/i);
+      const m = p.trim().match(/([\w.]+)( asc| desc)?/i);
       if (m) {
         orderBy.push({
-          field: m[1],
+          field: m[1].toLowerCase(),
           direction: (m[2] || "ASC").trim().toUpperCase()
         });
       }
@@ -108,12 +105,7 @@ export function parseSQL(query) {
 // ======================================================
 
 function parseExpression(str) {
-  str = str.trim();
-
-  // Handle parentheses recursively
-  if (str.startsWith("(") && str.endsWith(")")) {
-    return parseExpression(str.slice(1, -1));
-  }
+  str = stripOuterParentheses(str.trim());
 
   let depth = 0;
   let lastAnd = -1;
@@ -149,13 +141,59 @@ function parseExpression(str) {
   }
 
   // BASIC COMPARISON
-  const cmp = str.match(/(\w+)\s*(=|<>|>=|<=|>|<|like)\s*'?(.+?)'?$/i);
+  const cmp = str.match(/^([\w.]+)\s*(=|<>|>=|<=|>|<|like)\s*(.+)$/i);
   if (!cmp) throw new Error("where_syntax");
+
+  const left = cmp[1].toLowerCase();
+  const op = cmp[2].toUpperCase();
+  const rawRight = cmp[3].trim();
 
   return {
     type: "binary",
-    left: { type: "field", name: cmp[1] },
-    op: cmp[2].toUpperCase(),
-    right: { type: "value", value: cmp[3] }
+    left: { type: "field", name: left },
+    op,
+    right: parseOperand(rawRight)
   };
+}
+
+function stripOuterParentheses(str) {
+  let out = str;
+
+  while (out.startsWith("(") && out.endsWith(")")) {
+    let depth = 0;
+    let balanced = true;
+
+    for (let i = 0; i < out.length; i++) {
+      if (out[i] === "(") depth++;
+      if (out[i] === ")") depth--;
+      if (depth === 0 && i < out.length - 1) {
+        balanced = false;
+        break;
+      }
+    }
+
+    if (!balanced) break;
+    out = out.slice(1, -1).trim();
+  }
+
+  return out;
+}
+
+function parseOperand(raw) {
+  const token = raw.trim().replace(/;+\s*$/, "");
+
+  const quoted = token.match(/^'(.*)'$/);
+  if (quoted) {
+    return { type: "value", value: quoted[1].replace(/''/g, "'") };
+  }
+
+  if (/^-?\d+(\.\d+)?$/.test(token)) {
+    return { type: "value", value: Number(token) };
+  }
+
+  if (/^[\w.]+$/.test(token)) {
+    return { type: "field", name: token.toLowerCase() };
+  }
+
+  throw new Error("where_syntax");
 }

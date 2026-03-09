@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -7,58 +7,54 @@
   <title>SQL Mind Trainer 2.0</title>
 
   <link rel="stylesheet" href="styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
 
   <!-- Supabase CDN -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
 
   <!-- App entrypoint -->
   <script type="module" src="main.js" defer></script>
 </head>
 
-<!-- 🎉 MODAL: NIVEL COMPLETADO -->
-<div id="win-modal" class="win-modal hidden">
-  <div class="win-content neon-border">
-    <h2 class="win-title">🎉 NIVEL COMPLETADO</h2>
-
-    <p id="win-time" class="win-info"></p>
-    <p id="win-reward" class="win-info"></p>
-    <p id="win-total" class="win-info"></p>
-
-    <div id="win-result-table" class="win-result-table"></div>
-    
-    <button id="win-next" class="btn">➡ Siguiente nivel</button>
-    
-  </div>
-</div>
-
-<audio id="sfx-victory" src="./sounds/victory-1.mp3" preload="auto"></audio>
-<audio id="sfx-error" src="./sounds/error-1.mp3" preload="auto"></audio>
-
-<div id="hidden-result" style="display:none;"></div>
-
 <body>
+  <!-- Modal: Nivel completado -->
+  <div id="win-modal" class="win-modal hidden">
+    <div class="win-content neon-border">
+      <h2 class="win-title">NIVEL COMPLETADO</h2>
 
-  <!-- =============================== -->
-  <!-- 🔐 AUTH SCREEN -->
-  <!-- =============================== -->
+      <p id="win-time" class="win-info"></p>
+      <p id="win-reward" class="win-info"></p>
+      <p id="win-total" class="win-info"></p>
+
+      <div id="win-result-table" class="win-result-table"></div>
+
+      <button id="win-next" class="btn">Siguiente nivel</button>
+    </div>
+  </div>
+
+  <audio id="sfx-victory" src="./sounds/victory-1.mp3" preload="auto"></audio>
+  <audio id="sfx-error" src="./sounds/error-1.mp3" preload="auto"></audio>
+
+  <div id="hidden-result" style="display:none;"></div>
+
+  <!-- Auth screen -->
   <div id="screen-auth" class="screen active neon-border">
-    <h1 class="title">🔐 Acceso</h1>
+    <h1 class="title">Acceso</h1>
 
     <input id="email" type="email" class="input" placeholder="Email" />
-    <input id="password" type="password" class="input" placeholder="Contraseña" />
+    <input id="password" type="password" class="input" placeholder="Contrasena" />
 
-    <button id="btn-login" class="btn">Iniciar sesión</button>
+    <button id="btn-login" class="btn">Iniciar sesion</button>
     <button id="btn-register" class="btn secondary">Crear cuenta</button>
 
     <p id="auth-message" class="message"></p>
   </div>
 
-  <!-- =============================== -->
-  <!-- 🏁 START SCREEN -->
-  <!-- =============================== -->
+  <!-- Start screen -->
   <div id="screen-start" class="screen">
-
     <div class="start-header">
       <h1 class="start-title">SQL MIND TRAINER</h1>
       <div class="start-pulse"></div>
@@ -66,47 +62,39 @@
     </div>
 
     <div class="start-buttons">
-      <button id="btn-start" class="btn start-btn">▶ Comenzar</button>
-      <button id="btn-levels" class="btn secondary start-btn">🗺 Mapa de Niveles</button>
+      <button id="btn-start" class="btn start-btn">Comenzar</button>
+      <button id="btn-levels" class="btn secondary start-btn">Mapa de niveles</button>
       <button id="btn-achievements" class="btn secondary start-btn">Logros</button>
-
-      <button id="btn-ranking" class="btn secondary start-btn">🌎 Ranking</button>
-      <button id="btn-logout" class="btn danger start-btn">Cerrar sesión</button>
-
+      <button id="btn-ranking" class="btn secondary start-btn">Ranking</button>
+      <button id="btn-logout" class="btn danger start-btn">Cerrar sesion</button>
     </div>
-
   </div>
 
-
-
-  <!-- =============================== -->
-  <!-- 🎮 GAME SCREEN -->
-  <!-- =============================== -->
+  <!-- Game screen -->
   <div id="screen-game" class="screen neon-border">
-    
-    <button id="btn-back-game" class="btn small back">⬅ Volver</button>
+    <button id="btn-back-game" class="btn small back">Volver</button>
 
     <div class="game-header">
-      <div id="timer" class="meta">⏱ 60s</div>
-      <h2 id="challenge-title" class="title small">Desafío</h2>
+      <div id="timer" class="meta">60s</div>
+      <h2 id="challenge-title" class="title small">Desafio</h2>
       <div id="score" class="meta">Puntos: 0</div>
     </div>
 
     <div id="level-info" class="info-card"></div>
-
     <div id="challenge-description" class="description"></div>
-
     <div id="table-preview" class="table-preview"></div>
 
     <div id="hint-area" class="hint-box">
-      <button id="btn-hint" class="btn tiny">💡 Pista</button>
+      <button id="btn-hint" class="btn tiny">Pista</button>
+      <button id="btn-show-solution" class="btn tiny secondary hidden">Mostrar solucion</button>
+      <p id="hint-progress" class="hint-progress"></p>
       <p id="hint-text" class="hint-text hidden"></p>
+      <p id="tutor-tip" class="tutor-tip hidden"></p>
     </div>
 
     <div id="sql-area" class="sql-area">
-      <textarea id="sql-input" placeholder="Escribe tu consulta SQL aquí..." class="textarea"></textarea>
+      <textarea id="sql-input" placeholder="Escribe tu consulta SQL aqui..." class="textarea"></textarea>
       <button id="btn-run" class="btn">Ejecutar</button>
-      
     </div>
 
     <div id="result-area" class="result-box">
@@ -115,41 +103,36 @@
       <div id="feedback" class="feedback"></div>
     </div>
 
-    <button id="btn-next-level" class="btn hidden">➡ Siguiente nivel</button>
+    <button id="btn-next-level" class="btn hidden">Siguiente nivel</button>
   </div>
 
-  <!-- =============================== -->
-  <!-- 🗺 MAPA DE NIVELES -->
-  <!-- =============================== -->
+  <!-- Mapa de niveles -->
   <div id="screen-levels" class="screen neon-border">
-    <h1 class="title">🗺 Mapa de Niveles</h1>
-    <p class="subtitle">Selecciona un desafío.</p>
+    <h1 class="title">Mapa de niveles</h1>
+    <p class="subtitle">Selecciona un desafio.</p>
 
     <div id="levels-container" class="levels-container"></div>
 
     <button id="btn-back-levels" class="btn small back">Volver</button>
   </div>
 
-  <!-- 🏆 SCREEN: ACHIEVEMENTS -->
+  <!-- Achievements -->
   <div id="screen-achievements" class="screen">
-    <button class="btn secondary back" id="btn-back-achievements">← Volver</button>
+    <button class="btn secondary back" id="btn-back-achievements">Volver</button>
 
-    <h2 class="title small">🏆 Logros</h2>
+    <h2 class="title small">Logros</h2>
     <p class="subtitle">Mira los logros que has desbloqueado en tu entrenamiento SQL.</p>
 
     <div id="achievements-container"></div>
   </div>
 
-  <!-- 🌎 GLOBAL RANKING -->
+  <!-- Ranking global -->
   <div id="screen-ranking" class="screen neon-border">
-    <button id="btn-back-ranking" class="btn small back">← Volver</button>
-    <h2 class="title small">🌎 Ranking Mundial</h2>
+    <button id="btn-back-ranking" class="btn small back">Volver</button>
+    <h2 class="title small">Ranking mundial</h2>
     <p class="subtitle">Los mejores entrenadores SQL del planeta</p>
     <div id="ranking-container"></div>
   </div>
-
-
-
 </body>
 
 </html>
