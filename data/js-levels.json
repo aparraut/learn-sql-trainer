@@ -1,11 +1,11 @@
 [
   {
     "id": 1,
-    "groupName": "Fundamentos",
-    "topic": "Suma basica",
     "difficulty": 1,
     "timeLimit": 90,
     "reward": 21,
+    "groupName": "Fundamentos",
+    "topic": "Suma",
     "description": "Crea add1(a, b) y retorna a + b + 1.",
     "hint": "Usa return a + b + N.",
     "functionName": "add1",
@@ -21,290 +21,168 @@
       },
       {
         "input": [
-          5,
-          -1
+          -3,
+          4
         ],
-        "expected": 5
+        "expected": 2
       }
     ]
   },
   {
     "id": 2,
-    "groupName": "Fundamentos",
-    "topic": "Suma basica",
     "difficulty": 1,
     "timeLimit": 90,
     "reward": 21,
-    "description": "Crea add2(a, b) y retorna a + b + 2.",
-    "hint": "Usa return a + b + N.",
-    "functionName": "add2",
-    "starterCode": "function add2(a, b) {\n  // TODO\n}",
-    "solution": "function add2(a, b) { return a + b + 2; }",
+    "groupName": "Fundamentos",
+    "topic": "Resta",
+    "description": "Crea sub1(a, b) y retorna a - b - 1.",
+    "hint": "Usa return a - b - N.",
+    "functionName": "sub1",
+    "starterCode": "function sub1(a, b) {\n  // TODO\n}",
+    "solution": "function sub1(a, b) { return a - b - 1; }",
     "tests": [
       {
         "input": [
-          1,
+          10,
           2
         ],
-        "expected": 5
+        "expected": 7
       },
       {
         "input": [
           5,
-          -1
+          9
         ],
-        "expected": 6
+        "expected": -5
       }
     ]
   },
   {
     "id": 3,
-    "groupName": "Fundamentos",
-    "topic": "Suma basica",
     "difficulty": 1,
     "timeLimit": 90,
     "reward": 21,
-    "description": "Crea add3(a, b) y retorna a + b + 3.",
-    "hint": "Usa return a + b + N.",
-    "functionName": "add3",
-    "starterCode": "function add3(a, b) {\n  // TODO\n}",
-    "solution": "function add3(a, b) { return a + b + 3; }",
+    "groupName": "Fundamentos",
+    "topic": "Multiplicacion",
+    "description": "Crea mul1(a, b) y retorna a * b * 1.",
+    "hint": "Multiplica a, b y N.",
+    "functionName": "mul1",
+    "starterCode": "function mul1(a, b) {\n  // TODO\n}",
+    "solution": "function mul1(a, b) { return a * b * 1; }",
     "tests": [
       {
         "input": [
-          1,
-          2
+          2,
+          3
         ],
         "expected": 6
       },
       {
         "input": [
-          5,
-          -1
+          -1,
+          4
         ],
-        "expected": 7
+        "expected": -4
       }
     ]
   },
   {
     "id": 4,
-    "groupName": "Fundamentos",
-    "topic": "Suma basica",
     "difficulty": 1,
     "timeLimit": 90,
     "reward": 21,
-    "description": "Crea add4(a, b) y retorna a + b + 4.",
-    "hint": "Usa return a + b + N.",
-    "functionName": "add4",
-    "starterCode": "function add4(a, b) {\n  // TODO\n}",
-    "solution": "function add4(a, b) { return a + b + 4; }",
+    "groupName": "Fundamentos",
+    "topic": "Potencias",
+    "description": "Crea pow1(x) y retorna x elevado a 1.",
+    "hint": "Usa Math.pow o **.",
+    "functionName": "pow1",
+    "starterCode": "function pow1(x) {\n  // TODO\n}",
+    "solution": "function pow1(x) { return Math.pow(x, 1); }",
     "tests": [
       {
         "input": [
-          1,
           2
         ],
-        "expected": 7
+        "expected": 2
       },
       {
         "input": [
-          5,
-          -1
+          3
         ],
-        "expected": 8
+        "expected": 3
       }
     ]
   },
   {
     "id": 5,
-    "groupName": "Fundamentos",
-    "topic": "Suma basica",
     "difficulty": 1,
     "timeLimit": 90,
     "reward": 21,
-    "description": "Crea add5(a, b) y retorna a + b + 5.",
-    "hint": "Usa return a + b + N.",
-    "functionName": "add5",
-    "starterCode": "function add5(a, b) {\n  // TODO\n}",
-    "solution": "function add5(a, b) { return a + b + 5; }",
+    "groupName": "Condicionales",
+    "topic": "Clamp",
+    "description": "Crea clamp1(x) y limita x al rango 0..1.",
+    "hint": "Si x < 0 retorna 0; si x > N retorna N.",
+    "functionName": "clamp1",
+    "starterCode": "function clamp1(x) {\n  // TODO\n}",
+    "solution": "function clamp1(x) { if (x < 0) return 0; if (x > 1) return 1; return x; }",
     "tests": [
       {
         "input": [
-          1,
-          2
+          -2
         ],
-        "expected": 8
+        "expected": 0
       },
       {
         "input": [
-          5,
-          -1
+          3
         ],
-        "expected": 9
+        "expected": 1
       }
     ]
   },
   {
     "id": 6,
-    "groupName": "Fundamentos",
-    "topic": "Suma basica",
     "difficulty": 1,
     "timeLimit": 90,
     "reward": 21,
-    "description": "Crea add6(a, b) y retorna a + b + 6.",
-    "hint": "Usa return a + b + N.",
-    "functionName": "add6",
-    "starterCode": "function add6(a, b) {\n  // TODO\n}",
-    "solution": "function add6(a, b) { return a + b + 6; }",
+    "groupName": "Condicionales",
+    "topic": "Multiplo",
+    "description": "Crea isMultiple1(x) y retorna true si x es multiplo de 1.",
+    "hint": "x % N === 0.",
+    "functionName": "isMultiple1",
+    "starterCode": "function isMultiple1(x) {\n  // TODO\n}",
+    "solution": "function isMultiple1(x) { return x % 1 === 0; }",
     "tests": [
       {
         "input": [
-          1,
-          2
+          3
         ],
-        "expected": 9
+        "expected": true
       },
       {
         "input": [
-          5,
-          -1
+          4
         ],
-        "expected": 10
+        "expected": false
       }
     ]
   },
   {
     "id": 7,
-    "groupName": "Fundamentos",
-    "topic": "Suma basica",
     "difficulty": 1,
     "timeLimit": 90,
     "reward": 21,
-    "description": "Crea add7(a, b) y retorna a + b + 7.",
-    "hint": "Usa return a + b + N.",
-    "functionName": "add7",
-    "starterCode": "function add7(a, b) {\n  // TODO\n}",
-    "solution": "function add7(a, b) { return a + b + 7; }",
-    "tests": [
-      {
-        "input": [
-          1,
-          2
-        ],
-        "expected": 10
-      },
-      {
-        "input": [
-          5,
-          -1
-        ],
-        "expected": 11
-      }
-    ]
-  },
-  {
-    "id": 8,
-    "groupName": "Fundamentos",
-    "topic": "Suma basica",
-    "difficulty": 1,
-    "timeLimit": 90,
-    "reward": 21,
-    "description": "Crea add8(a, b) y retorna a + b + 8.",
-    "hint": "Usa return a + b + N.",
-    "functionName": "add8",
-    "starterCode": "function add8(a, b) {\n  // TODO\n}",
-    "solution": "function add8(a, b) { return a + b + 8; }",
-    "tests": [
-      {
-        "input": [
-          1,
-          2
-        ],
-        "expected": 11
-      },
-      {
-        "input": [
-          5,
-          -1
-        ],
-        "expected": 12
-      }
-    ]
-  },
-  {
-    "id": 9,
-    "groupName": "Fundamentos",
-    "topic": "Suma basica",
-    "difficulty": 1,
-    "timeLimit": 90,
-    "reward": 21,
-    "description": "Crea add9(a, b) y retorna a + b + 9.",
-    "hint": "Usa return a + b + N.",
-    "functionName": "add9",
-    "starterCode": "function add9(a, b) {\n  // TODO\n}",
-    "solution": "function add9(a, b) { return a + b + 9; }",
-    "tests": [
-      {
-        "input": [
-          1,
-          2
-        ],
-        "expected": 12
-      },
-      {
-        "input": [
-          5,
-          -1
-        ],
-        "expected": 13
-      }
-    ]
-  },
-  {
-    "id": 10,
-    "groupName": "Fundamentos",
-    "topic": "Suma basica",
-    "difficulty": 1,
-    "timeLimit": 90,
-    "reward": 21,
-    "description": "Crea add10(a, b) y retorna a + b + 10.",
-    "hint": "Usa return a + b + N.",
-    "functionName": "add10",
-    "starterCode": "function add10(a, b) {\n  // TODO\n}",
-    "solution": "function add10(a, b) { return a + b + 10; }",
-    "tests": [
-      {
-        "input": [
-          1,
-          2
-        ],
-        "expected": 13
-      },
-      {
-        "input": [
-          5,
-          -1
-        ],
-        "expected": 14
-      }
-    ]
-  },
-  {
-    "id": 11,
     "groupName": "Condicionales",
-    "topic": "Mayor que",
-    "difficulty": 2,
-    "timeLimit": 85,
-    "reward": 27,
-    "description": "Crea isGreater1(x) y retorna true si x > 3.",
-    "hint": "Usa operador > y retorna boolean.",
-    "functionName": "isGreater1",
-    "starterCode": "function isGreater1(x) {\n  // TODO\n}",
-    "solution": "function isGreater1(x) { return x > 3; }",
+    "topic": "Rango",
+    "description": "Crea between1(x) y retorna true si x esta entre 1 y 3 (exclusivo).",
+    "hint": "Usa > y <.",
+    "functionName": "between1",
+    "starterCode": "function between1(x) {\n  // TODO\n}",
+    "solution": "function between1(x) { return x > 1 && x < 3; }",
     "tests": [
       {
         "input": [
-          4
+          2
         ],
         "expected": true
       },
@@ -317,255 +195,12 @@
     ]
   },
   {
-    "id": 12,
-    "groupName": "Condicionales",
-    "topic": "Mayor que",
-    "difficulty": 2,
-    "timeLimit": 85,
-    "reward": 27,
-    "description": "Crea isGreater2(x) y retorna true si x > 6.",
-    "hint": "Usa operador > y retorna boolean.",
-    "functionName": "isGreater2",
-    "starterCode": "function isGreater2(x) {\n  // TODO\n}",
-    "solution": "function isGreater2(x) { return x > 6; }",
-    "tests": [
-      {
-        "input": [
-          7
-        ],
-        "expected": true
-      },
-      {
-        "input": [
-          6
-        ],
-        "expected": false
-      }
-    ]
-  },
-  {
-    "id": 13,
-    "groupName": "Condicionales",
-    "topic": "Mayor que",
-    "difficulty": 2,
-    "timeLimit": 85,
-    "reward": 27,
-    "description": "Crea isGreater3(x) y retorna true si x > 9.",
-    "hint": "Usa operador > y retorna boolean.",
-    "functionName": "isGreater3",
-    "starterCode": "function isGreater3(x) {\n  // TODO\n}",
-    "solution": "function isGreater3(x) { return x > 9; }",
-    "tests": [
-      {
-        "input": [
-          10
-        ],
-        "expected": true
-      },
-      {
-        "input": [
-          9
-        ],
-        "expected": false
-      }
-    ]
-  },
-  {
-    "id": 14,
-    "groupName": "Condicionales",
-    "topic": "Mayor que",
-    "difficulty": 2,
-    "timeLimit": 85,
-    "reward": 27,
-    "description": "Crea isGreater4(x) y retorna true si x > 12.",
-    "hint": "Usa operador > y retorna boolean.",
-    "functionName": "isGreater4",
-    "starterCode": "function isGreater4(x) {\n  // TODO\n}",
-    "solution": "function isGreater4(x) { return x > 12; }",
-    "tests": [
-      {
-        "input": [
-          13
-        ],
-        "expected": true
-      },
-      {
-        "input": [
-          12
-        ],
-        "expected": false
-      }
-    ]
-  },
-  {
-    "id": 15,
-    "groupName": "Condicionales",
-    "topic": "Mayor que",
-    "difficulty": 2,
-    "timeLimit": 85,
-    "reward": 27,
-    "description": "Crea isGreater5(x) y retorna true si x > 15.",
-    "hint": "Usa operador > y retorna boolean.",
-    "functionName": "isGreater5",
-    "starterCode": "function isGreater5(x) {\n  // TODO\n}",
-    "solution": "function isGreater5(x) { return x > 15; }",
-    "tests": [
-      {
-        "input": [
-          16
-        ],
-        "expected": true
-      },
-      {
-        "input": [
-          15
-        ],
-        "expected": false
-      }
-    ]
-  },
-  {
-    "id": 16,
-    "groupName": "Condicionales",
-    "topic": "Mayor que",
-    "difficulty": 2,
-    "timeLimit": 85,
-    "reward": 27,
-    "description": "Crea isGreater6(x) y retorna true si x > 18.",
-    "hint": "Usa operador > y retorna boolean.",
-    "functionName": "isGreater6",
-    "starterCode": "function isGreater6(x) {\n  // TODO\n}",
-    "solution": "function isGreater6(x) { return x > 18; }",
-    "tests": [
-      {
-        "input": [
-          19
-        ],
-        "expected": true
-      },
-      {
-        "input": [
-          18
-        ],
-        "expected": false
-      }
-    ]
-  },
-  {
-    "id": 17,
-    "groupName": "Condicionales",
-    "topic": "Mayor que",
-    "difficulty": 2,
-    "timeLimit": 85,
-    "reward": 27,
-    "description": "Crea isGreater7(x) y retorna true si x > 21.",
-    "hint": "Usa operador > y retorna boolean.",
-    "functionName": "isGreater7",
-    "starterCode": "function isGreater7(x) {\n  // TODO\n}",
-    "solution": "function isGreater7(x) { return x > 21; }",
-    "tests": [
-      {
-        "input": [
-          22
-        ],
-        "expected": true
-      },
-      {
-        "input": [
-          21
-        ],
-        "expected": false
-      }
-    ]
-  },
-  {
-    "id": 18,
-    "groupName": "Condicionales",
-    "topic": "Mayor que",
-    "difficulty": 2,
-    "timeLimit": 85,
-    "reward": 27,
-    "description": "Crea isGreater8(x) y retorna true si x > 24.",
-    "hint": "Usa operador > y retorna boolean.",
-    "functionName": "isGreater8",
-    "starterCode": "function isGreater8(x) {\n  // TODO\n}",
-    "solution": "function isGreater8(x) { return x > 24; }",
-    "tests": [
-      {
-        "input": [
-          25
-        ],
-        "expected": true
-      },
-      {
-        "input": [
-          24
-        ],
-        "expected": false
-      }
-    ]
-  },
-  {
-    "id": 19,
-    "groupName": "Condicionales",
-    "topic": "Mayor que",
-    "difficulty": 2,
-    "timeLimit": 85,
-    "reward": 27,
-    "description": "Crea isGreater9(x) y retorna true si x > 27.",
-    "hint": "Usa operador > y retorna boolean.",
-    "functionName": "isGreater9",
-    "starterCode": "function isGreater9(x) {\n  // TODO\n}",
-    "solution": "function isGreater9(x) { return x > 27; }",
-    "tests": [
-      {
-        "input": [
-          28
-        ],
-        "expected": true
-      },
-      {
-        "input": [
-          27
-        ],
-        "expected": false
-      }
-    ]
-  },
-  {
-    "id": 20,
-    "groupName": "Condicionales",
-    "topic": "Mayor que",
-    "difficulty": 2,
-    "timeLimit": 85,
-    "reward": 27,
-    "description": "Crea isGreater10(x) y retorna true si x > 30.",
-    "hint": "Usa operador > y retorna boolean.",
-    "functionName": "isGreater10",
-    "starterCode": "function isGreater10(x) {\n  // TODO\n}",
-    "solution": "function isGreater10(x) { return x > 30; }",
-    "tests": [
-      {
-        "input": [
-          31
-        ],
-        "expected": true
-      },
-      {
-        "input": [
-          30
-        ],
-        "expected": false
-      }
-    ]
-  },
-  {
-    "id": 21,
+    "id": 8,
+    "difficulty": 1,
+    "timeLimit": 90,
+    "reward": 21,
     "groupName": "Strings",
     "topic": "Plantillas",
-    "difficulty": 3,
-    "timeLimit": 80,
-    "reward": 33,
     "description": "Crea tag1(name) y retorna \"L1: <name>\".",
     "hint": "Template literal recomendado.",
     "functionName": "tag1",
@@ -587,271 +222,80 @@
     ]
   },
   {
-    "id": 22,
+    "id": 9,
+    "difficulty": 1,
+    "timeLimit": 90,
+    "reward": 21,
     "groupName": "Strings",
-    "topic": "Plantillas",
-    "difficulty": 3,
-    "timeLimit": 80,
-    "reward": 33,
-    "description": "Crea tag2(name) y retorna \"L2: <name>\".",
-    "hint": "Template literal recomendado.",
-    "functionName": "tag2",
-    "starterCode": "function tag2(name) {\n  // TODO\n}",
-    "solution": "function tag2(name) { return `L2: ${name}`; }",
+    "topic": "Repetir",
+    "description": "Crea repeat1(str) y retorna str repetido 1 veces.",
+    "hint": "Usa repeat.",
+    "functionName": "repeat1",
+    "starterCode": "function repeat1(str) {\n  // TODO\n}",
+    "solution": "function repeat1(str) { return str.repeat(1); }",
     "tests": [
       {
         "input": [
-          "Ana"
+          "ha"
         ],
-        "expected": "L2: Ana"
+        "expected": "ha"
       },
       {
         "input": [
-          "Beto"
+          "x"
         ],
-        "expected": "L2: Beto"
+        "expected": "x"
       }
     ]
   },
   {
-    "id": 23,
+    "id": 10,
+    "difficulty": 1,
+    "timeLimit": 90,
+    "reward": 21,
     "groupName": "Strings",
-    "topic": "Plantillas",
-    "difficulty": 3,
-    "timeLimit": 80,
-    "reward": 33,
-    "description": "Crea tag3(name) y retorna \"L3: <name>\".",
-    "hint": "Template literal recomendado.",
-    "functionName": "tag3",
-    "starterCode": "function tag3(name) {\n  // TODO\n}",
-    "solution": "function tag3(name) { return `L3: ${name}`; }",
+    "topic": "Truncar",
+    "description": "Crea truncate1(str) y recorta a 1 con \"...\".",
+    "hint": "Si length<=N retorna original.",
+    "functionName": "truncate1",
+    "starterCode": "function truncate1(str) {\n  // TODO\n}",
+    "solution": "function truncate1(str) { return str.length <= 1 ? str : str.slice(0, 1) + \"...\"; }",
     "tests": [
       {
         "input": [
-          "Ana"
+          "abcdef"
         ],
-        "expected": "L3: Ana"
+        "expected": "a..."
       },
       {
         "input": [
-          "Beto"
+          "hi"
         ],
-        "expected": "L3: Beto"
+        "expected": "hi"
       }
     ]
   },
   {
-    "id": 24,
-    "groupName": "Strings",
-    "topic": "Plantillas",
-    "difficulty": 3,
-    "timeLimit": 80,
-    "reward": 33,
-    "description": "Crea tag4(name) y retorna \"L4: <name>\".",
-    "hint": "Template literal recomendado.",
-    "functionName": "tag4",
-    "starterCode": "function tag4(name) {\n  // TODO\n}",
-    "solution": "function tag4(name) { return `L4: ${name}`; }",
-    "tests": [
-      {
-        "input": [
-          "Ana"
-        ],
-        "expected": "L4: Ana"
-      },
-      {
-        "input": [
-          "Beto"
-        ],
-        "expected": "L4: Beto"
-      }
-    ]
-  },
-  {
-    "id": 25,
-    "groupName": "Strings",
-    "topic": "Plantillas",
-    "difficulty": 3,
-    "timeLimit": 80,
-    "reward": 33,
-    "description": "Crea tag5(name) y retorna \"L5: <name>\".",
-    "hint": "Template literal recomendado.",
-    "functionName": "tag5",
-    "starterCode": "function tag5(name) {\n  // TODO\n}",
-    "solution": "function tag5(name) { return `L5: ${name}`; }",
-    "tests": [
-      {
-        "input": [
-          "Ana"
-        ],
-        "expected": "L5: Ana"
-      },
-      {
-        "input": [
-          "Beto"
-        ],
-        "expected": "L5: Beto"
-      }
-    ]
-  },
-  {
-    "id": 26,
-    "groupName": "Strings",
-    "topic": "Plantillas",
-    "difficulty": 3,
-    "timeLimit": 80,
-    "reward": 33,
-    "description": "Crea tag6(name) y retorna \"L6: <name>\".",
-    "hint": "Template literal recomendado.",
-    "functionName": "tag6",
-    "starterCode": "function tag6(name) {\n  // TODO\n}",
-    "solution": "function tag6(name) { return `L6: ${name}`; }",
-    "tests": [
-      {
-        "input": [
-          "Ana"
-        ],
-        "expected": "L6: Ana"
-      },
-      {
-        "input": [
-          "Beto"
-        ],
-        "expected": "L6: Beto"
-      }
-    ]
-  },
-  {
-    "id": 27,
-    "groupName": "Strings",
-    "topic": "Plantillas",
-    "difficulty": 3,
-    "timeLimit": 80,
-    "reward": 33,
-    "description": "Crea tag7(name) y retorna \"L7: <name>\".",
-    "hint": "Template literal recomendado.",
-    "functionName": "tag7",
-    "starterCode": "function tag7(name) {\n  // TODO\n}",
-    "solution": "function tag7(name) { return `L7: ${name}`; }",
-    "tests": [
-      {
-        "input": [
-          "Ana"
-        ],
-        "expected": "L7: Ana"
-      },
-      {
-        "input": [
-          "Beto"
-        ],
-        "expected": "L7: Beto"
-      }
-    ]
-  },
-  {
-    "id": 28,
-    "groupName": "Strings",
-    "topic": "Plantillas",
-    "difficulty": 3,
-    "timeLimit": 80,
-    "reward": 33,
-    "description": "Crea tag8(name) y retorna \"L8: <name>\".",
-    "hint": "Template literal recomendado.",
-    "functionName": "tag8",
-    "starterCode": "function tag8(name) {\n  // TODO\n}",
-    "solution": "function tag8(name) { return `L8: ${name}`; }",
-    "tests": [
-      {
-        "input": [
-          "Ana"
-        ],
-        "expected": "L8: Ana"
-      },
-      {
-        "input": [
-          "Beto"
-        ],
-        "expected": "L8: Beto"
-      }
-    ]
-  },
-  {
-    "id": 29,
-    "groupName": "Strings",
-    "topic": "Plantillas",
-    "difficulty": 3,
-    "timeLimit": 80,
-    "reward": 33,
-    "description": "Crea tag9(name) y retorna \"L9: <name>\".",
-    "hint": "Template literal recomendado.",
-    "functionName": "tag9",
-    "starterCode": "function tag9(name) {\n  // TODO\n}",
-    "solution": "function tag9(name) { return `L9: ${name}`; }",
-    "tests": [
-      {
-        "input": [
-          "Ana"
-        ],
-        "expected": "L9: Ana"
-      },
-      {
-        "input": [
-          "Beto"
-        ],
-        "expected": "L9: Beto"
-      }
-    ]
-  },
-  {
-    "id": 30,
-    "groupName": "Strings",
-    "topic": "Plantillas",
-    "difficulty": 3,
-    "timeLimit": 80,
-    "reward": 33,
-    "description": "Crea tag10(name) y retorna \"L10: <name>\".",
-    "hint": "Template literal recomendado.",
-    "functionName": "tag10",
-    "starterCode": "function tag10(name) {\n  // TODO\n}",
-    "solution": "function tag10(name) { return `L10: ${name}`; }",
-    "tests": [
-      {
-        "input": [
-          "Ana"
-        ],
-        "expected": "L10: Ana"
-      },
-      {
-        "input": [
-          "Beto"
-        ],
-        "expected": "L10: Beto"
-      }
-    ]
-  },
-  {
-    "id": 31,
+    "id": 11,
+    "difficulty": 2,
+    "timeLimit": 85,
+    "reward": 27,
     "groupName": "Arrays",
     "topic": "Map",
-    "difficulty": 4,
-    "timeLimit": 75,
-    "reward": 39,
-    "description": "Crea mult1(arr) y multiplica cada elemento por 1.",
-    "hint": "arr.map((x) => x * N)",
-    "functionName": "mult1",
-    "starterCode": "function mult1(arr) {\n  // TODO\n}",
-    "solution": "function mult1(arr) { return arr.map((x) => x * 1); }",
+    "description": "Crea mapAdd1(arr) y suma 1 a cada elemento.",
+    "hint": "Usa map.",
+    "functionName": "mapAdd1",
+    "starterCode": "function mapAdd1(arr) {\n  // TODO\n}",
+    "solution": "function mapAdd1(arr) { return arr.map((x) => x + 1); }",
     "tests": [
       {
         "input": [
           [
             1,
-            2,
-            3
+            2
           ]
         ],
         "expected": [
-          1,
           2,
           3
         ]
@@ -859,411 +303,41 @@
       {
         "input": [
           [
-            0,
-            -1
+            -1,
+            0
           ]
         ],
         "expected": [
           0,
-          -1
+          1
         ]
       }
     ]
   },
   {
-    "id": 32,
-    "groupName": "Arrays",
-    "topic": "Map",
-    "difficulty": 4,
-    "timeLimit": 75,
-    "reward": 39,
-    "description": "Crea mult2(arr) y multiplica cada elemento por 2.",
-    "hint": "arr.map((x) => x * N)",
-    "functionName": "mult2",
-    "starterCode": "function mult2(arr) {\n  // TODO\n}",
-    "solution": "function mult2(arr) { return arr.map((x) => x * 2); }",
-    "tests": [
-      {
-        "input": [
-          [
-            1,
-            2,
-            3
-          ]
-        ],
-        "expected": [
-          2,
-          4,
-          6
-        ]
-      },
-      {
-        "input": [
-          [
-            0,
-            -1
-          ]
-        ],
-        "expected": [
-          0,
-          -2
-        ]
-      }
-    ]
-  },
-  {
-    "id": 33,
-    "groupName": "Arrays",
-    "topic": "Map",
-    "difficulty": 4,
-    "timeLimit": 75,
-    "reward": 39,
-    "description": "Crea mult3(arr) y multiplica cada elemento por 3.",
-    "hint": "arr.map((x) => x * N)",
-    "functionName": "mult3",
-    "starterCode": "function mult3(arr) {\n  // TODO\n}",
-    "solution": "function mult3(arr) { return arr.map((x) => x * 3); }",
-    "tests": [
-      {
-        "input": [
-          [
-            1,
-            2,
-            3
-          ]
-        ],
-        "expected": [
-          3,
-          6,
-          9
-        ]
-      },
-      {
-        "input": [
-          [
-            0,
-            -1
-          ]
-        ],
-        "expected": [
-          0,
-          -3
-        ]
-      }
-    ]
-  },
-  {
-    "id": 34,
-    "groupName": "Arrays",
-    "topic": "Map",
-    "difficulty": 4,
-    "timeLimit": 75,
-    "reward": 39,
-    "description": "Crea mult4(arr) y multiplica cada elemento por 4.",
-    "hint": "arr.map((x) => x * N)",
-    "functionName": "mult4",
-    "starterCode": "function mult4(arr) {\n  // TODO\n}",
-    "solution": "function mult4(arr) { return arr.map((x) => x * 4); }",
-    "tests": [
-      {
-        "input": [
-          [
-            1,
-            2,
-            3
-          ]
-        ],
-        "expected": [
-          4,
-          8,
-          12
-        ]
-      },
-      {
-        "input": [
-          [
-            0,
-            -1
-          ]
-        ],
-        "expected": [
-          0,
-          -4
-        ]
-      }
-    ]
-  },
-  {
-    "id": 35,
-    "groupName": "Arrays",
-    "topic": "Map",
-    "difficulty": 4,
-    "timeLimit": 75,
-    "reward": 39,
-    "description": "Crea mult5(arr) y multiplica cada elemento por 5.",
-    "hint": "arr.map((x) => x * N)",
-    "functionName": "mult5",
-    "starterCode": "function mult5(arr) {\n  // TODO\n}",
-    "solution": "function mult5(arr) { return arr.map((x) => x * 5); }",
-    "tests": [
-      {
-        "input": [
-          [
-            1,
-            2,
-            3
-          ]
-        ],
-        "expected": [
-          5,
-          10,
-          15
-        ]
-      },
-      {
-        "input": [
-          [
-            0,
-            -1
-          ]
-        ],
-        "expected": [
-          0,
-          -5
-        ]
-      }
-    ]
-  },
-  {
-    "id": 36,
-    "groupName": "Arrays",
-    "topic": "Map",
-    "difficulty": 4,
-    "timeLimit": 75,
-    "reward": 39,
-    "description": "Crea mult6(arr) y multiplica cada elemento por 6.",
-    "hint": "arr.map((x) => x * N)",
-    "functionName": "mult6",
-    "starterCode": "function mult6(arr) {\n  // TODO\n}",
-    "solution": "function mult6(arr) { return arr.map((x) => x * 6); }",
-    "tests": [
-      {
-        "input": [
-          [
-            1,
-            2,
-            3
-          ]
-        ],
-        "expected": [
-          6,
-          12,
-          18
-        ]
-      },
-      {
-        "input": [
-          [
-            0,
-            -1
-          ]
-        ],
-        "expected": [
-          0,
-          -6
-        ]
-      }
-    ]
-  },
-  {
-    "id": 37,
-    "groupName": "Arrays",
-    "topic": "Map",
-    "difficulty": 4,
-    "timeLimit": 75,
-    "reward": 39,
-    "description": "Crea mult7(arr) y multiplica cada elemento por 7.",
-    "hint": "arr.map((x) => x * N)",
-    "functionName": "mult7",
-    "starterCode": "function mult7(arr) {\n  // TODO\n}",
-    "solution": "function mult7(arr) { return arr.map((x) => x * 7); }",
-    "tests": [
-      {
-        "input": [
-          [
-            1,
-            2,
-            3
-          ]
-        ],
-        "expected": [
-          7,
-          14,
-          21
-        ]
-      },
-      {
-        "input": [
-          [
-            0,
-            -1
-          ]
-        ],
-        "expected": [
-          0,
-          -7
-        ]
-      }
-    ]
-  },
-  {
-    "id": 38,
-    "groupName": "Arrays",
-    "topic": "Map",
-    "difficulty": 4,
-    "timeLimit": 75,
-    "reward": 39,
-    "description": "Crea mult8(arr) y multiplica cada elemento por 8.",
-    "hint": "arr.map((x) => x * N)",
-    "functionName": "mult8",
-    "starterCode": "function mult8(arr) {\n  // TODO\n}",
-    "solution": "function mult8(arr) { return arr.map((x) => x * 8); }",
-    "tests": [
-      {
-        "input": [
-          [
-            1,
-            2,
-            3
-          ]
-        ],
-        "expected": [
-          8,
-          16,
-          24
-        ]
-      },
-      {
-        "input": [
-          [
-            0,
-            -1
-          ]
-        ],
-        "expected": [
-          0,
-          -8
-        ]
-      }
-    ]
-  },
-  {
-    "id": 39,
-    "groupName": "Arrays",
-    "topic": "Map",
-    "difficulty": 4,
-    "timeLimit": 75,
-    "reward": 39,
-    "description": "Crea mult9(arr) y multiplica cada elemento por 9.",
-    "hint": "arr.map((x) => x * N)",
-    "functionName": "mult9",
-    "starterCode": "function mult9(arr) {\n  // TODO\n}",
-    "solution": "function mult9(arr) { return arr.map((x) => x * 9); }",
-    "tests": [
-      {
-        "input": [
-          [
-            1,
-            2,
-            3
-          ]
-        ],
-        "expected": [
-          9,
-          18,
-          27
-        ]
-      },
-      {
-        "input": [
-          [
-            0,
-            -1
-          ]
-        ],
-        "expected": [
-          0,
-          -9
-        ]
-      }
-    ]
-  },
-  {
-    "id": 40,
-    "groupName": "Arrays",
-    "topic": "Map",
-    "difficulty": 4,
-    "timeLimit": 75,
-    "reward": 39,
-    "description": "Crea mult10(arr) y multiplica cada elemento por 10.",
-    "hint": "arr.map((x) => x * N)",
-    "functionName": "mult10",
-    "starterCode": "function mult10(arr) {\n  // TODO\n}",
-    "solution": "function mult10(arr) { return arr.map((x) => x * 10); }",
-    "tests": [
-      {
-        "input": [
-          [
-            1,
-            2,
-            3
-          ]
-        ],
-        "expected": [
-          10,
-          20,
-          30
-        ]
-      },
-      {
-        "input": [
-          [
-            0,
-            -1
-          ]
-        ],
-        "expected": [
-          0,
-          -10
-        ]
-      }
-    ]
-  },
-  {
-    "id": 41,
+    "id": 12,
+    "difficulty": 2,
+    "timeLimit": 85,
+    "reward": 27,
     "groupName": "Arrays",
     "topic": "Filter",
-    "difficulty": 5,
-    "timeLimit": 70,
-    "reward": 45,
-    "description": "Crea gt1(arr) y devuelve valores > 1.",
-    "hint": "arr.filter((x) => x > N)",
-    "functionName": "gt1",
-    "starterCode": "function gt1(arr) {\n  // TODO\n}",
-    "solution": "function gt1(arr) { return arr.filter((x) => x > 1); }",
+    "description": "Crea filterGte1(arr) y devuelve valores >= 1.",
+    "hint": "Usa filter.",
+    "functionName": "filterGte1",
+    "starterCode": "function filterGte1(arr) {\n  // TODO\n}",
+    "solution": "function filterGte1(arr) { return arr.filter((x) => x >= 1); }",
     "tests": [
       {
         "input": [
           [
             0,
             1,
-            2,
-            6
+            2
           ]
         ],
         "expected": [
-          2,
-          6
+          1,
+          2
         ]
       },
       {
@@ -1278,354 +352,80 @@
     ]
   },
   {
-    "id": 42,
-    "groupName": "Arrays",
-    "topic": "Filter",
-    "difficulty": 5,
-    "timeLimit": 70,
-    "reward": 45,
-    "description": "Crea gt2(arr) y devuelve valores > 2.",
-    "hint": "arr.filter((x) => x > N)",
-    "functionName": "gt2",
-    "starterCode": "function gt2(arr) {\n  // TODO\n}",
-    "solution": "function gt2(arr) { return arr.filter((x) => x > 2); }",
+    "id": 13,
+    "difficulty": 2,
+    "timeLimit": 85,
+    "reward": 27,
+    "groupName": "Funciones",
+    "topic": "Reduce",
+    "description": "Crea sumPlus1(arr) y retorna suma total + 1.",
+    "hint": "reduce para sumar y luego +N.",
+    "functionName": "sumPlus1",
+    "starterCode": "function sumPlus1(arr) {\n  // TODO\n}",
+    "solution": "function sumPlus1(arr) { return arr.reduce((acc, x) => acc + x, 0) + 1; }",
     "tests": [
       {
         "input": [
           [
             1,
             2,
-            3,
-            7
+            3
           ]
         ],
-        "expected": [
-          3,
-          7
-        ]
+        "expected": 7
       },
       {
         "input": [
           [
-            -5,
-            -1
-          ]
-        ],
-        "expected": []
-      }
-    ]
-  },
-  {
-    "id": 43,
-    "groupName": "Arrays",
-    "topic": "Filter",
-    "difficulty": 5,
-    "timeLimit": 70,
-    "reward": 45,
-    "description": "Crea gt3(arr) y devuelve valores > 3.",
-    "hint": "arr.filter((x) => x > N)",
-    "functionName": "gt3",
-    "starterCode": "function gt3(arr) {\n  // TODO\n}",
-    "solution": "function gt3(arr) { return arr.filter((x) => x > 3); }",
-    "tests": [
-      {
-        "input": [
-          [
-            2,
-            3,
-            4,
-            8
-          ]
-        ],
-        "expected": [
-          4,
-          8
-        ]
-      },
-      {
-        "input": [
-          [
-            -5,
-            -1
-          ]
-        ],
-        "expected": []
-      }
-    ]
-  },
-  {
-    "id": 44,
-    "groupName": "Arrays",
-    "topic": "Filter",
-    "difficulty": 5,
-    "timeLimit": 70,
-    "reward": 45,
-    "description": "Crea gt4(arr) y devuelve valores > 4.",
-    "hint": "arr.filter((x) => x > N)",
-    "functionName": "gt4",
-    "starterCode": "function gt4(arr) {\n  // TODO\n}",
-    "solution": "function gt4(arr) { return arr.filter((x) => x > 4); }",
-    "tests": [
-      {
-        "input": [
-          [
-            3,
-            4,
-            5,
-            9
-          ]
-        ],
-        "expected": [
-          5,
-          9
-        ]
-      },
-      {
-        "input": [
-          [
-            -5,
-            -1
-          ]
-        ],
-        "expected": []
-      }
-    ]
-  },
-  {
-    "id": 45,
-    "groupName": "Arrays",
-    "topic": "Filter",
-    "difficulty": 5,
-    "timeLimit": 70,
-    "reward": 45,
-    "description": "Crea gt5(arr) y devuelve valores > 5.",
-    "hint": "arr.filter((x) => x > N)",
-    "functionName": "gt5",
-    "starterCode": "function gt5(arr) {\n  // TODO\n}",
-    "solution": "function gt5(arr) { return arr.filter((x) => x > 5); }",
-    "tests": [
-      {
-        "input": [
-          [
-            4,
-            5,
-            6,
             10
           ]
         ],
-        "expected": [
-          6,
-          10
-        ]
-      },
-      {
-        "input": [
-          [
-            -5,
-            -1
-          ]
-        ],
-        "expected": []
+        "expected": 11
       }
     ]
   },
   {
-    "id": 46,
-    "groupName": "Arrays",
-    "topic": "Filter",
-    "difficulty": 5,
-    "timeLimit": 70,
-    "reward": 45,
-    "description": "Crea gt6(arr) y devuelve valores > 6.",
-    "hint": "arr.filter((x) => x > N)",
-    "functionName": "gt6",
-    "starterCode": "function gt6(arr) {\n  // TODO\n}",
-    "solution": "function gt6(arr) { return arr.filter((x) => x > 6); }",
+    "id": 14,
+    "difficulty": 2,
+    "timeLimit": 85,
+    "reward": 27,
+    "groupName": "Intermedio",
+    "topic": "Conteo",
+    "description": "Crea countLong1(arr) y cuenta strings con longitud >= 1.",
+    "hint": "filter + length.",
+    "functionName": "countLong1",
+    "starterCode": "function countLong1(arr) {\n  // TODO\n}",
+    "solution": "function countLong1(arr) { return arr.filter((s) => s.length >= 1).length; }",
     "tests": [
       {
         "input": [
           [
-            5,
-            6,
-            7,
-            11
+            "a",
+            "abcd",
+            "abcdefgh"
           ]
         ],
-        "expected": [
-          7,
-          11
-        ]
+        "expected": 3
       },
       {
         "input": [
           [
-            -5,
-            -1
+            "xx",
+            "yyy",
+            "zzzz"
           ]
         ],
-        "expected": []
+        "expected": 3
       }
     ]
   },
   {
-    "id": 47,
-    "groupName": "Arrays",
-    "topic": "Filter",
-    "difficulty": 5,
-    "timeLimit": 70,
-    "reward": 45,
-    "description": "Crea gt7(arr) y devuelve valores > 7.",
-    "hint": "arr.filter((x) => x > N)",
-    "functionName": "gt7",
-    "starterCode": "function gt7(arr) {\n  // TODO\n}",
-    "solution": "function gt7(arr) { return arr.filter((x) => x > 7); }",
-    "tests": [
-      {
-        "input": [
-          [
-            6,
-            7,
-            8,
-            12
-          ]
-        ],
-        "expected": [
-          8,
-          12
-        ]
-      },
-      {
-        "input": [
-          [
-            -5,
-            -1
-          ]
-        ],
-        "expected": []
-      }
-    ]
-  },
-  {
-    "id": 48,
-    "groupName": "Arrays",
-    "topic": "Filter",
-    "difficulty": 5,
-    "timeLimit": 70,
-    "reward": 45,
-    "description": "Crea gt8(arr) y devuelve valores > 8.",
-    "hint": "arr.filter((x) => x > N)",
-    "functionName": "gt8",
-    "starterCode": "function gt8(arr) {\n  // TODO\n}",
-    "solution": "function gt8(arr) { return arr.filter((x) => x > 8); }",
-    "tests": [
-      {
-        "input": [
-          [
-            7,
-            8,
-            9,
-            13
-          ]
-        ],
-        "expected": [
-          9,
-          13
-        ]
-      },
-      {
-        "input": [
-          [
-            -5,
-            -1
-          ]
-        ],
-        "expected": []
-      }
-    ]
-  },
-  {
-    "id": 49,
-    "groupName": "Arrays",
-    "topic": "Filter",
-    "difficulty": 5,
-    "timeLimit": 70,
-    "reward": 45,
-    "description": "Crea gt9(arr) y devuelve valores > 9.",
-    "hint": "arr.filter((x) => x > N)",
-    "functionName": "gt9",
-    "starterCode": "function gt9(arr) {\n  // TODO\n}",
-    "solution": "function gt9(arr) { return arr.filter((x) => x > 9); }",
-    "tests": [
-      {
-        "input": [
-          [
-            8,
-            9,
-            10,
-            14
-          ]
-        ],
-        "expected": [
-          10,
-          14
-        ]
-      },
-      {
-        "input": [
-          [
-            -5,
-            -1
-          ]
-        ],
-        "expected": []
-      }
-    ]
-  },
-  {
-    "id": 50,
-    "groupName": "Arrays",
-    "topic": "Filter",
-    "difficulty": 5,
-    "timeLimit": 70,
-    "reward": 45,
-    "description": "Crea gt10(arr) y devuelve valores > 10.",
-    "hint": "arr.filter((x) => x > N)",
-    "functionName": "gt10",
-    "starterCode": "function gt10(arr) {\n  // TODO\n}",
-    "solution": "function gt10(arr) { return arr.filter((x) => x > 10); }",
-    "tests": [
-      {
-        "input": [
-          [
-            9,
-            10,
-            11,
-            15
-          ]
-        ],
-        "expected": [
-          11,
-          15
-        ]
-      },
-      {
-        "input": [
-          [
-            -5,
-            -1
-          ]
-        ],
-        "expected": []
-      }
-    ]
-  },
-  {
-    "id": 51,
+    "id": 15,
+    "difficulty": 2,
+    "timeLimit": 85,
+    "reward": 27,
     "groupName": "Objetos",
     "topic": "Propiedades",
-    "difficulty": 6,
-    "timeLimit": 65,
-    "reward": 51,
     "description": "Crea withLevel1(user) y retorna copia con level: 1.",
     "hint": "Usa spread: { ...user, level: N }",
     "functionName": "withLevel1",
@@ -1659,12 +459,607 @@
     ]
   },
   {
-    "id": 52,
+    "id": 16,
+    "difficulty": 2,
+    "timeLimit": 85,
+    "reward": 27,
+    "groupName": "Objetos",
+    "topic": "Get key",
+    "description": "Crea getK1(obj) y retorna obj.k1 o null.",
+    "hint": "Accede a la key dinamica.",
+    "functionName": "getK1",
+    "starterCode": "function getK1(obj) {\n  // TODO\n}",
+    "solution": "function getK1(obj) { return Object.prototype.hasOwnProperty.call(obj, \"k1\") ? obj[\"k1\"] : null; }",
+    "tests": [
+      {
+        "input": [
+          {
+            "k1": 1
+          }
+        ],
+        "expected": 1
+      },
+      {
+        "input": [
+          {}
+        ],
+        "expected": null
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "difficulty": 2,
+    "timeLimit": 85,
+    "reward": 27,
+    "groupName": "Bucles",
+    "topic": "Rango",
+    "description": "Crea range1() y retorna [1..1].",
+    "hint": "Usa un for.",
+    "functionName": "range1",
+    "starterCode": "function range1() {\n  // TODO\n}",
+    "solution": "function range1() { const out = []; for (let i = 1; i <= 1; i++) out.push(i); return out; }",
+    "tests": [
+      {
+        "input": [],
+        "expected": [
+          1
+        ]
+      },
+      {
+        "input": [],
+        "expected": [
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "difficulty": 2,
+    "timeLimit": 85,
+    "reward": 27,
+    "groupName": "Arrays",
+    "topic": "Slice",
+    "description": "Crea take1(arr) y retorna los primeros 1 elementos.",
+    "hint": "Usa slice.",
+    "functionName": "take1",
+    "starterCode": "function take1(arr) {\n  // TODO\n}",
+    "solution": "function take1(arr) { return arr.slice(0, 1); }",
+    "tests": [
+      {
+        "input": [
+          [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        ],
+        "expected": [
+          1
+        ]
+      },
+      {
+        "input": [
+          [
+            9,
+            8
+          ]
+        ],
+        "expected": [
+          9
+        ]
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "difficulty": 2,
+    "timeLimit": 85,
+    "reward": 27,
+    "groupName": "Strings",
+    "topic": "Padding",
+    "description": "Crea pad1(str) y retorna str con padding de '0' hasta 1.",
+    "hint": "Usa padStart.",
+    "functionName": "pad1",
+    "starterCode": "function pad1(str) {\n  // TODO\n}",
+    "solution": "function pad1(str) { return str.padStart(1, \"0\"); }",
+    "tests": [
+      {
+        "input": [
+          "7"
+        ],
+        "expected": "7"
+      },
+      {
+        "input": [
+          "99"
+        ],
+        "expected": "99"
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "difficulty": 2,
+    "timeLimit": 85,
+    "reward": 27,
+    "groupName": "Maestro JS",
+    "topic": "Zip",
+    "description": "Crea zip1(a, b) y retorna pares hasta 1 elementos.",
+    "hint": "Itera hasta min(n, lengths).",
+    "functionName": "zip1",
+    "starterCode": "function zip1(a, b) {\n  // TODO\n}",
+    "solution": "function zip1(a, b) { const out = []; const len = Math.min(1, a.length, b.length); for (let i = 0; i < len; i++) out.push([a[i], b[i]]); return out; }",
+    "tests": [
+      {
+        "input": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            "a",
+            "b",
+            "c"
+          ]
+        ],
+        "expected": [
+          [
+            1,
+            "a"
+          ]
+        ]
+      },
+      {
+        "input": [
+          [
+            1
+          ],
+          [
+            "x",
+            "y"
+          ]
+        ],
+        "expected": [
+          [
+            1,
+            "x"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": 21,
+    "difficulty": 3,
+    "timeLimit": 80,
+    "reward": 33,
+    "groupName": "Fundamentos",
+    "topic": "Suma",
+    "description": "Crea add2(a, b) y retorna a + b + 2.",
+    "hint": "Usa return a + b + N.",
+    "functionName": "add2",
+    "starterCode": "function add2(a, b) {\n  // TODO\n}",
+    "solution": "function add2(a, b) { return a + b + 2; }",
+    "tests": [
+      {
+        "input": [
+          1,
+          2
+        ],
+        "expected": 5
+      },
+      {
+        "input": [
+          -3,
+          4
+        ],
+        "expected": 3
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "difficulty": 3,
+    "timeLimit": 80,
+    "reward": 33,
+    "groupName": "Fundamentos",
+    "topic": "Resta",
+    "description": "Crea sub2(a, b) y retorna a - b - 2.",
+    "hint": "Usa return a - b - N.",
+    "functionName": "sub2",
+    "starterCode": "function sub2(a, b) {\n  // TODO\n}",
+    "solution": "function sub2(a, b) { return a - b - 2; }",
+    "tests": [
+      {
+        "input": [
+          10,
+          2
+        ],
+        "expected": 6
+      },
+      {
+        "input": [
+          5,
+          9
+        ],
+        "expected": -6
+      }
+    ]
+  },
+  {
+    "id": 23,
+    "difficulty": 3,
+    "timeLimit": 80,
+    "reward": 33,
+    "groupName": "Fundamentos",
+    "topic": "Multiplicacion",
+    "description": "Crea mul2(a, b) y retorna a * b * 2.",
+    "hint": "Multiplica a, b y N.",
+    "functionName": "mul2",
+    "starterCode": "function mul2(a, b) {\n  // TODO\n}",
+    "solution": "function mul2(a, b) { return a * b * 2; }",
+    "tests": [
+      {
+        "input": [
+          2,
+          3
+        ],
+        "expected": 12
+      },
+      {
+        "input": [
+          -1,
+          4
+        ],
+        "expected": -8
+      }
+    ]
+  },
+  {
+    "id": 24,
+    "difficulty": 3,
+    "timeLimit": 80,
+    "reward": 33,
+    "groupName": "Fundamentos",
+    "topic": "Potencias",
+    "description": "Crea pow2(x) y retorna x elevado a 2.",
+    "hint": "Usa Math.pow o **.",
+    "functionName": "pow2",
+    "starterCode": "function pow2(x) {\n  // TODO\n}",
+    "solution": "function pow2(x) { return Math.pow(x, 2); }",
+    "tests": [
+      {
+        "input": [
+          2
+        ],
+        "expected": 4
+      },
+      {
+        "input": [
+          3
+        ],
+        "expected": 9
+      }
+    ]
+  },
+  {
+    "id": 25,
+    "difficulty": 3,
+    "timeLimit": 80,
+    "reward": 33,
+    "groupName": "Condicionales",
+    "topic": "Clamp",
+    "description": "Crea clamp2(x) y limita x al rango 0..2.",
+    "hint": "Si x < 0 retorna 0; si x > N retorna N.",
+    "functionName": "clamp2",
+    "starterCode": "function clamp2(x) {\n  // TODO\n}",
+    "solution": "function clamp2(x) { if (x < 0) return 0; if (x > 2) return 2; return x; }",
+    "tests": [
+      {
+        "input": [
+          -2
+        ],
+        "expected": 0
+      },
+      {
+        "input": [
+          4
+        ],
+        "expected": 2
+      }
+    ]
+  },
+  {
+    "id": 26,
+    "difficulty": 3,
+    "timeLimit": 80,
+    "reward": 33,
+    "groupName": "Condicionales",
+    "topic": "Multiplo",
+    "description": "Crea isMultiple2(x) y retorna true si x es multiplo de 2.",
+    "hint": "x % N === 0.",
+    "functionName": "isMultiple2",
+    "starterCode": "function isMultiple2(x) {\n  // TODO\n}",
+    "solution": "function isMultiple2(x) { return x % 2 === 0; }",
+    "tests": [
+      {
+        "input": [
+          6
+        ],
+        "expected": true
+      },
+      {
+        "input": [
+          7
+        ],
+        "expected": false
+      }
+    ]
+  },
+  {
+    "id": 27,
+    "difficulty": 3,
+    "timeLimit": 80,
+    "reward": 33,
+    "groupName": "Condicionales",
+    "topic": "Rango",
+    "description": "Crea between2(x) y retorna true si x esta entre 2 y 6 (exclusivo).",
+    "hint": "Usa > y <.",
+    "functionName": "between2",
+    "starterCode": "function between2(x) {\n  // TODO\n}",
+    "solution": "function between2(x) { return x > 2 && x < 6; }",
+    "tests": [
+      {
+        "input": [
+          3
+        ],
+        "expected": true
+      },
+      {
+        "input": [
+          6
+        ],
+        "expected": false
+      }
+    ]
+  },
+  {
+    "id": 28,
+    "difficulty": 3,
+    "timeLimit": 80,
+    "reward": 33,
+    "groupName": "Strings",
+    "topic": "Plantillas",
+    "description": "Crea tag2(name) y retorna \"L2: <name>\".",
+    "hint": "Template literal recomendado.",
+    "functionName": "tag2",
+    "starterCode": "function tag2(name) {\n  // TODO\n}",
+    "solution": "function tag2(name) { return `L2: ${name}`; }",
+    "tests": [
+      {
+        "input": [
+          "Ana"
+        ],
+        "expected": "L2: Ana"
+      },
+      {
+        "input": [
+          "Beto"
+        ],
+        "expected": "L2: Beto"
+      }
+    ]
+  },
+  {
+    "id": 29,
+    "difficulty": 3,
+    "timeLimit": 80,
+    "reward": 33,
+    "groupName": "Strings",
+    "topic": "Repetir",
+    "description": "Crea repeat2(str) y retorna str repetido 2 veces.",
+    "hint": "Usa repeat.",
+    "functionName": "repeat2",
+    "starterCode": "function repeat2(str) {\n  // TODO\n}",
+    "solution": "function repeat2(str) { return str.repeat(2); }",
+    "tests": [
+      {
+        "input": [
+          "ha"
+        ],
+        "expected": "haha"
+      },
+      {
+        "input": [
+          "x"
+        ],
+        "expected": "xx"
+      }
+    ]
+  },
+  {
+    "id": 30,
+    "difficulty": 3,
+    "timeLimit": 80,
+    "reward": 33,
+    "groupName": "Strings",
+    "topic": "Truncar",
+    "description": "Crea truncate2(str) y recorta a 2 con \"...\".",
+    "hint": "Si length<=N retorna original.",
+    "functionName": "truncate2",
+    "starterCode": "function truncate2(str) {\n  // TODO\n}",
+    "solution": "function truncate2(str) { return str.length <= 2 ? str : str.slice(0, 2) + \"...\"; }",
+    "tests": [
+      {
+        "input": [
+          "abcdef"
+        ],
+        "expected": "ab..."
+      },
+      {
+        "input": [
+          "hi"
+        ],
+        "expected": "hi"
+      }
+    ]
+  },
+  {
+    "id": 31,
+    "difficulty": 4,
+    "timeLimit": 75,
+    "reward": 39,
+    "groupName": "Arrays",
+    "topic": "Map",
+    "description": "Crea mapAdd2(arr) y suma 2 a cada elemento.",
+    "hint": "Usa map.",
+    "functionName": "mapAdd2",
+    "starterCode": "function mapAdd2(arr) {\n  // TODO\n}",
+    "solution": "function mapAdd2(arr) { return arr.map((x) => x + 2); }",
+    "tests": [
+      {
+        "input": [
+          [
+            1,
+            2
+          ]
+        ],
+        "expected": [
+          3,
+          4
+        ]
+      },
+      {
+        "input": [
+          [
+            -1,
+            0
+          ]
+        ],
+        "expected": [
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "id": 32,
+    "difficulty": 4,
+    "timeLimit": 75,
+    "reward": 39,
+    "groupName": "Arrays",
+    "topic": "Filter",
+    "description": "Crea filterGte2(arr) y devuelve valores >= 2.",
+    "hint": "Usa filter.",
+    "functionName": "filterGte2",
+    "starterCode": "function filterGte2(arr) {\n  // TODO\n}",
+    "solution": "function filterGte2(arr) { return arr.filter((x) => x >= 2); }",
+    "tests": [
+      {
+        "input": [
+          [
+            1,
+            2,
+            3
+          ]
+        ],
+        "expected": [
+          2,
+          3
+        ]
+      },
+      {
+        "input": [
+          [
+            -5,
+            -1
+          ]
+        ],
+        "expected": []
+      }
+    ]
+  },
+  {
+    "id": 33,
+    "difficulty": 4,
+    "timeLimit": 75,
+    "reward": 39,
+    "groupName": "Funciones",
+    "topic": "Reduce",
+    "description": "Crea sumPlus2(arr) y retorna suma total + 2.",
+    "hint": "reduce para sumar y luego +N.",
+    "functionName": "sumPlus2",
+    "starterCode": "function sumPlus2(arr) {\n  // TODO\n}",
+    "solution": "function sumPlus2(arr) { return arr.reduce((acc, x) => acc + x, 0) + 2; }",
+    "tests": [
+      {
+        "input": [
+          [
+            1,
+            2,
+            3
+          ]
+        ],
+        "expected": 8
+      },
+      {
+        "input": [
+          [
+            10
+          ]
+        ],
+        "expected": 12
+      }
+    ]
+  },
+  {
+    "id": 34,
+    "difficulty": 4,
+    "timeLimit": 75,
+    "reward": 39,
+    "groupName": "Intermedio",
+    "topic": "Conteo",
+    "description": "Crea countLong2(arr) y cuenta strings con longitud >= 2.",
+    "hint": "filter + length.",
+    "functionName": "countLong2",
+    "starterCode": "function countLong2(arr) {\n  // TODO\n}",
+    "solution": "function countLong2(arr) { return arr.filter((s) => s.length >= 2).length; }",
+    "tests": [
+      {
+        "input": [
+          [
+            "a",
+            "abcd",
+            "abcdefgh"
+          ]
+        ],
+        "expected": 2
+      },
+      {
+        "input": [
+          [
+            "xx",
+            "yyy",
+            "zzzz"
+          ]
+        ],
+        "expected": 3
+      }
+    ]
+  },
+  {
+    "id": 35,
+    "difficulty": 4,
+    "timeLimit": 75,
+    "reward": 39,
     "groupName": "Objetos",
     "topic": "Propiedades",
-    "difficulty": 6,
-    "timeLimit": 65,
-    "reward": 51,
     "description": "Crea withLevel2(user) y retorna copia con level: 2.",
     "hint": "Usa spread: { ...user, level: N }",
     "functionName": "withLevel2",
@@ -1698,12 +1093,615 @@
     ]
   },
   {
-    "id": 53,
+    "id": 36,
+    "difficulty": 4,
+    "timeLimit": 75,
+    "reward": 39,
     "groupName": "Objetos",
-    "topic": "Propiedades",
+    "topic": "Get key",
+    "description": "Crea getK2(obj) y retorna obj.k2 o null.",
+    "hint": "Accede a la key dinamica.",
+    "functionName": "getK2",
+    "starterCode": "function getK2(obj) {\n  // TODO\n}",
+    "solution": "function getK2(obj) { return Object.prototype.hasOwnProperty.call(obj, \"k2\") ? obj[\"k2\"] : null; }",
+    "tests": [
+      {
+        "input": [
+          {
+            "k2": 2
+          }
+        ],
+        "expected": 2
+      },
+      {
+        "input": [
+          {}
+        ],
+        "expected": null
+      }
+    ]
+  },
+  {
+    "id": 37,
+    "difficulty": 4,
+    "timeLimit": 75,
+    "reward": 39,
+    "groupName": "Bucles",
+    "topic": "Rango",
+    "description": "Crea range2() y retorna [1..2].",
+    "hint": "Usa un for.",
+    "functionName": "range2",
+    "starterCode": "function range2() {\n  // TODO\n}",
+    "solution": "function range2() { const out = []; for (let i = 1; i <= 2; i++) out.push(i); return out; }",
+    "tests": [
+      {
+        "input": [],
+        "expected": [
+          1,
+          2
+        ]
+      },
+      {
+        "input": [],
+        "expected": [
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "id": 38,
+    "difficulty": 4,
+    "timeLimit": 75,
+    "reward": 39,
+    "groupName": "Arrays",
+    "topic": "Slice",
+    "description": "Crea take2(arr) y retorna los primeros 2 elementos.",
+    "hint": "Usa slice.",
+    "functionName": "take2",
+    "starterCode": "function take2(arr) {\n  // TODO\n}",
+    "solution": "function take2(arr) { return arr.slice(0, 2); }",
+    "tests": [
+      {
+        "input": [
+          [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        ],
+        "expected": [
+          1,
+          2
+        ]
+      },
+      {
+        "input": [
+          [
+            9,
+            8
+          ]
+        ],
+        "expected": [
+          9,
+          8
+        ]
+      }
+    ]
+  },
+  {
+    "id": 39,
+    "difficulty": 4,
+    "timeLimit": 75,
+    "reward": 39,
+    "groupName": "Strings",
+    "topic": "Padding",
+    "description": "Crea pad2(str) y retorna str con padding de '0' hasta 2.",
+    "hint": "Usa padStart.",
+    "functionName": "pad2",
+    "starterCode": "function pad2(str) {\n  // TODO\n}",
+    "solution": "function pad2(str) { return str.padStart(2, \"0\"); }",
+    "tests": [
+      {
+        "input": [
+          "7"
+        ],
+        "expected": "07"
+      },
+      {
+        "input": [
+          "99"
+        ],
+        "expected": "99"
+      }
+    ]
+  },
+  {
+    "id": 40,
+    "difficulty": 4,
+    "timeLimit": 75,
+    "reward": 39,
+    "groupName": "Maestro JS",
+    "topic": "Zip",
+    "description": "Crea zip2(a, b) y retorna pares hasta 2 elementos.",
+    "hint": "Itera hasta min(n, lengths).",
+    "functionName": "zip2",
+    "starterCode": "function zip2(a, b) {\n  // TODO\n}",
+    "solution": "function zip2(a, b) { const out = []; const len = Math.min(2, a.length, b.length); for (let i = 0; i < len; i++) out.push([a[i], b[i]]); return out; }",
+    "tests": [
+      {
+        "input": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            "a",
+            "b",
+            "c"
+          ]
+        ],
+        "expected": [
+          [
+            1,
+            "a"
+          ],
+          [
+            2,
+            "b"
+          ]
+        ]
+      },
+      {
+        "input": [
+          [
+            1
+          ],
+          [
+            "x",
+            "y"
+          ]
+        ],
+        "expected": [
+          [
+            1,
+            "x"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": 41,
+    "difficulty": 5,
+    "timeLimit": 70,
+    "reward": 45,
+    "groupName": "Fundamentos",
+    "topic": "Suma",
+    "description": "Crea add3(a, b) y retorna a + b + 3.",
+    "hint": "Usa return a + b + N.",
+    "functionName": "add3",
+    "starterCode": "function add3(a, b) {\n  // TODO\n}",
+    "solution": "function add3(a, b) { return a + b + 3; }",
+    "tests": [
+      {
+        "input": [
+          1,
+          2
+        ],
+        "expected": 6
+      },
+      {
+        "input": [
+          -3,
+          4
+        ],
+        "expected": 4
+      }
+    ]
+  },
+  {
+    "id": 42,
+    "difficulty": 5,
+    "timeLimit": 70,
+    "reward": 45,
+    "groupName": "Fundamentos",
+    "topic": "Resta",
+    "description": "Crea sub3(a, b) y retorna a - b - 3.",
+    "hint": "Usa return a - b - N.",
+    "functionName": "sub3",
+    "starterCode": "function sub3(a, b) {\n  // TODO\n}",
+    "solution": "function sub3(a, b) { return a - b - 3; }",
+    "tests": [
+      {
+        "input": [
+          10,
+          2
+        ],
+        "expected": 5
+      },
+      {
+        "input": [
+          5,
+          9
+        ],
+        "expected": -7
+      }
+    ]
+  },
+  {
+    "id": 43,
+    "difficulty": 5,
+    "timeLimit": 70,
+    "reward": 45,
+    "groupName": "Fundamentos",
+    "topic": "Multiplicacion",
+    "description": "Crea mul3(a, b) y retorna a * b * 3.",
+    "hint": "Multiplica a, b y N.",
+    "functionName": "mul3",
+    "starterCode": "function mul3(a, b) {\n  // TODO\n}",
+    "solution": "function mul3(a, b) { return a * b * 3; }",
+    "tests": [
+      {
+        "input": [
+          2,
+          3
+        ],
+        "expected": 18
+      },
+      {
+        "input": [
+          -1,
+          4
+        ],
+        "expected": -12
+      }
+    ]
+  },
+  {
+    "id": 44,
+    "difficulty": 5,
+    "timeLimit": 70,
+    "reward": 45,
+    "groupName": "Fundamentos",
+    "topic": "Potencias",
+    "description": "Crea pow3(x) y retorna x elevado a 3.",
+    "hint": "Usa Math.pow o **.",
+    "functionName": "pow3",
+    "starterCode": "function pow3(x) {\n  // TODO\n}",
+    "solution": "function pow3(x) { return Math.pow(x, 3); }",
+    "tests": [
+      {
+        "input": [
+          2
+        ],
+        "expected": 8
+      },
+      {
+        "input": [
+          3
+        ],
+        "expected": 27
+      }
+    ]
+  },
+  {
+    "id": 45,
+    "difficulty": 5,
+    "timeLimit": 70,
+    "reward": 45,
+    "groupName": "Condicionales",
+    "topic": "Clamp",
+    "description": "Crea clamp3(x) y limita x al rango 0..3.",
+    "hint": "Si x < 0 retorna 0; si x > N retorna N.",
+    "functionName": "clamp3",
+    "starterCode": "function clamp3(x) {\n  // TODO\n}",
+    "solution": "function clamp3(x) { if (x < 0) return 0; if (x > 3) return 3; return x; }",
+    "tests": [
+      {
+        "input": [
+          -2
+        ],
+        "expected": 0
+      },
+      {
+        "input": [
+          5
+        ],
+        "expected": 3
+      }
+    ]
+  },
+  {
+    "id": 46,
+    "difficulty": 5,
+    "timeLimit": 70,
+    "reward": 45,
+    "groupName": "Condicionales",
+    "topic": "Multiplo",
+    "description": "Crea isMultiple3(x) y retorna true si x es multiplo de 3.",
+    "hint": "x % N === 0.",
+    "functionName": "isMultiple3",
+    "starterCode": "function isMultiple3(x) {\n  // TODO\n}",
+    "solution": "function isMultiple3(x) { return x % 3 === 0; }",
+    "tests": [
+      {
+        "input": [
+          9
+        ],
+        "expected": true
+      },
+      {
+        "input": [
+          10
+        ],
+        "expected": false
+      }
+    ]
+  },
+  {
+    "id": 47,
+    "difficulty": 5,
+    "timeLimit": 70,
+    "reward": 45,
+    "groupName": "Condicionales",
+    "topic": "Rango",
+    "description": "Crea between3(x) y retorna true si x esta entre 3 y 9 (exclusivo).",
+    "hint": "Usa > y <.",
+    "functionName": "between3",
+    "starterCode": "function between3(x) {\n  // TODO\n}",
+    "solution": "function between3(x) { return x > 3 && x < 9; }",
+    "tests": [
+      {
+        "input": [
+          4
+        ],
+        "expected": true
+      },
+      {
+        "input": [
+          9
+        ],
+        "expected": false
+      }
+    ]
+  },
+  {
+    "id": 48,
+    "difficulty": 5,
+    "timeLimit": 70,
+    "reward": 45,
+    "groupName": "Strings",
+    "topic": "Plantillas",
+    "description": "Crea tag3(name) y retorna \"L3: <name>\".",
+    "hint": "Template literal recomendado.",
+    "functionName": "tag3",
+    "starterCode": "function tag3(name) {\n  // TODO\n}",
+    "solution": "function tag3(name) { return `L3: ${name}`; }",
+    "tests": [
+      {
+        "input": [
+          "Ana"
+        ],
+        "expected": "L3: Ana"
+      },
+      {
+        "input": [
+          "Beto"
+        ],
+        "expected": "L3: Beto"
+      }
+    ]
+  },
+  {
+    "id": 49,
+    "difficulty": 5,
+    "timeLimit": 70,
+    "reward": 45,
+    "groupName": "Strings",
+    "topic": "Repetir",
+    "description": "Crea repeat3(str) y retorna str repetido 3 veces.",
+    "hint": "Usa repeat.",
+    "functionName": "repeat3",
+    "starterCode": "function repeat3(str) {\n  // TODO\n}",
+    "solution": "function repeat3(str) { return str.repeat(3); }",
+    "tests": [
+      {
+        "input": [
+          "ha"
+        ],
+        "expected": "hahaha"
+      },
+      {
+        "input": [
+          "x"
+        ],
+        "expected": "xxx"
+      }
+    ]
+  },
+  {
+    "id": 50,
+    "difficulty": 5,
+    "timeLimit": 70,
+    "reward": 45,
+    "groupName": "Strings",
+    "topic": "Truncar",
+    "description": "Crea truncate3(str) y recorta a 3 con \"...\".",
+    "hint": "Si length<=N retorna original.",
+    "functionName": "truncate3",
+    "starterCode": "function truncate3(str) {\n  // TODO\n}",
+    "solution": "function truncate3(str) { return str.length <= 3 ? str : str.slice(0, 3) + \"...\"; }",
+    "tests": [
+      {
+        "input": [
+          "abcdef"
+        ],
+        "expected": "abc..."
+      },
+      {
+        "input": [
+          "hi"
+        ],
+        "expected": "hi"
+      }
+    ]
+  },
+  {
+    "id": 51,
     "difficulty": 6,
     "timeLimit": 65,
     "reward": 51,
+    "groupName": "Arrays",
+    "topic": "Map",
+    "description": "Crea mapAdd3(arr) y suma 3 a cada elemento.",
+    "hint": "Usa map.",
+    "functionName": "mapAdd3",
+    "starterCode": "function mapAdd3(arr) {\n  // TODO\n}",
+    "solution": "function mapAdd3(arr) { return arr.map((x) => x + 3); }",
+    "tests": [
+      {
+        "input": [
+          [
+            1,
+            2
+          ]
+        ],
+        "expected": [
+          4,
+          5
+        ]
+      },
+      {
+        "input": [
+          [
+            -1,
+            0
+          ]
+        ],
+        "expected": [
+          2,
+          3
+        ]
+      }
+    ]
+  },
+  {
+    "id": 52,
+    "difficulty": 6,
+    "timeLimit": 65,
+    "reward": 51,
+    "groupName": "Arrays",
+    "topic": "Filter",
+    "description": "Crea filterGte3(arr) y devuelve valores >= 3.",
+    "hint": "Usa filter.",
+    "functionName": "filterGte3",
+    "starterCode": "function filterGte3(arr) {\n  // TODO\n}",
+    "solution": "function filterGte3(arr) { return arr.filter((x) => x >= 3); }",
+    "tests": [
+      {
+        "input": [
+          [
+            2,
+            3,
+            4
+          ]
+        ],
+        "expected": [
+          3,
+          4
+        ]
+      },
+      {
+        "input": [
+          [
+            -5,
+            -1
+          ]
+        ],
+        "expected": []
+      }
+    ]
+  },
+  {
+    "id": 53,
+    "difficulty": 6,
+    "timeLimit": 65,
+    "reward": 51,
+    "groupName": "Funciones",
+    "topic": "Reduce",
+    "description": "Crea sumPlus3(arr) y retorna suma total + 3.",
+    "hint": "reduce para sumar y luego +N.",
+    "functionName": "sumPlus3",
+    "starterCode": "function sumPlus3(arr) {\n  // TODO\n}",
+    "solution": "function sumPlus3(arr) { return arr.reduce((acc, x) => acc + x, 0) + 3; }",
+    "tests": [
+      {
+        "input": [
+          [
+            1,
+            2,
+            3
+          ]
+        ],
+        "expected": 9
+      },
+      {
+        "input": [
+          [
+            10
+          ]
+        ],
+        "expected": 13
+      }
+    ]
+  },
+  {
+    "id": 54,
+    "difficulty": 6,
+    "timeLimit": 65,
+    "reward": 51,
+    "groupName": "Intermedio",
+    "topic": "Conteo",
+    "description": "Crea countLong3(arr) y cuenta strings con longitud >= 3.",
+    "hint": "filter + length.",
+    "functionName": "countLong3",
+    "starterCode": "function countLong3(arr) {\n  // TODO\n}",
+    "solution": "function countLong3(arr) { return arr.filter((s) => s.length >= 3).length; }",
+    "tests": [
+      {
+        "input": [
+          [
+            "a",
+            "abcd",
+            "abcdefgh"
+          ]
+        ],
+        "expected": 2
+      },
+      {
+        "input": [
+          [
+            "xx",
+            "yyy",
+            "zzzz"
+          ]
+        ],
+        "expected": 2
+      }
+    ]
+  },
+  {
+    "id": 55,
+    "difficulty": 6,
+    "timeLimit": 65,
+    "reward": 51,
+    "groupName": "Objetos",
+    "topic": "Propiedades",
     "description": "Crea withLevel3(user) y retorna copia con level: 3.",
     "hint": "Usa spread: { ...user, level: N }",
     "functionName": "withLevel3",
@@ -1737,12 +1735,622 @@
     ]
   },
   {
-    "id": 54,
-    "groupName": "Objetos",
-    "topic": "Propiedades",
+    "id": 56,
     "difficulty": 6,
     "timeLimit": 65,
     "reward": 51,
+    "groupName": "Objetos",
+    "topic": "Get key",
+    "description": "Crea getK3(obj) y retorna obj.k3 o null.",
+    "hint": "Accede a la key dinamica.",
+    "functionName": "getK3",
+    "starterCode": "function getK3(obj) {\n  // TODO\n}",
+    "solution": "function getK3(obj) { return Object.prototype.hasOwnProperty.call(obj, \"k3\") ? obj[\"k3\"] : null; }",
+    "tests": [
+      {
+        "input": [
+          {
+            "k3": 3
+          }
+        ],
+        "expected": 3
+      },
+      {
+        "input": [
+          {}
+        ],
+        "expected": null
+      }
+    ]
+  },
+  {
+    "id": 57,
+    "difficulty": 6,
+    "timeLimit": 65,
+    "reward": 51,
+    "groupName": "Bucles",
+    "topic": "Rango",
+    "description": "Crea range3() y retorna [1..3].",
+    "hint": "Usa un for.",
+    "functionName": "range3",
+    "starterCode": "function range3() {\n  // TODO\n}",
+    "solution": "function range3() { const out = []; for (let i = 1; i <= 3; i++) out.push(i); return out; }",
+    "tests": [
+      {
+        "input": [],
+        "expected": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "input": [],
+        "expected": [
+          1,
+          2,
+          3
+        ]
+      }
+    ]
+  },
+  {
+    "id": 58,
+    "difficulty": 6,
+    "timeLimit": 65,
+    "reward": 51,
+    "groupName": "Arrays",
+    "topic": "Slice",
+    "description": "Crea take3(arr) y retorna los primeros 3 elementos.",
+    "hint": "Usa slice.",
+    "functionName": "take3",
+    "starterCode": "function take3(arr) {\n  // TODO\n}",
+    "solution": "function take3(arr) { return arr.slice(0, 3); }",
+    "tests": [
+      {
+        "input": [
+          [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        ],
+        "expected": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "input": [
+          [
+            9,
+            8
+          ]
+        ],
+        "expected": [
+          9,
+          8
+        ]
+      }
+    ]
+  },
+  {
+    "id": 59,
+    "difficulty": 6,
+    "timeLimit": 65,
+    "reward": 51,
+    "groupName": "Strings",
+    "topic": "Padding",
+    "description": "Crea pad3(str) y retorna str con padding de '0' hasta 3.",
+    "hint": "Usa padStart.",
+    "functionName": "pad3",
+    "starterCode": "function pad3(str) {\n  // TODO\n}",
+    "solution": "function pad3(str) { return str.padStart(3, \"0\"); }",
+    "tests": [
+      {
+        "input": [
+          "7"
+        ],
+        "expected": "007"
+      },
+      {
+        "input": [
+          "99"
+        ],
+        "expected": "099"
+      }
+    ]
+  },
+  {
+    "id": 60,
+    "difficulty": 6,
+    "timeLimit": 65,
+    "reward": 51,
+    "groupName": "Maestro JS",
+    "topic": "Zip",
+    "description": "Crea zip3(a, b) y retorna pares hasta 3 elementos.",
+    "hint": "Itera hasta min(n, lengths).",
+    "functionName": "zip3",
+    "starterCode": "function zip3(a, b) {\n  // TODO\n}",
+    "solution": "function zip3(a, b) { const out = []; const len = Math.min(3, a.length, b.length); for (let i = 0; i < len; i++) out.push([a[i], b[i]]); return out; }",
+    "tests": [
+      {
+        "input": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            "a",
+            "b",
+            "c"
+          ]
+        ],
+        "expected": [
+          [
+            1,
+            "a"
+          ],
+          [
+            2,
+            "b"
+          ],
+          [
+            3,
+            "c"
+          ]
+        ]
+      },
+      {
+        "input": [
+          [
+            1
+          ],
+          [
+            "x",
+            "y"
+          ]
+        ],
+        "expected": [
+          [
+            1,
+            "x"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": 61,
+    "difficulty": 7,
+    "timeLimit": 60,
+    "reward": 57,
+    "groupName": "Fundamentos",
+    "topic": "Suma",
+    "description": "Crea add4(a, b) y retorna a + b + 4.",
+    "hint": "Usa return a + b + N.",
+    "functionName": "add4",
+    "starterCode": "function add4(a, b) {\n  // TODO\n}",
+    "solution": "function add4(a, b) { return a + b + 4; }",
+    "tests": [
+      {
+        "input": [
+          1,
+          2
+        ],
+        "expected": 7
+      },
+      {
+        "input": [
+          -3,
+          4
+        ],
+        "expected": 5
+      }
+    ]
+  },
+  {
+    "id": 62,
+    "difficulty": 7,
+    "timeLimit": 60,
+    "reward": 57,
+    "groupName": "Fundamentos",
+    "topic": "Resta",
+    "description": "Crea sub4(a, b) y retorna a - b - 4.",
+    "hint": "Usa return a - b - N.",
+    "functionName": "sub4",
+    "starterCode": "function sub4(a, b) {\n  // TODO\n}",
+    "solution": "function sub4(a, b) { return a - b - 4; }",
+    "tests": [
+      {
+        "input": [
+          10,
+          2
+        ],
+        "expected": 4
+      },
+      {
+        "input": [
+          5,
+          9
+        ],
+        "expected": -8
+      }
+    ]
+  },
+  {
+    "id": 63,
+    "difficulty": 7,
+    "timeLimit": 60,
+    "reward": 57,
+    "groupName": "Fundamentos",
+    "topic": "Multiplicacion",
+    "description": "Crea mul4(a, b) y retorna a * b * 4.",
+    "hint": "Multiplica a, b y N.",
+    "functionName": "mul4",
+    "starterCode": "function mul4(a, b) {\n  // TODO\n}",
+    "solution": "function mul4(a, b) { return a * b * 4; }",
+    "tests": [
+      {
+        "input": [
+          2,
+          3
+        ],
+        "expected": 24
+      },
+      {
+        "input": [
+          -1,
+          4
+        ],
+        "expected": -16
+      }
+    ]
+  },
+  {
+    "id": 64,
+    "difficulty": 7,
+    "timeLimit": 60,
+    "reward": 57,
+    "groupName": "Fundamentos",
+    "topic": "Potencias",
+    "description": "Crea pow4(x) y retorna x elevado a 4.",
+    "hint": "Usa Math.pow o **.",
+    "functionName": "pow4",
+    "starterCode": "function pow4(x) {\n  // TODO\n}",
+    "solution": "function pow4(x) { return Math.pow(x, 4); }",
+    "tests": [
+      {
+        "input": [
+          2
+        ],
+        "expected": 16
+      },
+      {
+        "input": [
+          3
+        ],
+        "expected": 81
+      }
+    ]
+  },
+  {
+    "id": 65,
+    "difficulty": 7,
+    "timeLimit": 60,
+    "reward": 57,
+    "groupName": "Condicionales",
+    "topic": "Clamp",
+    "description": "Crea clamp4(x) y limita x al rango 0..4.",
+    "hint": "Si x < 0 retorna 0; si x > N retorna N.",
+    "functionName": "clamp4",
+    "starterCode": "function clamp4(x) {\n  // TODO\n}",
+    "solution": "function clamp4(x) { if (x < 0) return 0; if (x > 4) return 4; return x; }",
+    "tests": [
+      {
+        "input": [
+          -2
+        ],
+        "expected": 0
+      },
+      {
+        "input": [
+          6
+        ],
+        "expected": 4
+      }
+    ]
+  },
+  {
+    "id": 66,
+    "difficulty": 7,
+    "timeLimit": 60,
+    "reward": 57,
+    "groupName": "Condicionales",
+    "topic": "Multiplo",
+    "description": "Crea isMultiple4(x) y retorna true si x es multiplo de 4.",
+    "hint": "x % N === 0.",
+    "functionName": "isMultiple4",
+    "starterCode": "function isMultiple4(x) {\n  // TODO\n}",
+    "solution": "function isMultiple4(x) { return x % 4 === 0; }",
+    "tests": [
+      {
+        "input": [
+          12
+        ],
+        "expected": true
+      },
+      {
+        "input": [
+          13
+        ],
+        "expected": false
+      }
+    ]
+  },
+  {
+    "id": 67,
+    "difficulty": 7,
+    "timeLimit": 60,
+    "reward": 57,
+    "groupName": "Condicionales",
+    "topic": "Rango",
+    "description": "Crea between4(x) y retorna true si x esta entre 4 y 12 (exclusivo).",
+    "hint": "Usa > y <.",
+    "functionName": "between4",
+    "starterCode": "function between4(x) {\n  // TODO\n}",
+    "solution": "function between4(x) { return x > 4 && x < 12; }",
+    "tests": [
+      {
+        "input": [
+          5
+        ],
+        "expected": true
+      },
+      {
+        "input": [
+          12
+        ],
+        "expected": false
+      }
+    ]
+  },
+  {
+    "id": 68,
+    "difficulty": 7,
+    "timeLimit": 60,
+    "reward": 57,
+    "groupName": "Strings",
+    "topic": "Plantillas",
+    "description": "Crea tag4(name) y retorna \"L4: <name>\".",
+    "hint": "Template literal recomendado.",
+    "functionName": "tag4",
+    "starterCode": "function tag4(name) {\n  // TODO\n}",
+    "solution": "function tag4(name) { return `L4: ${name}`; }",
+    "tests": [
+      {
+        "input": [
+          "Ana"
+        ],
+        "expected": "L4: Ana"
+      },
+      {
+        "input": [
+          "Beto"
+        ],
+        "expected": "L4: Beto"
+      }
+    ]
+  },
+  {
+    "id": 69,
+    "difficulty": 7,
+    "timeLimit": 60,
+    "reward": 57,
+    "groupName": "Strings",
+    "topic": "Repetir",
+    "description": "Crea repeat4(str) y retorna str repetido 4 veces.",
+    "hint": "Usa repeat.",
+    "functionName": "repeat4",
+    "starterCode": "function repeat4(str) {\n  // TODO\n}",
+    "solution": "function repeat4(str) { return str.repeat(4); }",
+    "tests": [
+      {
+        "input": [
+          "ha"
+        ],
+        "expected": "hahahaha"
+      },
+      {
+        "input": [
+          "x"
+        ],
+        "expected": "xxxx"
+      }
+    ]
+  },
+  {
+    "id": 70,
+    "difficulty": 7,
+    "timeLimit": 60,
+    "reward": 57,
+    "groupName": "Strings",
+    "topic": "Truncar",
+    "description": "Crea truncate4(str) y recorta a 4 con \"...\".",
+    "hint": "Si length<=N retorna original.",
+    "functionName": "truncate4",
+    "starterCode": "function truncate4(str) {\n  // TODO\n}",
+    "solution": "function truncate4(str) { return str.length <= 4 ? str : str.slice(0, 4) + \"...\"; }",
+    "tests": [
+      {
+        "input": [
+          "abcdef"
+        ],
+        "expected": "abcd..."
+      },
+      {
+        "input": [
+          "hi"
+        ],
+        "expected": "hi"
+      }
+    ]
+  },
+  {
+    "id": 71,
+    "difficulty": 8,
+    "timeLimit": 55,
+    "reward": 63,
+    "groupName": "Arrays",
+    "topic": "Map",
+    "description": "Crea mapAdd4(arr) y suma 4 a cada elemento.",
+    "hint": "Usa map.",
+    "functionName": "mapAdd4",
+    "starterCode": "function mapAdd4(arr) {\n  // TODO\n}",
+    "solution": "function mapAdd4(arr) { return arr.map((x) => x + 4); }",
+    "tests": [
+      {
+        "input": [
+          [
+            1,
+            2
+          ]
+        ],
+        "expected": [
+          5,
+          6
+        ]
+      },
+      {
+        "input": [
+          [
+            -1,
+            0
+          ]
+        ],
+        "expected": [
+          3,
+          4
+        ]
+      }
+    ]
+  },
+  {
+    "id": 72,
+    "difficulty": 8,
+    "timeLimit": 55,
+    "reward": 63,
+    "groupName": "Arrays",
+    "topic": "Filter",
+    "description": "Crea filterGte4(arr) y devuelve valores >= 4.",
+    "hint": "Usa filter.",
+    "functionName": "filterGte4",
+    "starterCode": "function filterGte4(arr) {\n  // TODO\n}",
+    "solution": "function filterGte4(arr) { return arr.filter((x) => x >= 4); }",
+    "tests": [
+      {
+        "input": [
+          [
+            3,
+            4,
+            5
+          ]
+        ],
+        "expected": [
+          4,
+          5
+        ]
+      },
+      {
+        "input": [
+          [
+            -5,
+            -1
+          ]
+        ],
+        "expected": []
+      }
+    ]
+  },
+  {
+    "id": 73,
+    "difficulty": 8,
+    "timeLimit": 55,
+    "reward": 63,
+    "groupName": "Funciones",
+    "topic": "Reduce",
+    "description": "Crea sumPlus4(arr) y retorna suma total + 4.",
+    "hint": "reduce para sumar y luego +N.",
+    "functionName": "sumPlus4",
+    "starterCode": "function sumPlus4(arr) {\n  // TODO\n}",
+    "solution": "function sumPlus4(arr) { return arr.reduce((acc, x) => acc + x, 0) + 4; }",
+    "tests": [
+      {
+        "input": [
+          [
+            1,
+            2,
+            3
+          ]
+        ],
+        "expected": 10
+      },
+      {
+        "input": [
+          [
+            10
+          ]
+        ],
+        "expected": 14
+      }
+    ]
+  },
+  {
+    "id": 74,
+    "difficulty": 8,
+    "timeLimit": 55,
+    "reward": 63,
+    "groupName": "Intermedio",
+    "topic": "Conteo",
+    "description": "Crea countLong4(arr) y cuenta strings con longitud >= 4.",
+    "hint": "filter + length.",
+    "functionName": "countLong4",
+    "starterCode": "function countLong4(arr) {\n  // TODO\n}",
+    "solution": "function countLong4(arr) { return arr.filter((s) => s.length >= 4).length; }",
+    "tests": [
+      {
+        "input": [
+          [
+            "a",
+            "abcd",
+            "abcdefgh"
+          ]
+        ],
+        "expected": 2
+      },
+      {
+        "input": [
+          [
+            "xx",
+            "yyy",
+            "zzzz"
+          ]
+        ],
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "id": 75,
+    "difficulty": 8,
+    "timeLimit": 55,
+    "reward": 63,
+    "groupName": "Objetos",
+    "topic": "Propiedades",
     "description": "Crea withLevel4(user) y retorna copia con level: 4.",
     "hint": "Usa spread: { ...user, level: N }",
     "functionName": "withLevel4",
@@ -1776,12 +2384,625 @@
     ]
   },
   {
-    "id": 55,
+    "id": 76,
+    "difficulty": 8,
+    "timeLimit": 55,
+    "reward": 63,
+    "groupName": "Objetos",
+    "topic": "Get key",
+    "description": "Crea getK4(obj) y retorna obj.k4 o null.",
+    "hint": "Accede a la key dinamica.",
+    "functionName": "getK4",
+    "starterCode": "function getK4(obj) {\n  // TODO\n}",
+    "solution": "function getK4(obj) { return Object.prototype.hasOwnProperty.call(obj, \"k4\") ? obj[\"k4\"] : null; }",
+    "tests": [
+      {
+        "input": [
+          {
+            "k4": 4
+          }
+        ],
+        "expected": 4
+      },
+      {
+        "input": [
+          {}
+        ],
+        "expected": null
+      }
+    ]
+  },
+  {
+    "id": 77,
+    "difficulty": 8,
+    "timeLimit": 55,
+    "reward": 63,
+    "groupName": "Bucles",
+    "topic": "Rango",
+    "description": "Crea range4() y retorna [1..4].",
+    "hint": "Usa un for.",
+    "functionName": "range4",
+    "starterCode": "function range4() {\n  // TODO\n}",
+    "solution": "function range4() { const out = []; for (let i = 1; i <= 4; i++) out.push(i); return out; }",
+    "tests": [
+      {
+        "input": [],
+        "expected": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "input": [],
+        "expected": [
+          1,
+          2,
+          3,
+          4
+        ]
+      }
+    ]
+  },
+  {
+    "id": 78,
+    "difficulty": 8,
+    "timeLimit": 55,
+    "reward": 63,
+    "groupName": "Arrays",
+    "topic": "Slice",
+    "description": "Crea take4(arr) y retorna los primeros 4 elementos.",
+    "hint": "Usa slice.",
+    "functionName": "take4",
+    "starterCode": "function take4(arr) {\n  // TODO\n}",
+    "solution": "function take4(arr) { return arr.slice(0, 4); }",
+    "tests": [
+      {
+        "input": [
+          [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        ],
+        "expected": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "input": [
+          [
+            9,
+            8
+          ]
+        ],
+        "expected": [
+          9,
+          8
+        ]
+      }
+    ]
+  },
+  {
+    "id": 79,
+    "difficulty": 8,
+    "timeLimit": 55,
+    "reward": 63,
+    "groupName": "Strings",
+    "topic": "Padding",
+    "description": "Crea pad4(str) y retorna str con padding de '0' hasta 4.",
+    "hint": "Usa padStart.",
+    "functionName": "pad4",
+    "starterCode": "function pad4(str) {\n  // TODO\n}",
+    "solution": "function pad4(str) { return str.padStart(4, \"0\"); }",
+    "tests": [
+      {
+        "input": [
+          "7"
+        ],
+        "expected": "0007"
+      },
+      {
+        "input": [
+          "99"
+        ],
+        "expected": "0099"
+      }
+    ]
+  },
+  {
+    "id": 80,
+    "difficulty": 8,
+    "timeLimit": 55,
+    "reward": 63,
+    "groupName": "Maestro JS",
+    "topic": "Zip",
+    "description": "Crea zip4(a, b) y retorna pares hasta 4 elementos.",
+    "hint": "Itera hasta min(n, lengths).",
+    "functionName": "zip4",
+    "starterCode": "function zip4(a, b) {\n  // TODO\n}",
+    "solution": "function zip4(a, b) { const out = []; const len = Math.min(4, a.length, b.length); for (let i = 0; i < len; i++) out.push([a[i], b[i]]); return out; }",
+    "tests": [
+      {
+        "input": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            "a",
+            "b",
+            "c"
+          ]
+        ],
+        "expected": [
+          [
+            1,
+            "a"
+          ],
+          [
+            2,
+            "b"
+          ],
+          [
+            3,
+            "c"
+          ]
+        ]
+      },
+      {
+        "input": [
+          [
+            1
+          ],
+          [
+            "x",
+            "y"
+          ]
+        ],
+        "expected": [
+          [
+            1,
+            "x"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": 81,
+    "difficulty": 9,
+    "timeLimit": 50,
+    "reward": 69,
+    "groupName": "Fundamentos",
+    "topic": "Suma",
+    "description": "Crea add5(a, b) y retorna a + b + 5.",
+    "hint": "Usa return a + b + N.",
+    "functionName": "add5",
+    "starterCode": "function add5(a, b) {\n  // TODO\n}",
+    "solution": "function add5(a, b) { return a + b + 5; }",
+    "tests": [
+      {
+        "input": [
+          1,
+          2
+        ],
+        "expected": 8
+      },
+      {
+        "input": [
+          -3,
+          4
+        ],
+        "expected": 6
+      }
+    ]
+  },
+  {
+    "id": 82,
+    "difficulty": 9,
+    "timeLimit": 50,
+    "reward": 69,
+    "groupName": "Fundamentos",
+    "topic": "Resta",
+    "description": "Crea sub5(a, b) y retorna a - b - 5.",
+    "hint": "Usa return a - b - N.",
+    "functionName": "sub5",
+    "starterCode": "function sub5(a, b) {\n  // TODO\n}",
+    "solution": "function sub5(a, b) { return a - b - 5; }",
+    "tests": [
+      {
+        "input": [
+          10,
+          2
+        ],
+        "expected": 3
+      },
+      {
+        "input": [
+          5,
+          9
+        ],
+        "expected": -9
+      }
+    ]
+  },
+  {
+    "id": 83,
+    "difficulty": 9,
+    "timeLimit": 50,
+    "reward": 69,
+    "groupName": "Fundamentos",
+    "topic": "Multiplicacion",
+    "description": "Crea mul5(a, b) y retorna a * b * 5.",
+    "hint": "Multiplica a, b y N.",
+    "functionName": "mul5",
+    "starterCode": "function mul5(a, b) {\n  // TODO\n}",
+    "solution": "function mul5(a, b) { return a * b * 5; }",
+    "tests": [
+      {
+        "input": [
+          2,
+          3
+        ],
+        "expected": 30
+      },
+      {
+        "input": [
+          -1,
+          4
+        ],
+        "expected": -20
+      }
+    ]
+  },
+  {
+    "id": 84,
+    "difficulty": 9,
+    "timeLimit": 50,
+    "reward": 69,
+    "groupName": "Fundamentos",
+    "topic": "Potencias",
+    "description": "Crea pow5(x) y retorna x elevado a 5.",
+    "hint": "Usa Math.pow o **.",
+    "functionName": "pow5",
+    "starterCode": "function pow5(x) {\n  // TODO\n}",
+    "solution": "function pow5(x) { return Math.pow(x, 5); }",
+    "tests": [
+      {
+        "input": [
+          2
+        ],
+        "expected": 32
+      },
+      {
+        "input": [
+          3
+        ],
+        "expected": 243
+      }
+    ]
+  },
+  {
+    "id": 85,
+    "difficulty": 9,
+    "timeLimit": 50,
+    "reward": 69,
+    "groupName": "Condicionales",
+    "topic": "Clamp",
+    "description": "Crea clamp5(x) y limita x al rango 0..5.",
+    "hint": "Si x < 0 retorna 0; si x > N retorna N.",
+    "functionName": "clamp5",
+    "starterCode": "function clamp5(x) {\n  // TODO\n}",
+    "solution": "function clamp5(x) { if (x < 0) return 0; if (x > 5) return 5; return x; }",
+    "tests": [
+      {
+        "input": [
+          -2
+        ],
+        "expected": 0
+      },
+      {
+        "input": [
+          7
+        ],
+        "expected": 5
+      }
+    ]
+  },
+  {
+    "id": 86,
+    "difficulty": 9,
+    "timeLimit": 50,
+    "reward": 69,
+    "groupName": "Condicionales",
+    "topic": "Multiplo",
+    "description": "Crea isMultiple5(x) y retorna true si x es multiplo de 5.",
+    "hint": "x % N === 0.",
+    "functionName": "isMultiple5",
+    "starterCode": "function isMultiple5(x) {\n  // TODO\n}",
+    "solution": "function isMultiple5(x) { return x % 5 === 0; }",
+    "tests": [
+      {
+        "input": [
+          15
+        ],
+        "expected": true
+      },
+      {
+        "input": [
+          16
+        ],
+        "expected": false
+      }
+    ]
+  },
+  {
+    "id": 87,
+    "difficulty": 9,
+    "timeLimit": 50,
+    "reward": 69,
+    "groupName": "Condicionales",
+    "topic": "Rango",
+    "description": "Crea between5(x) y retorna true si x esta entre 5 y 15 (exclusivo).",
+    "hint": "Usa > y <.",
+    "functionName": "between5",
+    "starterCode": "function between5(x) {\n  // TODO\n}",
+    "solution": "function between5(x) { return x > 5 && x < 15; }",
+    "tests": [
+      {
+        "input": [
+          6
+        ],
+        "expected": true
+      },
+      {
+        "input": [
+          15
+        ],
+        "expected": false
+      }
+    ]
+  },
+  {
+    "id": 88,
+    "difficulty": 9,
+    "timeLimit": 50,
+    "reward": 69,
+    "groupName": "Strings",
+    "topic": "Plantillas",
+    "description": "Crea tag5(name) y retorna \"L5: <name>\".",
+    "hint": "Template literal recomendado.",
+    "functionName": "tag5",
+    "starterCode": "function tag5(name) {\n  // TODO\n}",
+    "solution": "function tag5(name) { return `L5: ${name}`; }",
+    "tests": [
+      {
+        "input": [
+          "Ana"
+        ],
+        "expected": "L5: Ana"
+      },
+      {
+        "input": [
+          "Beto"
+        ],
+        "expected": "L5: Beto"
+      }
+    ]
+  },
+  {
+    "id": 89,
+    "difficulty": 9,
+    "timeLimit": 50,
+    "reward": 69,
+    "groupName": "Strings",
+    "topic": "Repetir",
+    "description": "Crea repeat5(str) y retorna str repetido 5 veces.",
+    "hint": "Usa repeat.",
+    "functionName": "repeat5",
+    "starterCode": "function repeat5(str) {\n  // TODO\n}",
+    "solution": "function repeat5(str) { return str.repeat(5); }",
+    "tests": [
+      {
+        "input": [
+          "ha"
+        ],
+        "expected": "hahahahaha"
+      },
+      {
+        "input": [
+          "x"
+        ],
+        "expected": "xxxxx"
+      }
+    ]
+  },
+  {
+    "id": 90,
+    "difficulty": 9,
+    "timeLimit": 50,
+    "reward": 69,
+    "groupName": "Strings",
+    "topic": "Truncar",
+    "description": "Crea truncate5(str) y recorta a 5 con \"...\".",
+    "hint": "Si length<=N retorna original.",
+    "functionName": "truncate5",
+    "starterCode": "function truncate5(str) {\n  // TODO\n}",
+    "solution": "function truncate5(str) { return str.length <= 5 ? str : str.slice(0, 5) + \"...\"; }",
+    "tests": [
+      {
+        "input": [
+          "abcdef"
+        ],
+        "expected": "abcde..."
+      },
+      {
+        "input": [
+          "hi"
+        ],
+        "expected": "hi"
+      }
+    ]
+  },
+  {
+    "id": 91,
+    "difficulty": 10,
+    "timeLimit": 45,
+    "reward": 75,
+    "groupName": "Arrays",
+    "topic": "Map",
+    "description": "Crea mapAdd5(arr) y suma 5 a cada elemento.",
+    "hint": "Usa map.",
+    "functionName": "mapAdd5",
+    "starterCode": "function mapAdd5(arr) {\n  // TODO\n}",
+    "solution": "function mapAdd5(arr) { return arr.map((x) => x + 5); }",
+    "tests": [
+      {
+        "input": [
+          [
+            1,
+            2
+          ]
+        ],
+        "expected": [
+          6,
+          7
+        ]
+      },
+      {
+        "input": [
+          [
+            -1,
+            0
+          ]
+        ],
+        "expected": [
+          4,
+          5
+        ]
+      }
+    ]
+  },
+  {
+    "id": 92,
+    "difficulty": 10,
+    "timeLimit": 45,
+    "reward": 75,
+    "groupName": "Arrays",
+    "topic": "Filter",
+    "description": "Crea filterGte5(arr) y devuelve valores >= 5.",
+    "hint": "Usa filter.",
+    "functionName": "filterGte5",
+    "starterCode": "function filterGte5(arr) {\n  // TODO\n}",
+    "solution": "function filterGte5(arr) { return arr.filter((x) => x >= 5); }",
+    "tests": [
+      {
+        "input": [
+          [
+            4,
+            5,
+            6
+          ]
+        ],
+        "expected": [
+          5,
+          6
+        ]
+      },
+      {
+        "input": [
+          [
+            -5,
+            -1
+          ]
+        ],
+        "expected": []
+      }
+    ]
+  },
+  {
+    "id": 93,
+    "difficulty": 10,
+    "timeLimit": 45,
+    "reward": 75,
+    "groupName": "Funciones",
+    "topic": "Reduce",
+    "description": "Crea sumPlus5(arr) y retorna suma total + 5.",
+    "hint": "reduce para sumar y luego +N.",
+    "functionName": "sumPlus5",
+    "starterCode": "function sumPlus5(arr) {\n  // TODO\n}",
+    "solution": "function sumPlus5(arr) { return arr.reduce((acc, x) => acc + x, 0) + 5; }",
+    "tests": [
+      {
+        "input": [
+          [
+            1,
+            2,
+            3
+          ]
+        ],
+        "expected": 11
+      },
+      {
+        "input": [
+          [
+            10
+          ]
+        ],
+        "expected": 15
+      }
+    ]
+  },
+  {
+    "id": 94,
+    "difficulty": 10,
+    "timeLimit": 45,
+    "reward": 75,
+    "groupName": "Intermedio",
+    "topic": "Conteo",
+    "description": "Crea countLong5(arr) y cuenta strings con longitud >= 5.",
+    "hint": "filter + length.",
+    "functionName": "countLong5",
+    "starterCode": "function countLong5(arr) {\n  // TODO\n}",
+    "solution": "function countLong5(arr) { return arr.filter((s) => s.length >= 5).length; }",
+    "tests": [
+      {
+        "input": [
+          [
+            "a",
+            "abcd",
+            "abcdefgh"
+          ]
+        ],
+        "expected": 1
+      },
+      {
+        "input": [
+          [
+            "xx",
+            "yyy",
+            "zzzz"
+          ]
+        ],
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "id": 95,
+    "difficulty": 10,
+    "timeLimit": 45,
+    "reward": 75,
     "groupName": "Objetos",
     "topic": "Propiedades",
-    "difficulty": 6,
-    "timeLimit": 65,
-    "reward": 51,
     "description": "Crea withLevel5(user) y retorna copia con level: 5.",
     "hint": "Usa spread: { ...user, level: N }",
     "functionName": "withLevel5",
@@ -1815,1414 +3036,81 @@
     ]
   },
   {
-    "id": 56,
-    "groupName": "Objetos",
-    "topic": "Propiedades",
-    "difficulty": 6,
-    "timeLimit": 65,
-    "reward": 51,
-    "description": "Crea withLevel6(user) y retorna copia con level: 6.",
-    "hint": "Usa spread: { ...user, level: N }",
-    "functionName": "withLevel6",
-    "starterCode": "function withLevel6(user) {\n  // TODO\n}",
-    "solution": "function withLevel6(user) { return { ...user, level: 6 }; }",
-    "tests": [
-      {
-        "input": [
-          {
-            "name": "Ana"
-          }
-        ],
-        "expected": {
-          "name": "Ana",
-          "level": 6
-        }
-      },
-      {
-        "input": [
-          {
-            "id": 7,
-            "active": true
-          }
-        ],
-        "expected": {
-          "id": 7,
-          "active": true,
-          "level": 6
-        }
-      }
-    ]
-  },
-  {
-    "id": 57,
-    "groupName": "Objetos",
-    "topic": "Propiedades",
-    "difficulty": 6,
-    "timeLimit": 65,
-    "reward": 51,
-    "description": "Crea withLevel7(user) y retorna copia con level: 7.",
-    "hint": "Usa spread: { ...user, level: N }",
-    "functionName": "withLevel7",
-    "starterCode": "function withLevel7(user) {\n  // TODO\n}",
-    "solution": "function withLevel7(user) { return { ...user, level: 7 }; }",
-    "tests": [
-      {
-        "input": [
-          {
-            "name": "Ana"
-          }
-        ],
-        "expected": {
-          "name": "Ana",
-          "level": 7
-        }
-      },
-      {
-        "input": [
-          {
-            "id": 7,
-            "active": true
-          }
-        ],
-        "expected": {
-          "id": 7,
-          "active": true,
-          "level": 7
-        }
-      }
-    ]
-  },
-  {
-    "id": 58,
-    "groupName": "Objetos",
-    "topic": "Propiedades",
-    "difficulty": 6,
-    "timeLimit": 65,
-    "reward": 51,
-    "description": "Crea withLevel8(user) y retorna copia con level: 8.",
-    "hint": "Usa spread: { ...user, level: N }",
-    "functionName": "withLevel8",
-    "starterCode": "function withLevel8(user) {\n  // TODO\n}",
-    "solution": "function withLevel8(user) { return { ...user, level: 8 }; }",
-    "tests": [
-      {
-        "input": [
-          {
-            "name": "Ana"
-          }
-        ],
-        "expected": {
-          "name": "Ana",
-          "level": 8
-        }
-      },
-      {
-        "input": [
-          {
-            "id": 7,
-            "active": true
-          }
-        ],
-        "expected": {
-          "id": 7,
-          "active": true,
-          "level": 8
-        }
-      }
-    ]
-  },
-  {
-    "id": 59,
-    "groupName": "Objetos",
-    "topic": "Propiedades",
-    "difficulty": 6,
-    "timeLimit": 65,
-    "reward": 51,
-    "description": "Crea withLevel9(user) y retorna copia con level: 9.",
-    "hint": "Usa spread: { ...user, level: N }",
-    "functionName": "withLevel9",
-    "starterCode": "function withLevel9(user) {\n  // TODO\n}",
-    "solution": "function withLevel9(user) { return { ...user, level: 9 }; }",
-    "tests": [
-      {
-        "input": [
-          {
-            "name": "Ana"
-          }
-        ],
-        "expected": {
-          "name": "Ana",
-          "level": 9
-        }
-      },
-      {
-        "input": [
-          {
-            "id": 7,
-            "active": true
-          }
-        ],
-        "expected": {
-          "id": 7,
-          "active": true,
-          "level": 9
-        }
-      }
-    ]
-  },
-  {
-    "id": 60,
-    "groupName": "Objetos",
-    "topic": "Propiedades",
-    "difficulty": 6,
-    "timeLimit": 65,
-    "reward": 51,
-    "description": "Crea withLevel10(user) y retorna copia con level: 10.",
-    "hint": "Usa spread: { ...user, level: N }",
-    "functionName": "withLevel10",
-    "starterCode": "function withLevel10(user) {\n  // TODO\n}",
-    "solution": "function withLevel10(user) { return { ...user, level: 10 }; }",
-    "tests": [
-      {
-        "input": [
-          {
-            "name": "Ana"
-          }
-        ],
-        "expected": {
-          "name": "Ana",
-          "level": 10
-        }
-      },
-      {
-        "input": [
-          {
-            "id": 7,
-            "active": true
-          }
-        ],
-        "expected": {
-          "id": 7,
-          "active": true,
-          "level": 10
-        }
-      }
-    ]
-  },
-  {
-    "id": 61,
-    "groupName": "Funciones",
-    "topic": "Reduce",
-    "difficulty": 7,
-    "timeLimit": 60,
-    "reward": 57,
-    "description": "Crea sumPlus1(arr) y retorna suma total + 1.",
-    "hint": "reduce para sumar y luego +N.",
-    "functionName": "sumPlus1",
-    "starterCode": "function sumPlus1(arr) {\n  // TODO\n}",
-    "solution": "function sumPlus1(arr) { return arr.reduce((acc, x) => acc + x, 0) + 1; }",
-    "tests": [
-      {
-        "input": [
-          [
-            1,
-            2,
-            3
-          ]
-        ],
-        "expected": 7
-      },
-      {
-        "input": [
-          [
-            10
-          ]
-        ],
-        "expected": 11
-      }
-    ]
-  },
-  {
-    "id": 62,
-    "groupName": "Funciones",
-    "topic": "Reduce",
-    "difficulty": 7,
-    "timeLimit": 60,
-    "reward": 57,
-    "description": "Crea sumPlus2(arr) y retorna suma total + 2.",
-    "hint": "reduce para sumar y luego +N.",
-    "functionName": "sumPlus2",
-    "starterCode": "function sumPlus2(arr) {\n  // TODO\n}",
-    "solution": "function sumPlus2(arr) { return arr.reduce((acc, x) => acc + x, 0) + 2; }",
-    "tests": [
-      {
-        "input": [
-          [
-            1,
-            2,
-            3
-          ]
-        ],
-        "expected": 8
-      },
-      {
-        "input": [
-          [
-            10
-          ]
-        ],
-        "expected": 12
-      }
-    ]
-  },
-  {
-    "id": 63,
-    "groupName": "Funciones",
-    "topic": "Reduce",
-    "difficulty": 7,
-    "timeLimit": 60,
-    "reward": 57,
-    "description": "Crea sumPlus3(arr) y retorna suma total + 3.",
-    "hint": "reduce para sumar y luego +N.",
-    "functionName": "sumPlus3",
-    "starterCode": "function sumPlus3(arr) {\n  // TODO\n}",
-    "solution": "function sumPlus3(arr) { return arr.reduce((acc, x) => acc + x, 0) + 3; }",
-    "tests": [
-      {
-        "input": [
-          [
-            1,
-            2,
-            3
-          ]
-        ],
-        "expected": 9
-      },
-      {
-        "input": [
-          [
-            10
-          ]
-        ],
-        "expected": 13
-      }
-    ]
-  },
-  {
-    "id": 64,
-    "groupName": "Funciones",
-    "topic": "Reduce",
-    "difficulty": 7,
-    "timeLimit": 60,
-    "reward": 57,
-    "description": "Crea sumPlus4(arr) y retorna suma total + 4.",
-    "hint": "reduce para sumar y luego +N.",
-    "functionName": "sumPlus4",
-    "starterCode": "function sumPlus4(arr) {\n  // TODO\n}",
-    "solution": "function sumPlus4(arr) { return arr.reduce((acc, x) => acc + x, 0) + 4; }",
-    "tests": [
-      {
-        "input": [
-          [
-            1,
-            2,
-            3
-          ]
-        ],
-        "expected": 10
-      },
-      {
-        "input": [
-          [
-            10
-          ]
-        ],
-        "expected": 14
-      }
-    ]
-  },
-  {
-    "id": 65,
-    "groupName": "Funciones",
-    "topic": "Reduce",
-    "difficulty": 7,
-    "timeLimit": 60,
-    "reward": 57,
-    "description": "Crea sumPlus5(arr) y retorna suma total + 5.",
-    "hint": "reduce para sumar y luego +N.",
-    "functionName": "sumPlus5",
-    "starterCode": "function sumPlus5(arr) {\n  // TODO\n}",
-    "solution": "function sumPlus5(arr) { return arr.reduce((acc, x) => acc + x, 0) + 5; }",
-    "tests": [
-      {
-        "input": [
-          [
-            1,
-            2,
-            3
-          ]
-        ],
-        "expected": 11
-      },
-      {
-        "input": [
-          [
-            10
-          ]
-        ],
-        "expected": 15
-      }
-    ]
-  },
-  {
-    "id": 66,
-    "groupName": "Funciones",
-    "topic": "Reduce",
-    "difficulty": 7,
-    "timeLimit": 60,
-    "reward": 57,
-    "description": "Crea sumPlus6(arr) y retorna suma total + 6.",
-    "hint": "reduce para sumar y luego +N.",
-    "functionName": "sumPlus6",
-    "starterCode": "function sumPlus6(arr) {\n  // TODO\n}",
-    "solution": "function sumPlus6(arr) { return arr.reduce((acc, x) => acc + x, 0) + 6; }",
-    "tests": [
-      {
-        "input": [
-          [
-            1,
-            2,
-            3
-          ]
-        ],
-        "expected": 12
-      },
-      {
-        "input": [
-          [
-            10
-          ]
-        ],
-        "expected": 16
-      }
-    ]
-  },
-  {
-    "id": 67,
-    "groupName": "Funciones",
-    "topic": "Reduce",
-    "difficulty": 7,
-    "timeLimit": 60,
-    "reward": 57,
-    "description": "Crea sumPlus7(arr) y retorna suma total + 7.",
-    "hint": "reduce para sumar y luego +N.",
-    "functionName": "sumPlus7",
-    "starterCode": "function sumPlus7(arr) {\n  // TODO\n}",
-    "solution": "function sumPlus7(arr) { return arr.reduce((acc, x) => acc + x, 0) + 7; }",
-    "tests": [
-      {
-        "input": [
-          [
-            1,
-            2,
-            3
-          ]
-        ],
-        "expected": 13
-      },
-      {
-        "input": [
-          [
-            10
-          ]
-        ],
-        "expected": 17
-      }
-    ]
-  },
-  {
-    "id": 68,
-    "groupName": "Funciones",
-    "topic": "Reduce",
-    "difficulty": 7,
-    "timeLimit": 60,
-    "reward": 57,
-    "description": "Crea sumPlus8(arr) y retorna suma total + 8.",
-    "hint": "reduce para sumar y luego +N.",
-    "functionName": "sumPlus8",
-    "starterCode": "function sumPlus8(arr) {\n  // TODO\n}",
-    "solution": "function sumPlus8(arr) { return arr.reduce((acc, x) => acc + x, 0) + 8; }",
-    "tests": [
-      {
-        "input": [
-          [
-            1,
-            2,
-            3
-          ]
-        ],
-        "expected": 14
-      },
-      {
-        "input": [
-          [
-            10
-          ]
-        ],
-        "expected": 18
-      }
-    ]
-  },
-  {
-    "id": 69,
-    "groupName": "Funciones",
-    "topic": "Reduce",
-    "difficulty": 7,
-    "timeLimit": 60,
-    "reward": 57,
-    "description": "Crea sumPlus9(arr) y retorna suma total + 9.",
-    "hint": "reduce para sumar y luego +N.",
-    "functionName": "sumPlus9",
-    "starterCode": "function sumPlus9(arr) {\n  // TODO\n}",
-    "solution": "function sumPlus9(arr) { return arr.reduce((acc, x) => acc + x, 0) + 9; }",
-    "tests": [
-      {
-        "input": [
-          [
-            1,
-            2,
-            3
-          ]
-        ],
-        "expected": 15
-      },
-      {
-        "input": [
-          [
-            10
-          ]
-        ],
-        "expected": 19
-      }
-    ]
-  },
-  {
-    "id": 70,
-    "groupName": "Funciones",
-    "topic": "Reduce",
-    "difficulty": 7,
-    "timeLimit": 60,
-    "reward": 57,
-    "description": "Crea sumPlus10(arr) y retorna suma total + 10.",
-    "hint": "reduce para sumar y luego +N.",
-    "functionName": "sumPlus10",
-    "starterCode": "function sumPlus10(arr) {\n  // TODO\n}",
-    "solution": "function sumPlus10(arr) { return arr.reduce((acc, x) => acc + x, 0) + 10; }",
-    "tests": [
-      {
-        "input": [
-          [
-            1,
-            2,
-            3
-          ]
-        ],
-        "expected": 16
-      },
-      {
-        "input": [
-          [
-            10
-          ]
-        ],
-        "expected": 20
-      }
-    ]
-  },
-  {
-    "id": 71,
-    "groupName": "Intermedio",
-    "topic": "Conteos",
-    "difficulty": 8,
-    "timeLimit": 55,
-    "reward": 63,
-    "description": "Crea countLong1(arr) y cuenta strings con longitud >= 1.",
-    "hint": "filter + length.",
-    "functionName": "countLong1",
-    "starterCode": "function countLong1(arr) {\n  // TODO\n}",
-    "solution": "function countLong1(arr) { return arr.filter((s) => s.length >= 1).length; }",
-    "tests": [
-      {
-        "input": [
-          [
-            "a",
-            "abcd",
-            "abcdefgh"
-          ]
-        ],
-        "expected": 3
-      },
-      {
-        "input": [
-          [
-            "xx",
-            "yyy",
-            "zzzz"
-          ]
-        ],
-        "expected": 3
-      }
-    ]
-  },
-  {
-    "id": 72,
-    "groupName": "Intermedio",
-    "topic": "Conteos",
-    "difficulty": 8,
-    "timeLimit": 55,
-    "reward": 63,
-    "description": "Crea countLong2(arr) y cuenta strings con longitud >= 2.",
-    "hint": "filter + length.",
-    "functionName": "countLong2",
-    "starterCode": "function countLong2(arr) {\n  // TODO\n}",
-    "solution": "function countLong2(arr) { return arr.filter((s) => s.length >= 2).length; }",
-    "tests": [
-      {
-        "input": [
-          [
-            "a",
-            "abcd",
-            "abcdefgh"
-          ]
-        ],
-        "expected": 2
-      },
-      {
-        "input": [
-          [
-            "xx",
-            "yyy",
-            "zzzz"
-          ]
-        ],
-        "expected": 3
-      }
-    ]
-  },
-  {
-    "id": 73,
-    "groupName": "Intermedio",
-    "topic": "Conteos",
-    "difficulty": 8,
-    "timeLimit": 55,
-    "reward": 63,
-    "description": "Crea countLong3(arr) y cuenta strings con longitud >= 3.",
-    "hint": "filter + length.",
-    "functionName": "countLong3",
-    "starterCode": "function countLong3(arr) {\n  // TODO\n}",
-    "solution": "function countLong3(arr) { return arr.filter((s) => s.length >= 3).length; }",
-    "tests": [
-      {
-        "input": [
-          [
-            "a",
-            "abcd",
-            "abcdefgh"
-          ]
-        ],
-        "expected": 2
-      },
-      {
-        "input": [
-          [
-            "xx",
-            "yyy",
-            "zzzz"
-          ]
-        ],
-        "expected": 2
-      }
-    ]
-  },
-  {
-    "id": 74,
-    "groupName": "Intermedio",
-    "topic": "Conteos",
-    "difficulty": 8,
-    "timeLimit": 55,
-    "reward": 63,
-    "description": "Crea countLong4(arr) y cuenta strings con longitud >= 4.",
-    "hint": "filter + length.",
-    "functionName": "countLong4",
-    "starterCode": "function countLong4(arr) {\n  // TODO\n}",
-    "solution": "function countLong4(arr) { return arr.filter((s) => s.length >= 4).length; }",
-    "tests": [
-      {
-        "input": [
-          [
-            "a",
-            "abcd",
-            "abcdefgh"
-          ]
-        ],
-        "expected": 2
-      },
-      {
-        "input": [
-          [
-            "xx",
-            "yyy",
-            "zzzz"
-          ]
-        ],
-        "expected": 1
-      }
-    ]
-  },
-  {
-    "id": 75,
-    "groupName": "Intermedio",
-    "topic": "Conteos",
-    "difficulty": 8,
-    "timeLimit": 55,
-    "reward": 63,
-    "description": "Crea countLong5(arr) y cuenta strings con longitud >= 5.",
-    "hint": "filter + length.",
-    "functionName": "countLong5",
-    "starterCode": "function countLong5(arr) {\n  // TODO\n}",
-    "solution": "function countLong5(arr) { return arr.filter((s) => s.length >= 5).length; }",
-    "tests": [
-      {
-        "input": [
-          [
-            "a",
-            "abcd",
-            "abcdefgh"
-          ]
-        ],
-        "expected": 1
-      },
-      {
-        "input": [
-          [
-            "xx",
-            "yyy",
-            "zzzz"
-          ]
-        ],
-        "expected": 0
-      }
-    ]
-  },
-  {
-    "id": 76,
-    "groupName": "Intermedio",
-    "topic": "Conteos",
-    "difficulty": 8,
-    "timeLimit": 55,
-    "reward": 63,
-    "description": "Crea countLong6(arr) y cuenta strings con longitud >= 6.",
-    "hint": "filter + length.",
-    "functionName": "countLong6",
-    "starterCode": "function countLong6(arr) {\n  // TODO\n}",
-    "solution": "function countLong6(arr) { return arr.filter((s) => s.length >= 6).length; }",
-    "tests": [
-      {
-        "input": [
-          [
-            "a",
-            "abcd",
-            "abcdefgh"
-          ]
-        ],
-        "expected": 1
-      },
-      {
-        "input": [
-          [
-            "xx",
-            "yyy",
-            "zzzz"
-          ]
-        ],
-        "expected": 0
-      }
-    ]
-  },
-  {
-    "id": 77,
-    "groupName": "Intermedio",
-    "topic": "Conteos",
-    "difficulty": 8,
-    "timeLimit": 55,
-    "reward": 63,
-    "description": "Crea countLong7(arr) y cuenta strings con longitud >= 7.",
-    "hint": "filter + length.",
-    "functionName": "countLong7",
-    "starterCode": "function countLong7(arr) {\n  // TODO\n}",
-    "solution": "function countLong7(arr) { return arr.filter((s) => s.length >= 7).length; }",
-    "tests": [
-      {
-        "input": [
-          [
-            "a",
-            "abcd",
-            "abcdefgh"
-          ]
-        ],
-        "expected": 1
-      },
-      {
-        "input": [
-          [
-            "xx",
-            "yyy",
-            "zzzz"
-          ]
-        ],
-        "expected": 0
-      }
-    ]
-  },
-  {
-    "id": 78,
-    "groupName": "Intermedio",
-    "topic": "Conteos",
-    "difficulty": 8,
-    "timeLimit": 55,
-    "reward": 63,
-    "description": "Crea countLong8(arr) y cuenta strings con longitud >= 8.",
-    "hint": "filter + length.",
-    "functionName": "countLong8",
-    "starterCode": "function countLong8(arr) {\n  // TODO\n}",
-    "solution": "function countLong8(arr) { return arr.filter((s) => s.length >= 8).length; }",
-    "tests": [
-      {
-        "input": [
-          [
-            "a",
-            "abcd",
-            "abcdefgh"
-          ]
-        ],
-        "expected": 1
-      },
-      {
-        "input": [
-          [
-            "xx",
-            "yyy",
-            "zzzz"
-          ]
-        ],
-        "expected": 0
-      }
-    ]
-  },
-  {
-    "id": 79,
-    "groupName": "Intermedio",
-    "topic": "Conteos",
-    "difficulty": 8,
-    "timeLimit": 55,
-    "reward": 63,
-    "description": "Crea countLong9(arr) y cuenta strings con longitud >= 9.",
-    "hint": "filter + length.",
-    "functionName": "countLong9",
-    "starterCode": "function countLong9(arr) {\n  // TODO\n}",
-    "solution": "function countLong9(arr) { return arr.filter((s) => s.length >= 9).length; }",
-    "tests": [
-      {
-        "input": [
-          [
-            "a",
-            "abcd",
-            "abcdefgh"
-          ]
-        ],
-        "expected": 0
-      },
-      {
-        "input": [
-          [
-            "xx",
-            "yyy",
-            "zzzz"
-          ]
-        ],
-        "expected": 0
-      }
-    ]
-  },
-  {
-    "id": 80,
-    "groupName": "Intermedio",
-    "topic": "Conteos",
-    "difficulty": 8,
-    "timeLimit": 55,
-    "reward": 63,
-    "description": "Crea countLong10(arr) y cuenta strings con longitud >= 10.",
-    "hint": "filter + length.",
-    "functionName": "countLong10",
-    "starterCode": "function countLong10(arr) {\n  // TODO\n}",
-    "solution": "function countLong10(arr) { return arr.filter((s) => s.length >= 10).length; }",
-    "tests": [
-      {
-        "input": [
-          [
-            "a",
-            "abcd",
-            "abcdefgh"
-          ]
-        ],
-        "expected": 0
-      },
-      {
-        "input": [
-          [
-            "xx",
-            "yyy",
-            "zzzz"
-          ]
-        ],
-        "expected": 0
-      }
-    ]
-  },
-  {
-    "id": 81,
-    "groupName": "Avanzado",
-    "topic": "Normalizacion",
-    "difficulty": 9,
-    "timeLimit": 50,
-    "reward": 69,
-    "description": "Crea normalize1(text) que haga trim, lowercase y agregue '-1'.",
-    "hint": "text.trim().toLowerCase()",
-    "functionName": "normalize1",
-    "starterCode": "function normalize1(text) {\n  // TODO\n}",
-    "solution": "function normalize1(text) { return text.trim().toLowerCase() + '-1'; }",
-    "tests": [
-      {
-        "input": [
-          "  HOLA "
-        ],
-        "expected": "hola-1"
-      },
-      {
-        "input": [
-          " JS "
-        ],
-        "expected": "js-1"
-      }
-    ]
-  },
-  {
-    "id": 82,
-    "groupName": "Avanzado",
-    "topic": "Normalizacion",
-    "difficulty": 9,
-    "timeLimit": 50,
-    "reward": 69,
-    "description": "Crea normalize2(text) que haga trim, lowercase y agregue '-2'.",
-    "hint": "text.trim().toLowerCase()",
-    "functionName": "normalize2",
-    "starterCode": "function normalize2(text) {\n  // TODO\n}",
-    "solution": "function normalize2(text) { return text.trim().toLowerCase() + '-2'; }",
-    "tests": [
-      {
-        "input": [
-          "  HOLA "
-        ],
-        "expected": "hola-2"
-      },
-      {
-        "input": [
-          " JS "
-        ],
-        "expected": "js-2"
-      }
-    ]
-  },
-  {
-    "id": 83,
-    "groupName": "Avanzado",
-    "topic": "Normalizacion",
-    "difficulty": 9,
-    "timeLimit": 50,
-    "reward": 69,
-    "description": "Crea normalize3(text) que haga trim, lowercase y agregue '-3'.",
-    "hint": "text.trim().toLowerCase()",
-    "functionName": "normalize3",
-    "starterCode": "function normalize3(text) {\n  // TODO\n}",
-    "solution": "function normalize3(text) { return text.trim().toLowerCase() + '-3'; }",
-    "tests": [
-      {
-        "input": [
-          "  HOLA "
-        ],
-        "expected": "hola-3"
-      },
-      {
-        "input": [
-          " JS "
-        ],
-        "expected": "js-3"
-      }
-    ]
-  },
-  {
-    "id": 84,
-    "groupName": "Avanzado",
-    "topic": "Normalizacion",
-    "difficulty": 9,
-    "timeLimit": 50,
-    "reward": 69,
-    "description": "Crea normalize4(text) que haga trim, lowercase y agregue '-4'.",
-    "hint": "text.trim().toLowerCase()",
-    "functionName": "normalize4",
-    "starterCode": "function normalize4(text) {\n  // TODO\n}",
-    "solution": "function normalize4(text) { return text.trim().toLowerCase() + '-4'; }",
-    "tests": [
-      {
-        "input": [
-          "  HOLA "
-        ],
-        "expected": "hola-4"
-      },
-      {
-        "input": [
-          " JS "
-        ],
-        "expected": "js-4"
-      }
-    ]
-  },
-  {
-    "id": 85,
-    "groupName": "Avanzado",
-    "topic": "Normalizacion",
-    "difficulty": 9,
-    "timeLimit": 50,
-    "reward": 69,
-    "description": "Crea normalize5(text) que haga trim, lowercase y agregue '-5'.",
-    "hint": "text.trim().toLowerCase()",
-    "functionName": "normalize5",
-    "starterCode": "function normalize5(text) {\n  // TODO\n}",
-    "solution": "function normalize5(text) { return text.trim().toLowerCase() + '-5'; }",
-    "tests": [
-      {
-        "input": [
-          "  HOLA "
-        ],
-        "expected": "hola-5"
-      },
-      {
-        "input": [
-          " JS "
-        ],
-        "expected": "js-5"
-      }
-    ]
-  },
-  {
-    "id": 86,
-    "groupName": "Avanzado",
-    "topic": "Normalizacion",
-    "difficulty": 9,
-    "timeLimit": 50,
-    "reward": 69,
-    "description": "Crea normalize6(text) que haga trim, lowercase y agregue '-6'.",
-    "hint": "text.trim().toLowerCase()",
-    "functionName": "normalize6",
-    "starterCode": "function normalize6(text) {\n  // TODO\n}",
-    "solution": "function normalize6(text) { return text.trim().toLowerCase() + '-6'; }",
-    "tests": [
-      {
-        "input": [
-          "  HOLA "
-        ],
-        "expected": "hola-6"
-      },
-      {
-        "input": [
-          " JS "
-        ],
-        "expected": "js-6"
-      }
-    ]
-  },
-  {
-    "id": 87,
-    "groupName": "Avanzado",
-    "topic": "Normalizacion",
-    "difficulty": 9,
-    "timeLimit": 50,
-    "reward": 69,
-    "description": "Crea normalize7(text) que haga trim, lowercase y agregue '-7'.",
-    "hint": "text.trim().toLowerCase()",
-    "functionName": "normalize7",
-    "starterCode": "function normalize7(text) {\n  // TODO\n}",
-    "solution": "function normalize7(text) { return text.trim().toLowerCase() + '-7'; }",
-    "tests": [
-      {
-        "input": [
-          "  HOLA "
-        ],
-        "expected": "hola-7"
-      },
-      {
-        "input": [
-          " JS "
-        ],
-        "expected": "js-7"
-      }
-    ]
-  },
-  {
-    "id": 88,
-    "groupName": "Avanzado",
-    "topic": "Normalizacion",
-    "difficulty": 9,
-    "timeLimit": 50,
-    "reward": 69,
-    "description": "Crea normalize8(text) que haga trim, lowercase y agregue '-8'.",
-    "hint": "text.trim().toLowerCase()",
-    "functionName": "normalize8",
-    "starterCode": "function normalize8(text) {\n  // TODO\n}",
-    "solution": "function normalize8(text) { return text.trim().toLowerCase() + '-8'; }",
-    "tests": [
-      {
-        "input": [
-          "  HOLA "
-        ],
-        "expected": "hola-8"
-      },
-      {
-        "input": [
-          " JS "
-        ],
-        "expected": "js-8"
-      }
-    ]
-  },
-  {
-    "id": 89,
-    "groupName": "Avanzado",
-    "topic": "Normalizacion",
-    "difficulty": 9,
-    "timeLimit": 50,
-    "reward": 69,
-    "description": "Crea normalize9(text) que haga trim, lowercase y agregue '-9'.",
-    "hint": "text.trim().toLowerCase()",
-    "functionName": "normalize9",
-    "starterCode": "function normalize9(text) {\n  // TODO\n}",
-    "solution": "function normalize9(text) { return text.trim().toLowerCase() + '-9'; }",
-    "tests": [
-      {
-        "input": [
-          "  HOLA "
-        ],
-        "expected": "hola-9"
-      },
-      {
-        "input": [
-          " JS "
-        ],
-        "expected": "js-9"
-      }
-    ]
-  },
-  {
-    "id": 90,
-    "groupName": "Avanzado",
-    "topic": "Normalizacion",
-    "difficulty": 9,
-    "timeLimit": 50,
-    "reward": 69,
-    "description": "Crea normalize10(text) que haga trim, lowercase y agregue '-10'.",
-    "hint": "text.trim().toLowerCase()",
-    "functionName": "normalize10",
-    "starterCode": "function normalize10(text) {\n  // TODO\n}",
-    "solution": "function normalize10(text) { return text.trim().toLowerCase() + '-10'; }",
-    "tests": [
-      {
-        "input": [
-          "  HOLA "
-        ],
-        "expected": "hola-10"
-      },
-      {
-        "input": [
-          " JS "
-        ],
-        "expected": "js-10"
-      }
-    ]
-  },
-  {
-    "id": 91,
-    "groupName": "Maestro JS",
-    "topic": "Composicion",
-    "difficulty": 10,
-    "timeLimit": 45,
-    "reward": 75,
-    "description": "Crea solve1(arr) -> filtra pares, duplica y suma todo + 1.",
-    "hint": "filter even -> map *2 -> reduce sum.",
-    "functionName": "solve1",
-    "starterCode": "function solve1(arr) {\n  // TODO\n}",
-    "solution": "function solve1(arr) { return arr.filter((x) => x % 2 === 0).map((x) => x * 2).reduce((acc, x) => acc + x, 0) + 1; }",
-    "tests": [
-      {
-        "input": [
-          [
-            1,
-            2,
-            3,
-            4
-          ]
-        ],
-        "expected": 13
-      },
-      {
-        "input": [
-          [
-            5,
-            7,
-            8
-          ]
-        ],
-        "expected": 17
-      }
-    ]
-  },
-  {
-    "id": 92,
-    "groupName": "Maestro JS",
-    "topic": "Composicion",
-    "difficulty": 10,
-    "timeLimit": 45,
-    "reward": 75,
-    "description": "Crea solve2(arr) -> filtra pares, duplica y suma todo + 2.",
-    "hint": "filter even -> map *2 -> reduce sum.",
-    "functionName": "solve2",
-    "starterCode": "function solve2(arr) {\n  // TODO\n}",
-    "solution": "function solve2(arr) { return arr.filter((x) => x % 2 === 0).map((x) => x * 2).reduce((acc, x) => acc + x, 0) + 2; }",
-    "tests": [
-      {
-        "input": [
-          [
-            1,
-            2,
-            3,
-            4
-          ]
-        ],
-        "expected": 14
-      },
-      {
-        "input": [
-          [
-            5,
-            7,
-            8
-          ]
-        ],
-        "expected": 18
-      }
-    ]
-  },
-  {
-    "id": 93,
-    "groupName": "Maestro JS",
-    "topic": "Composicion",
-    "difficulty": 10,
-    "timeLimit": 45,
-    "reward": 75,
-    "description": "Crea solve3(arr) -> filtra pares, duplica y suma todo + 3.",
-    "hint": "filter even -> map *2 -> reduce sum.",
-    "functionName": "solve3",
-    "starterCode": "function solve3(arr) {\n  // TODO\n}",
-    "solution": "function solve3(arr) { return arr.filter((x) => x % 2 === 0).map((x) => x * 2).reduce((acc, x) => acc + x, 0) + 3; }",
-    "tests": [
-      {
-        "input": [
-          [
-            1,
-            2,
-            3,
-            4
-          ]
-        ],
-        "expected": 15
-      },
-      {
-        "input": [
-          [
-            5,
-            7,
-            8
-          ]
-        ],
-        "expected": 19
-      }
-    ]
-  },
-  {
-    "id": 94,
-    "groupName": "Maestro JS",
-    "topic": "Composicion",
-    "difficulty": 10,
-    "timeLimit": 45,
-    "reward": 75,
-    "description": "Crea solve4(arr) -> filtra pares, duplica y suma todo + 4.",
-    "hint": "filter even -> map *2 -> reduce sum.",
-    "functionName": "solve4",
-    "starterCode": "function solve4(arr) {\n  // TODO\n}",
-    "solution": "function solve4(arr) { return arr.filter((x) => x % 2 === 0).map((x) => x * 2).reduce((acc, x) => acc + x, 0) + 4; }",
-    "tests": [
-      {
-        "input": [
-          [
-            1,
-            2,
-            3,
-            4
-          ]
-        ],
-        "expected": 16
-      },
-      {
-        "input": [
-          [
-            5,
-            7,
-            8
-          ]
-        ],
-        "expected": 20
-      }
-    ]
-  },
-  {
-    "id": 95,
-    "groupName": "Maestro JS",
-    "topic": "Composicion",
-    "difficulty": 10,
-    "timeLimit": 45,
-    "reward": 75,
-    "description": "Crea solve5(arr) -> filtra pares, duplica y suma todo + 5.",
-    "hint": "filter even -> map *2 -> reduce sum.",
-    "functionName": "solve5",
-    "starterCode": "function solve5(arr) {\n  // TODO\n}",
-    "solution": "function solve5(arr) { return arr.filter((x) => x % 2 === 0).map((x) => x * 2).reduce((acc, x) => acc + x, 0) + 5; }",
-    "tests": [
-      {
-        "input": [
-          [
-            1,
-            2,
-            3,
-            4
-          ]
-        ],
-        "expected": 17
-      },
-      {
-        "input": [
-          [
-            5,
-            7,
-            8
-          ]
-        ],
-        "expected": 21
-      }
-    ]
-  },
-  {
     "id": 96,
-    "groupName": "Maestro JS",
-    "topic": "Composicion",
     "difficulty": 10,
     "timeLimit": 45,
     "reward": 75,
-    "description": "Crea solve6(arr) -> filtra pares, duplica y suma todo + 6.",
-    "hint": "filter even -> map *2 -> reduce sum.",
-    "functionName": "solve6",
-    "starterCode": "function solve6(arr) {\n  // TODO\n}",
-    "solution": "function solve6(arr) { return arr.filter((x) => x % 2 === 0).map((x) => x * 2).reduce((acc, x) => acc + x, 0) + 6; }",
+    "groupName": "Objetos",
+    "topic": "Get key",
+    "description": "Crea getK5(obj) y retorna obj.k5 o null.",
+    "hint": "Accede a la key dinamica.",
+    "functionName": "getK5",
+    "starterCode": "function getK5(obj) {\n  // TODO\n}",
+    "solution": "function getK5(obj) { return Object.prototype.hasOwnProperty.call(obj, \"k5\") ? obj[\"k5\"] : null; }",
     "tests": [
       {
         "input": [
-          [
-            1,
-            2,
-            3,
-            4
-          ]
+          {
+            "k5": 5
+          }
         ],
-        "expected": 18
+        "expected": 5
       },
       {
         "input": [
-          [
-            5,
-            7,
-            8
-          ]
+          {}
         ],
-        "expected": 22
+        "expected": null
       }
     ]
   },
   {
     "id": 97,
-    "groupName": "Maestro JS",
-    "topic": "Composicion",
     "difficulty": 10,
     "timeLimit": 45,
     "reward": 75,
-    "description": "Crea solve7(arr) -> filtra pares, duplica y suma todo + 7.",
-    "hint": "filter even -> map *2 -> reduce sum.",
-    "functionName": "solve7",
-    "starterCode": "function solve7(arr) {\n  // TODO\n}",
-    "solution": "function solve7(arr) { return arr.filter((x) => x % 2 === 0).map((x) => x * 2).reduce((acc, x) => acc + x, 0) + 7; }",
+    "groupName": "Bucles",
+    "topic": "Rango",
+    "description": "Crea range5() y retorna [1..5].",
+    "hint": "Usa un for.",
+    "functionName": "range5",
+    "starterCode": "function range5() {\n  // TODO\n}",
+    "solution": "function range5() { const out = []; for (let i = 1; i <= 5; i++) out.push(i); return out; }",
     "tests": [
       {
-        "input": [
-          [
-            1,
-            2,
-            3,
-            4
-          ]
-        ],
-        "expected": 19
+        "input": [],
+        "expected": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
       },
       {
-        "input": [
-          [
-            5,
-            7,
-            8
-          ]
-        ],
-        "expected": 23
+        "input": [],
+        "expected": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
       }
     ]
   },
   {
     "id": 98,
-    "groupName": "Maestro JS",
-    "topic": "Composicion",
     "difficulty": 10,
     "timeLimit": 45,
     "reward": 75,
-    "description": "Crea solve8(arr) -> filtra pares, duplica y suma todo + 8.",
-    "hint": "filter even -> map *2 -> reduce sum.",
-    "functionName": "solve8",
-    "starterCode": "function solve8(arr) {\n  // TODO\n}",
-    "solution": "function solve8(arr) { return arr.filter((x) => x % 2 === 0).map((x) => x * 2).reduce((acc, x) => acc + x, 0) + 8; }",
+    "groupName": "Arrays",
+    "topic": "Slice",
+    "description": "Crea take5(arr) y retorna los primeros 5 elementos.",
+    "hint": "Usa slice.",
+    "functionName": "take5",
+    "starterCode": "function take5(arr) {\n  // TODO\n}",
+    "solution": "function take5(arr) { return arr.slice(0, 5); }",
     "tests": [
       {
         "input": [
@@ -3230,92 +3118,116 @@
             1,
             2,
             3,
-            4
+            4,
+            5
           ]
         ],
-        "expected": 20
+        "expected": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
       },
       {
         "input": [
           [
-            5,
-            7,
+            9,
             8
           ]
         ],
-        "expected": 24
+        "expected": [
+          9,
+          8
+        ]
       }
     ]
   },
   {
     "id": 99,
-    "groupName": "Maestro JS",
-    "topic": "Composicion",
     "difficulty": 10,
     "timeLimit": 45,
     "reward": 75,
-    "description": "Crea solve9(arr) -> filtra pares, duplica y suma todo + 9.",
-    "hint": "filter even -> map *2 -> reduce sum.",
-    "functionName": "solve9",
-    "starterCode": "function solve9(arr) {\n  // TODO\n}",
-    "solution": "function solve9(arr) { return arr.filter((x) => x % 2 === 0).map((x) => x * 2).reduce((acc, x) => acc + x, 0) + 9; }",
+    "groupName": "Strings",
+    "topic": "Padding",
+    "description": "Crea pad5(str) y retorna str con padding de '0' hasta 5.",
+    "hint": "Usa padStart.",
+    "functionName": "pad5",
+    "starterCode": "function pad5(str) {\n  // TODO\n}",
+    "solution": "function pad5(str) { return str.padStart(5, \"0\"); }",
     "tests": [
       {
         "input": [
-          [
-            1,
-            2,
-            3,
-            4
-          ]
+          "7"
         ],
-        "expected": 21
+        "expected": "00007"
       },
       {
         "input": [
-          [
-            5,
-            7,
-            8
-          ]
+          "99"
         ],
-        "expected": 25
+        "expected": "00099"
       }
     ]
   },
   {
     "id": 100,
-    "groupName": "Maestro JS",
-    "topic": "Composicion",
     "difficulty": 10,
     "timeLimit": 45,
     "reward": 75,
-    "description": "Crea solve10(arr) -> filtra pares, duplica y suma todo + 10.",
-    "hint": "filter even -> map *2 -> reduce sum.",
-    "functionName": "solve10",
-    "starterCode": "function solve10(arr) {\n  // TODO\n}",
-    "solution": "function solve10(arr) { return arr.filter((x) => x % 2 === 0).map((x) => x * 2).reduce((acc, x) => acc + x, 0) + 10; }",
+    "groupName": "Maestro JS",
+    "topic": "Zip",
+    "description": "Crea zip5(a, b) y retorna pares hasta 5 elementos.",
+    "hint": "Itera hasta min(n, lengths).",
+    "functionName": "zip5",
+    "starterCode": "function zip5(a, b) {\n  // TODO\n}",
+    "solution": "function zip5(a, b) { const out = []; const len = Math.min(5, a.length, b.length); for (let i = 0; i < len; i++) out.push([a[i], b[i]]); return out; }",
     "tests": [
       {
         "input": [
           [
             1,
             2,
-            3,
-            4
+            3
+          ],
+          [
+            "a",
+            "b",
+            "c"
           ]
         ],
-        "expected": 22
+        "expected": [
+          [
+            1,
+            "a"
+          ],
+          [
+            2,
+            "b"
+          ],
+          [
+            3,
+            "c"
+          ]
+        ]
       },
       {
         "input": [
           [
-            5,
-            7,
-            8
+            1
+          ],
+          [
+            "x",
+            "y"
           ]
         ],
-        "expected": 26
+        "expected": [
+          [
+            1,
+            "x"
+          ]
+        ]
       }
     ]
   }

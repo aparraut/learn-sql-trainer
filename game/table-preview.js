@@ -4,20 +4,10 @@
 
 import { getTables } from "../sql/sql-engine.js";
 
-export function renderTablePreview(tableName) {
-  const tables = getTables();
+function renderSingleTable(tableName, rows) {
   const fragment = document.createDocumentFragment();
 
-  if (!tables[tableName]) {
-    const message = document.createElement("p");
-    message.style.opacity = "0.6";
-    message.textContent = "No hay tabla asociada para este nivel.";
-    fragment.appendChild(message);
-    return fragment;
-  }
-
-  const rows = tables[tableName];
-  if (rows.length === 0) {
+  if (!rows || rows.length === 0) {
     const message = document.createElement("p");
     message.textContent = "No hay datos en la tabla.";
     fragment.appendChild(message);
@@ -56,5 +46,36 @@ export function renderTablePreview(tableName) {
   table.appendChild(tbody);
 
   fragment.appendChild(table);
+  return fragment;
+}
+
+export function renderTablePreview(tableName) {
+  const tables = getTables();
+  const fragment = document.createDocumentFragment();
+
+  if (tableName === "join_example") {
+    const intro = document.createElement("p");
+    intro.style.opacity = "0.7";
+    intro.textContent = "Tablas disponibles para JOIN:";
+    fragment.appendChild(intro);
+
+    ["users", "orders", "products"].forEach((name) => {
+      if (tables[name]) {
+        fragment.appendChild(renderSingleTable(name, tables[name]));
+      }
+    });
+
+    return fragment;
+  }
+
+  if (!tables[tableName]) {
+    const message = document.createElement("p");
+    message.style.opacity = "0.6";
+    message.textContent = "No hay tabla asociada para este nivel.";
+    fragment.appendChild(message);
+    return fragment;
+  }
+
+  fragment.appendChild(renderSingleTable(tableName, tables[tableName]));
   return fragment;
 }
