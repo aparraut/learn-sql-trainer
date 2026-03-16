@@ -147,11 +147,11 @@
     "reward": 21,
     "groupName": "Condicionales",
     "topic": "Multiplo",
-    "description": "Crea isMultiple1(x) y retorna true si x es multiplo de 1.",
-    "hint": "x % N === 0.",
-    "functionName": "isMultiple1",
-    "starterCode": "function isMultiple1(x) {\n  // TODO\n}",
-    "solution": "function isMultiple1(x) { return x % 1 === 0; }",
+    "description": "Crea isMultiple3(x) y retorna true si x es multiplo de 3.",
+    "hint": "x % 3 === 0.",
+    "functionName": "isMultiple3",
+    "starterCode": "function isMultiple3(x) {\n  // TODO\n}",
+    "solution": "function isMultiple3(x) { return x % 3 === 0; }",
     "tests": [
       {
         "input": [
@@ -271,7 +271,7 @@
         "input": [
           "hi"
         ],
-        "expected": "hi"
+        "expected": "h..."
       }
     ]
   },
